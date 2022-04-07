@@ -7,18 +7,14 @@ const gameSchema = Schema(
             type: String,
             required: [true, "Provide the games title"],
         },
-    },
-    {
         cover: {
             type: String,
             required: [true, "Provide a link for the games cover picture"]
-        }
-    },
-    {
+        },
         summary : {
             type: String,
             required: [true, "Provide a summary for the game"]
-        }
+        },
     },
     {
         timestamps: true
