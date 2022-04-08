@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root {
+  --page-padding: 1.5rem 10%;
+  --top-spacing: 4rem;
+  --accent-color: rgb(158, 1, 35);
+  --white: #fff;
+  --white2: #ddd;
+  --dark-grey: #333;
+  --black: #000;
+  --background: #222;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+  background: var(--background);
+}
+
+.gameRatePages {
+  padding: var(--page-padding);
+  color: var(--white2);
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.gameRatePages > h1 {
+  font-size: 1.8rem;
+  text-align: center;
+}

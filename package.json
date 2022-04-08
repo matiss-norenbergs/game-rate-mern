@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server/server.js",
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client"
   },
   "author": "Matīss Norenbergs",
   "license": "MIT",
