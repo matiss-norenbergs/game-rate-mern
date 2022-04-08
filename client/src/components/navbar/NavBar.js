@@ -1,9 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from "../../redux/features/auth/authSlice";
 import "./NavBar.css";
 
 const NavBar = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
+
+    const handleLogout = () => {
+        dispatch(logout());
+        dispatch(reset());
+        navigate("/");
+    }
+
     return (
         <div className="navBar">
             <Link to="/" className="navLogo">GameRate</Link>
@@ -11,11 +23,17 @@ const NavBar = () => {
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/games">Games</Link>
-                <Link to="/profile">Profile</Link>
+                { user && <Link to="/profile">Profile</Link> }
             </nav>
 
             <div className="navOptions">
-                <Link to="/login">Login <FontAwesomeIcon icon={faRightToBracket} /></Link>
+                { !user ? (
+                        <Link className="optionBtn" to="/login">Login <FontAwesomeIcon icon={faRightToBracket} /></Link>
+                ) : (
+                    <>
+                        <div className="loggedUser" onClick={ handleLogout }><FontAwesomeIcon icon={faUserAlt} /> { user.name }</div>
+                    </>
+                ) }
             </div>
         </div>
     );

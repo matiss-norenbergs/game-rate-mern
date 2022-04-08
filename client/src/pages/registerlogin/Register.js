@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { register, reset  } from "../../redux/features/auth/authSlice";
 import "./RegisterLogin.css";
 
 const Register = () => {
@@ -8,10 +11,40 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if(isError){
+            alert(message);
+        }
+
+        if(isSuccess || user){
+            navigate("/");
+        }
+
+        dispatch(reset());
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(password !== password2){
+            alert("Password do not match")
+        }else{
+            const userData = { name, email, password }
+
+            dispatch(register(userData));
+        }
     }
     
+    if(isLoading){
+        return (
+            <h1>Loading...</h1>
+        )
+    }
 
     return (
         <div className="registerLoginBox">

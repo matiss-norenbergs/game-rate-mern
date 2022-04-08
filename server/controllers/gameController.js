@@ -28,10 +28,8 @@ const addGame = asyncHandler( async (req, res) => {
         throw new Error("Please provide all necessary data")
     }
 
-    const user = await User.findById(req.user.id);
-
     //Check for user
-    if(!user){
+    if(!req.user){
         res.status(401)
         throw new Error("User not found")
     }
@@ -40,7 +38,7 @@ const addGame = asyncHandler( async (req, res) => {
         title: req.body.title,
         cover: req.body.cover,
         summary: req.body.summary,
-        submittedBy: user.id
+        submittedBy: res.user.id
     });
 
     res.json({ message: `Game added: ${req.body.title}` });
@@ -55,16 +53,14 @@ const updateGame = asyncHandler( async (req, res) => {
         throw new Error("Game not found")
     }
 
-    const user = await User.findById(req.user.id);
-
     //Check for user
-    if(!user){
+    if(!req.user){
         res.status(401)
         throw new Error("User not found")
     }
 
     //Checking if the user is admin
-    if(user.role !== "Admin"){
+    if(req.user.role !== "Admin"){
         res.status(401)
         throw new Error("User is not admin")
     }
@@ -83,16 +79,14 @@ const deleteGame = asyncHandler( async (req, res) => {
         throw new Error("Game not found")
     }
 
-    const user = await User.findById(req.user.id);
-
     //Check for user
-    if(!user){
+    if(!req.user){
         res.status(401)
         throw new Error("User not found")
     }
 
     //Checking if the user is admin
-    if(user.role !== "Admin"){
+    if(req.user.role !== "Admin"){
         res.status(401)
         throw new Error("User is not admin")
     }
