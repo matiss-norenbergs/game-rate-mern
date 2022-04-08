@@ -38,7 +38,7 @@ const addGame = asyncHandler( async (req, res) => {
         title: req.body.title,
         cover: req.body.cover,
         summary: req.body.summary,
-        submittedBy: res.user.id
+        submittedBy: req.user.id,
     });
 
     res.json({ message: `Game added: ${req.body.title}` });
