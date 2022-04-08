@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 
 const Game = require("../models/gameModel");
+const User = require("../models/userModel");
 
 // Fetch all games
 const getGames = asyncHandler( async (req, res) => {
@@ -31,6 +32,7 @@ const addGame = asyncHandler( async (req, res) => {
         title: req.body.title,
         cover: req.body.cover,
         summary: req.body.summary,
+        submittedBy: req.user.id
     });
 
     res.json({ message: `Game added: ${req.body.title}` });
@@ -45,6 +47,20 @@ const updateGame = asyncHandler( async (req, res) => {
         throw new Error("Game not found")
     }
 
+    const user = await User.findById(req.user.id);
+
+    //Check for user
+    if(!user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    //Checking if the user is admin
+    if(user.role !== "Admin"){
+        res.status(401)
+        throw new Error("User is not admin")
+    }
+
     const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
     res.json(updatedGame);
@@ -57,6 +73,20 @@ const deleteGame = asyncHandler( async (req, res) => {
     if(!game){
         res.status(400)
         throw new Error("Game not found")
+    }
+
+    const user = await User.findById(req.user.id);
+
+    //Check for user
+    if(!user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    //Checking if the user is admin
+    if(user.role !== "Admin"){
+        res.status(401)
+        throw new Error("User is not admin")
     }
 
     await game.remove();
