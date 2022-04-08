@@ -28,11 +28,19 @@ const addGame = asyncHandler( async (req, res) => {
         throw new Error("Please provide all necessary data")
     }
 
+    const user = await User.findById(req.user.id);
+
+    //Check for user
+    if(!user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
     const game = await Game.create({
         title: req.body.title,
         cover: req.body.cover,
         summary: req.body.summary,
-        submittedBy: req.user.id
+        submittedBy: user.id
     });
 
     res.json({ message: `Game added: ${req.body.title}` });
