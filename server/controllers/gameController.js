@@ -1,11 +1,10 @@
 const asyncHandler = require("express-async-handler");
 
 const Game = require("../models/gameModel");
-const User = require("../models/userModel");
 
 // Fetch all games
 const getGames = asyncHandler( async (req, res) => {
-    const games = await Game.find({ public: true })
+    const games = await Game.find({ public: true });
     res.json(games);
 })
 
