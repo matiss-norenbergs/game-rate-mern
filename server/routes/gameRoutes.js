@@ -6,7 +6,7 @@ const { protect } = require("../middleware/authMiddleware");
 
 router.get('/', getGames);
 
-router.get('/game/:id', getGame);
+router.get('/:id', getGame);
 
 router.post('/', protect, addGame);
 

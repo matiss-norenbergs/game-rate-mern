@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,14 +6,13 @@ import { logout, reset } from "../../redux/features/auth/authSlice";
 import "./NavBar.css";
 
 const NavBar = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
 
     const handleLogout = () => {
         dispatch(logout());
         dispatch(reset());
-        navigate("/");
+        window.location.reload(false);
     }
 
     return (
