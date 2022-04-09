@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { submitGame } from "../../redux/features/games/gameSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { submitGame, reset } from "../../redux/features/games/gameSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./Submit.css";
 
 const Submit = () => {
     const [title, setTitle] = useState("");
     const [summary, setSummary] = useState("");
     const [cover, setCover] = useState("");
+    const [submitted, setSubmitted] = useState(false);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
+    const { isError, isSuccess, isPending, message } = useSelector((state) => state.games);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,38 +24,78 @@ const Submit = () => {
         setTitle("");
         setSummary("");
         setCover("");
-        navigate("/games");
+        setSubmitted(true);
+
+        setTimeout(() => {
+            dispatch(reset());
+            navigate("/games");
+        },[ 3000]);
     }
 
-    return (
-        <>
-            <h1>Submit a game</h1>
+    if(!user){
+        return (
+            <div className="submitPageMessage">
+                <h1>You must be logged in to submit a game</h1>
+                <span>Click <Link to="/login">HERE</Link> to login</span>
+            </div>
+        )
+    }
 
-            <form className="submitForm" onSubmit={ handleSubmit }>
-                <section className="gameTags">
-                    <h2>Game tags</h2>
-                </section>
-
-                <section className="formInput">
-                    <div className="row">
-                        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title of a game" required />
-                    </div><hr />
-
-                    <div className="row">
-                        <textarea value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Game summary" required></textarea>
-                    </div><hr />
-
-                    <div className="row">
-                        <input type="text" value={cover} onChange={(e) => setCover(e.target.value)} placeholder="Game cover link" />
-                    </div><hr />
-
-                    <div className="row">
-                        <input type="submit" value="Submit" />
+    if(!submitted){
+        return (
+            <>
+                <h1>Submit a game</h1>
+    
+                <form className="submitForm" onSubmit={ handleSubmit }>
+                    <section className="gameTags">
+                        <h2>Game tags</h2>
+                    </section>
+    
+                    <section className="formInput">
+                        <div className="row">
+                            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title of a game" required />
+                        </div><hr />
+    
+                        <div className="row">
+                            <textarea value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Game summary" required></textarea>
+                        </div><hr />
+    
+                        <div className="row">
+                            <input type="text" value={cover} onChange={(e) => setCover(e.target.value)} placeholder="Game cover link" />
+                        </div><hr />
+    
+                        <div className="row">
+                            <input type="submit" value="Submit" />
+                        </div>
+                    </section>
+                </form>
+            </>
+        );
+    }else{
+        if(isPending){
+            return (
+                <h1>Processing...</h1>
+            )
+        }else{
+            if(isSuccess && !isError){
+                return (
+                    <div className="submitPageMessage">
+                        <h1>Submission was successful!</h1>
+                        { message.message && <h2>{ message.message }</h2> }
+                        <i className="icon green"><FontAwesomeIcon icon={ faCheck } /></i>
                     </div>
-                </section>
-            </form>
-        </>
-    );
+                )
+            }else{
+                return (
+                    <div className="submitPageMessage">
+                        <h1>Something went wrong...</h1>
+                        { message.message && <h2>{ message.message }</h2> }
+                        <i className="icon red"><FontAwesomeIcon icon={ faTimes } /></i>
+                    </div>
+                )
+            }
+        }
+    }
 }
  
 export default Submit;

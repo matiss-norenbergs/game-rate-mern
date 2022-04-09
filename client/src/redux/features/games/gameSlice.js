@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import gameService from "./gameService";
 
 const initialState = {
-    games: [],
     isError: false,
     isSuccess: false,
     isPending: false,
@@ -34,7 +33,7 @@ export const gameSlice = createSlice({
         .addCase(submitGame.fulfilled, (state, action) => {
             state.isPending = false
             state.isSuccess = true
-            state.games.push(action.payload)
+            state.message = action.payload
         })
         .addCase(submitGame.rejected, (state, action) => {
             state.isPending = false

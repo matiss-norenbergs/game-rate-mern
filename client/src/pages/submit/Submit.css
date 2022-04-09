@@ -79,3 +79,83 @@
     border: 1px solid var(--accent-color);
     margin: 1.5rem .5rem;
 }
+
+@keyframes showSubmitResult {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.submitPageMessage {
+    margin: 3.5rem 0;
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    animation: showSubmitResult 1s;
+}
+
+.submitPageMessage > * {
+    color: var(--white2);
+}
+
+.submitPageMessage > h1 {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--accent-color);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.submitPageMessage > h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: .5rem;
+}
+
+.submitPageMessage > span {
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+    padding-top: 1.5rem;
+}
+
+.submitPageMessage > span a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.submitPageMessage > span a:hover {
+    color: var(--white2);
+}
+
+@keyframes showIcon {
+    from {
+        opacity: 0;
+        transform: translateX(10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.submitPageMessage .icon {
+    display: block;
+    text-align: center;
+    font-size: 6rem;
+    padding-top: 1rem;
+    animation: showIcon 1.5s;
+}
+
+.submitPageMessage .green {
+    color: #494;
+}
+
+.submitPageMessage .red {
+    color: #922;
+}

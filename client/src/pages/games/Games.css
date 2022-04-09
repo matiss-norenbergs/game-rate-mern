@@ -1,0 +1,22 @@
+.gamesBtns {
+    display: flex;
+    justify-content: end;
+}
+
+.gamesBtns > .btn {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: .8rem 1rem;
+    border-radius: 5px;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--white2);
+}
+
+.gamesBtns > .btn:hover {
+    background: var(--accent-color);
+}
+
+.gamesBtns > .btn .icon {
+    margin-left: .3rem;
+}

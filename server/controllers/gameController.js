@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 
 // Fetch all games
 const getGames = asyncHandler( async (req, res) => {
-    const games = await Game.find()
+    const games = await Game.find({ public: true })
     res.json(games);
 })
 
@@ -41,7 +41,7 @@ const addGame = asyncHandler( async (req, res) => {
         submittedBy: req.user.id,
     });
 
-    res.json({ message: `Game added: ${req.body.title}` });
+    res.json({ message: `Game submitted: ${req.body.title}` });
 })
 
 // Update a game
@@ -60,9 +60,9 @@ const updateGame = asyncHandler( async (req, res) => {
     }
 
     //Checking if the user is admin
-    if(req.user.role !== "Admin"){
+    if(req.user.role !== "admin"){
         res.status(401)
-        throw new Error("User is not admin")
+        throw new Error("User is not an admin")
     }
 
     const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -86,9 +86,9 @@ const deleteGame = asyncHandler( async (req, res) => {
     }
 
     //Checking if the user is admin
-    if(req.user.role !== "Admin"){
+    if(req.user.role !== "admin"){
         res.status(401)
-        throw new Error("User is not admin")
+        throw new Error("User is not an admin")
     }
 
     await game.remove();

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useFetch = (API_URL) => {
-    const [games, setGames] = useState(null);
+    const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
@@ -10,7 +10,7 @@ const useFetch = (API_URL) => {
         const unsubscribe = async () => {
             try {
                 const response = await axios.get(API_URL);
-                setGames(response.data);
+                setData(response.data);
                 setIsPending(false);
             } catch (error) {
                 setIsPending(false);
@@ -19,9 +19,9 @@ const useFetch = (API_URL) => {
         };
 
         return unsubscribe;
-    }, []);
+    }, [API_URL]);
     
-    return { games, isPending, error };
+    return { data, isPending, error };
 }
  
 export default useFetch;
