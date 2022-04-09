@@ -22,6 +22,21 @@
     padding-bottom: 1rem;
 }
 
+.submitForm .gameTags .tagRow {
+    color: var(--white2);
+    padding: 2px 0;
+}
+
+.submitForm .gameTags .tagRow input[type=checkbox] {
+    height: 1rem;
+    width: 1rem;
+}
+
+.submitForm .gameTags .tagRow > label {
+    margin-left: .5rem;
+    font-size: 1.2rem;
+}
+
 .submitForm .formInput {
     width: 30rem;
 }
