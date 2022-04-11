@@ -8,10 +8,11 @@ import Profile from "./pages/profile/Profile";
 import Login from "./pages/registerlogin/Login";
 import Register from "./pages/registerlogin/Register";
 import Submit from './pages/submit/Submit';
-import Admin from './pages/admin/Admin';
-import AdminHome from './pages/admin/AdminHome';
-import AdminTags from './pages/admin/AdminTags';
-import AdminGames from './pages/admin/AdminGames';
+import AdminNav from './pages/adminnavbar/AdminNav';
+import AdminDashboard from './pages/admindashboard/AdminDashboard';
+import AdminTags from './pages/admintags/AdminTags';
+import AdminGames from './pages/admingames/AdminGames';
+import TagCreate from './pages/admincreate/TagCreate';
 
 function App() {
   return (
@@ -27,11 +28,12 @@ function App() {
           <Route path="/profile" element={ <Profile /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
-          <Route path="/admin" element={ <Admin /> } >
-            <Route index element={ <AdminHome /> } />
-            <Route path="dashboard" element={ <AdminHome /> } />
+          <Route path="/admin" element={ <AdminNav /> } >
+            <Route index element={ <AdminDashboard /> } />
+            <Route path="dashboard" element={ <AdminDashboard /> } />
             <Route path="games" element={ <AdminGames /> } />
-            <Route path="gametags" element={ <AdminTags /> } />
+            <Route path="tags" element={ <AdminTags /> } />
+            <Route path="createtag" element={ <TagCreate /> } />
           </Route>
         </Routes>
       </Router>

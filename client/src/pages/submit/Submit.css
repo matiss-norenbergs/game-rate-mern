@@ -48,7 +48,8 @@
     width: 100%;
 }
 
-.submitForm .formInput .row > input[type=text], textarea {
+.submitForm .formInput .row > input[type=text],
+.submitForm .formInput .row > textarea {
     width: 100%;
     font-size: 1.4rem;
     padding: .5rem .6rem;
@@ -57,7 +58,8 @@
     border-radius: 5px;
 }
 
-.submitForm .formInput .row > input[type=text]:focus, textarea:focus {
+.submitForm .formInput .row > input[type=text]:focus,
+.submitForm .formInput .row > textarea:focus {
     outline-color: var(--accent-color);
 }
 
