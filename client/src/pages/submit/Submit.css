@@ -48,7 +48,8 @@
     width: 100%;
 }
 
-.submitForm .formInput .row > input[type=text], textarea {
+.submitForm .formInput .row > input[type=text],
+.submitForm .formInput .row > textarea {
     width: 100%;
     font-size: 1.4rem;
     padding: .5rem .6rem;
@@ -57,7 +58,8 @@
     border-radius: 5px;
 }
 
-.submitForm .formInput .row > input[type=text]:focus, textarea:focus {
+.submitForm .formInput .row > input[type=text]:focus,
+.submitForm .formInput .row > textarea:focus {
     outline-color: var(--accent-color);
 }
 
@@ -104,19 +106,23 @@
     }
 }
 
-.submitPageMessage {
-    margin: 3.5rem 0;
+.submitNotLogged {
+    overflow-x: hidden;
+    margin: 3.5rem 3%;
+}
+
+.submitNotLogged .submitPageMessage {
     padding: 3rem 2rem;
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.4);
     animation: showSubmitResult 1s;
 }
 
-.submitPageMessage > * {
+.submitNotLogged .submitPageMessage > * {
     color: var(--white2);
 }
 
-.submitPageMessage > h1 {
+.submitNotLogged .submitPageMessage > h1 {
     text-align: center;
     font-size: 2rem;
     padding-bottom: .5rem;
@@ -125,26 +131,26 @@
     border-bottom-right-radius: 1rem;
 }
 
-.submitPageMessage > h2 {
+.submitNotLogged .submitPageMessage > h2 {
     font-size: 1.4rem;
     font-weight: 500;
     text-align: center;
     margin-top: .5rem;
 }
 
-.submitPageMessage > span {
+.submitNotLogged .submitPageMessage > span {
     display: block;
     text-align: center;
     font-size: 1.4rem;
     padding-top: 1.5rem;
 }
 
-.submitPageMessage > span a {
+.submitNotLogged .submitPageMessage > span a {
     color: var(--accent-color);
     text-decoration: underline;
 }
 
-.submitPageMessage > span a:hover {
+.submitNotLogged .submitPageMessage > span a:hover {
     color: var(--white2);
 }
 
@@ -159,7 +165,7 @@
     }
 }
 
-.submitPageMessage .icon {
+.submitNotLogged .submitPageMessage .icon {
     display: block;
     text-align: center;
     font-size: 6rem;
@@ -167,10 +173,10 @@
     animation: showIcon 1.5s;
 }
 
-.submitPageMessage .green {
+.submitNotLogged .submitPageMessage .green {
     color: #494;
 }
 
-.submitPageMessage .red {
+.submitNotLogged .submitPageMessage .red {
     color: #922;
 }

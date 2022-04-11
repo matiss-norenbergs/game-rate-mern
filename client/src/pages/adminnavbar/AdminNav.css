@@ -1,0 +1,155 @@
+.adminSection {
+    display: flex;
+}
+
+.navSection {
+    background: rgba(0, 0, 0, 0.4);
+    height: fit-content;
+    border-right: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    border-bottom-right-radius: 15px;
+}
+
+.navSection .navSectionBtn {
+    font-size: 2rem;
+    line-height: 4rem;
+    width: 100%;
+    min-width: 4rem;
+    background: transparent;
+    color: var(--white2);
+    border-bottom-right-radius: 15px;
+}
+
+.navSection .navSectionBtn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.navSection .adminNav {
+    width: 20rem;
+    padding: 1rem 2rem;
+}
+
+.navSection .adminNav .adminNavHeader {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding-bottom: .5rem;
+    margin-right: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color);
+    border-bottom-right-radius: .5rem;
+    color: var(--white2);
+}
+
+.navSection .adminNav > nav {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+
+.navSection .adminNav > nav a {
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: .3rem .5rem;
+    color: var(--white2);
+}
+
+.navSection .adminNav > nav a:hover {
+    color: #aaa;
+}
+
+.navSection .adminNav > nav a .adminIcon {
+    margin-left: .5rem;
+}
+
+.adminPage {
+    width: 100%;
+    padding: 1rem 2%;
+}
+
+.adminPage > h1 {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+}
+
+.adminPage > table {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.adminPage > table, th, td {
+    border: 2px solid #aaa;
+    border-collapse: collapse;
+}
+
+.adminPage > table tr th, td {
+    padding: .5rem 1rem;
+}
+
+.adminPage > table tr th, td {
+    font-size: 1.1rem;
+}
+
+.adminPage > table tr .optionCell {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+}
+
+.adminPage > table tr .optionCell > a {
+    color: #3189db;
+    padding: 0 .6rem;
+}
+
+.adminPage > table tr .optionCell > a:hover {
+    color: var(--white2);
+}
+
+.adminPage .formPage {
+    padding: 2rem 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+}
+
+.adminPage .formPage > h1 {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+}
+
+.adminPage .formPage > form {
+    width: 35rem;
+    margin: 0 auto;
+}
+
+.adminPage .formPage > form input,
+.adminPage .formPage .textArea {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: .5rem 1rem;
+    font-size: 1.4rem;
+    background: var(--background);
+    color: var(--white2);
+    border-radius: .5rem;
+}
+
+.adminPage .formPage > form textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.adminPage .formPage > form .formBtn {
+    display: block;
+    font-size: 1.4rem;
+    padding: .6rem 1rem;
+    background: var(--accent-color);
+    color: var(--white2);
+    border-radius: .5rem;
+    border: 2px solid var(--accent-color);
+    margin: 0 auto;
+}
+
+.adminPage .formPage > form .formBtn:hover {
+    background: transparent;
+}

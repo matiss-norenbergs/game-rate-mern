@@ -37,16 +37,18 @@ const Submit = () => {
 
     if(!user){
         return (
-            <div className="submitPageMessage">
-                <h1>You must be logged in to submit a game</h1>
-                <span>Click <Link to="/login">HERE</Link> to login</span>
+            <div className="submitNotLogged">
+                <div className="submitPageMessage">
+                    <h1>You must be logged in to submit a game</h1>
+                    <span>Click <Link to="/login">HERE</Link> to login</span>
+                </div>
             </div>
         )
     }
 
     if(!submitted){
         return (
-            <>
+            <div className="gameRatePages">
                 <h1>Submit a game</h1>
     
                 <form className="submitForm" onSubmit={ handleSubmit }>
@@ -79,7 +81,7 @@ const Submit = () => {
                         </div>
                     </section>
                 </form>
-            </>
+            </div>
         );
     }else{
         if(isPending){

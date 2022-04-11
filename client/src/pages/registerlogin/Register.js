@@ -32,7 +32,7 @@ const Register = () => {
         e.preventDefault();
 
         if(password !== password2){
-            alert("Password do not match")
+            alert("Passwords do not match")
         }else{
             const userData = { name, email, password }
 

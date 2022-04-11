@@ -49,15 +49,16 @@ const gameSchema = Schema(
         reviews: [
             reviewSchema
         ],
-        public: {
-            type: Boolean,
-            default: false
-        },
         submittedBy: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: "User"
-        }
+        },
+        public: {
+            type: Boolean,
+            default: false
+        },
+        publishedAt: Date
     },
     {
         timestamps: true

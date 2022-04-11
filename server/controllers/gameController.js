@@ -2,9 +2,35 @@ const asyncHandler = require("express-async-handler");
 
 const Game = require("../models/gameModel");
 
+
 // Fetch all games
 const getGames = asyncHandler( async (req, res) => {
+    //Check for user
+    if(!req.user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    //Checking if the user is admin
+    if(req.user.role !== "admin"){
+        res.status(401)
+        throw new Error("User is not an admin")
+    }
+
+    const games = await Game.find();
+
+    res.json(games);
+})
+
+// Fetch all published games
+const getGamesPublic = asyncHandler( async (req, res) => {
     const games = await Game.find({ public: true });
+    res.json(games);
+})
+
+// Fetch 5 latest published games
+const getGamesPublicLast = asyncHandler( async (req, res) => {
+    const games = await Game.find({ public: true }).sort({ updatedAt: -1 }).limit(5);
     res.json(games);
 })
 
@@ -46,6 +72,7 @@ const addGame = asyncHandler( async (req, res) => {
 // Update a game
 const updateGame = asyncHandler( async (req, res) => {
     const game = await Game.findById(req.params.id);
+    const moment = require("moment");
 
     if(!game){
         res.status(400)
@@ -95,4 +122,4 @@ const deleteGame = asyncHandler( async (req, res) => {
     res.json({ id: req.params.id });
 })
 
-module.exports = { getGames, getGame, addGame, updateGame, deleteGame }
+module.exports = { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, updateGame, deleteGame }
