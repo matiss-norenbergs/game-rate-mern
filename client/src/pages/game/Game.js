@@ -9,7 +9,7 @@ const Game = () => {
     const { data: game, isPending, error } = useFetch(`/api/games/${id}`);
 
     return (
-        <>
+        <div className="gameRatePages">
             { error && <div className="stateInfo"><FontAwesomeIcon className="icon" icon={faExclamationCircle} /> { error }</div> }
             { isPending && <div className="stateInfo">Loading... <FontAwesomeIcon className="icon loading" icon={faSpinner} /></div> }
             { game && isPending === false && error === null && (
@@ -22,7 +22,7 @@ const Game = () => {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }
  

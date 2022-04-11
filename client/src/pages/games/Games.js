@@ -13,7 +13,7 @@ const Games = () => {
     }
 
     return (
-        <>
+        <div className="gameRatePages">
             <div className="gamesBtns">
                 <Link className="btn" to="/submit">Submit a game <FontAwesomeIcon className="icon" icon={ faPlus } /></Link>
             </div>
@@ -21,7 +21,7 @@ const Games = () => {
             { error && !games && <span>{ error }</span> }
             { isPending && <span>Loading...</span> }
             { games && <GameList games={ games } /> }
-        </>
+        </div>
     );
 }
  

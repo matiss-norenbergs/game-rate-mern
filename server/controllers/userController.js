@@ -66,9 +66,13 @@ const loginUser = asyncHandler( async (req, res) => {
     }
 })
 
-// Return the logged in users data with GET - PROTECTED
-const getUser = asyncHandler( async (req, res) => {
-    res.status(200).json(req.user);
+// Checks if the current user has "admin" role
+const getAdmin = asyncHandler( async (req, res) => {
+    if(req.user.role === "admin"){
+        res.status(200).json(true);
+    }
+
+    res.status(200).json(false);
 })
 
 //Generate JWT
@@ -78,4 +82,4 @@ const generateToken = (id) => {
     })
 }
 
-module.exports = { registerUser, loginUser, getUser }
+module.exports = { registerUser, loginUser, getAdmin }

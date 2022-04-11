@@ -1,0 +1,40 @@
+.adminSection {
+    display: flex;
+}
+
+.adminNav {
+    width: 20rem;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.adminNav > h1 {
+    font-size: 1.8rem;
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color);
+    border-bottom-right-radius: .5rem;
+}
+
+.adminNav > nav a {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: .3rem .5rem;
+    color: var(--white2);
+}
+
+.adminNav > nav a:hover {
+    color: #aaa;
+}
+
+.adminPage {
+    width: 100%;
+    padding: 1rem 5%;
+}
+
+.adminPage > h1 {
+    text-align: center;
+    font-size: 2rem;
+}

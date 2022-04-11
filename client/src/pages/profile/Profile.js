@@ -13,9 +13,9 @@ const Profile = () => {
     }, [user, navigate]);
 
     return (
-        <>
+        <div className="gameRatePages">
             <h1>Profile</h1>
-        </>
+        </div>
     );
 }
  
