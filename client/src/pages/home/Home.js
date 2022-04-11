@@ -1,14 +1,9 @@
-import { useEffect } from "react";
 import NewGames from "../../components/newgames/NewGames";
 import useFetch from "../../hooks/useFetch";
 import "./Home.css";
 
 const Home = () => {
     const { data: games, isPending, error } = useFetch("/api/games/publiclast/");
-
-    useEffect(() => {
-        console.log(games)
-    }, [games])
 
     return (
         <div className="gameRatePages">
