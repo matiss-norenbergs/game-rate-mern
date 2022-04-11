@@ -6,7 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import "./Games.css";
 
 const Games = () => {
-    const { data: games, isPending, error } = useFetch("/api/games/");
+    const { data: games, isPending, error } = useFetch("/api/games/public/");
 
     if(error){
         console.log(error)

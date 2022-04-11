@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { getGames, getGame, addGame, updateGame, deleteGame } = require("../controllers/gameController");
+const { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, updateGame, deleteGame } = require("../controllers/gameController");
 const { protect } = require("../middleware/authMiddleware");
 
 
-router.get('/', getGames);
+router.get('/', protect, getGames);
+
+router.get('/public', getGamesPublic);
+
+router.get('/publiclast', getGamesPublicLast);
 
 router.get('/:id', getGame);
 

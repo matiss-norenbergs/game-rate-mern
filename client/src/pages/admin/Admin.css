@@ -4,16 +4,19 @@
 
 .adminNav {
     width: 20rem;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     background: rgba(0, 0, 0, 0.4);
 }
 
-.adminNav > h1 {
+.adminNav .adminNavHeader {
+    display: block;
     font-size: 1.8rem;
+    font-weight: bold;
     padding-bottom: .5rem;
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--accent-color);
     border-bottom-right-radius: .5rem;
+    color: var(--white2);
 }
 
 .adminNav > nav a {

@@ -28,9 +28,10 @@ function App() {
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
           <Route path="/admin" element={ <Admin /> } >
-            <Route path="/admin/dashboard" element={ <AdminHome /> } />
-            <Route path="/admin/games" element={ <AdminGames /> } />
-            <Route path="/admin/gametags" element={ <AdminTags /> } />
+            <Route index element={ <AdminHome /> } />
+            <Route path="dashboard" element={ <AdminHome /> } />
+            <Route path="games" element={ <AdminGames /> } />
+            <Route path="gametags" element={ <AdminTags /> } />
           </Route>
         </Routes>
       </Router>

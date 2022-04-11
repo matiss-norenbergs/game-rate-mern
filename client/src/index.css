@@ -20,6 +20,24 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+html::-webkit-scrollbar{
+  width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: #777;
+  border-radius: 6px;
+}
+
+html::-webkit-scrollbar-thumb:hover{
+  background: #aaa;
+  border-radius: 6px;
+}
+
 body {
   background: var(--background);
   color: var(--white2);
@@ -29,6 +47,7 @@ body {
   padding: var(--page-padding);
   color: var(--white2);
   border-bottom: 1px solid var(--accent-color);
+  overflow-x: hidden;
 }
 
 .gameRatePages > h1 {

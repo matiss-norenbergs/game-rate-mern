@@ -1,0 +1,55 @@
+.newGames .gameCard {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 8rem;
+    margin: 1rem 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent-color);
+    animation: showCard .4s ease-in-out;
+    animation-fill-mode: forwards;
+    transition: width .5s;
+}
+
+@keyframes showCard {
+    from{ transform: translateX(250%); }
+    to { transform: translateX(0%); }
+}
+
+.newGames .gameCard:hover {
+    width: 115%;
+}
+
+.newGames .gameCard > img {
+    width: 6rem;
+    box-shadow: .8rem 0rem 8rem var(--accent-color);
+}
+
+.newGames .gameCard .textContents {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.newGames .gameCard .textContents .gameTitle {
+    color: var(--white2);
+    font-size: 1rem;
+    text-align: center;
+    padding-top: 2rem;
+    transition: .5s;
+}
+
+.newGames .gameCard:hover .textContents .gameTitle {
+    font-size: 1.1rem;
+}
+
+.newGames .gameCard .textContents .gamePublished {
+    color: var(--white2);
+    font-size: 1rem;
+    text-align: right;
+    padding-bottom: .8rem;
+    padding-right: 1rem;
+}

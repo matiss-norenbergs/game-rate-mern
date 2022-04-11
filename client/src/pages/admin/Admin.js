@@ -6,12 +6,12 @@ const Admin = () => {
     return (
         <div className="adminSection">
             <div className="adminNav">
-                <h1>Admin panel</h1>
+                <Link to="/admin" className="adminNavHeader">Admin panel</Link>
 
                 <nav>
-                    <Link to="/admin/dashboard">Dashboard</Link>
-                    <Link to="/admin/games">Game list</Link>
-                    <Link to="/admin/gametags">Game tag list</Link>
+                    <Link to="dashboard">Dashboard</Link>
+                    <Link to="games">Game list</Link>
+                    <Link to="gametags">Game tag list</Link>
                 </nav>
             </div>
             
