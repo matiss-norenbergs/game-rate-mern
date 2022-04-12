@@ -37,14 +37,16 @@ const TagCreate = () => {
         <div className="formPage">
             <h1>Add a game tag</h1>
 
-            <form onSubmit={ handleSubmit }>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tag name..." required />
-                <textarea className="textArea" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Tags meaning..."></textarea>
-                
-                <div className="formBtns">
-                    <button className="formBtn" type="submit">Create tag</button>
-                </div>
-            </form>
+            <div className="formData">
+                <form onSubmit={ handleSubmit }>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tag name..." required />
+                    <textarea className="textArea" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Tags meaning..."></textarea>
+                    
+                    <div className="formBtns">
+                        <button className="formBtn" type="submit">Create tag</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

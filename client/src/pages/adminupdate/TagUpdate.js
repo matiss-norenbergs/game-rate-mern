@@ -38,18 +38,20 @@ const TagUpdate = () => {
                 <div className="formPage">
                     <h1>Selected tag: { tag.name }</h1>
 
-                    <form onSubmit={ handleSubmit }>
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="* Tag name..." required />
-                        <textarea className="textArea" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Tags meaning..."></textarea>
-                        
-                        <div className="formBtns">
-                            <Link className="formBtn" to="/admin/tags">Return</Link>
-                            <button className="formBtn" type="submit">Update</button>
-                        </div>
-                    </form>
+                    <div className="formData">
+                        <form onSubmit={ handleSubmit }>
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="* Tag name..." required />
+                            <textarea className="textArea" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Tags meaning..."></textarea>
+                            
+                            <div className="formBtns">
+                                <Link className="formBtn" to="/admin/tags">Return</Link>
+                                <button className="formBtn" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             ) }
-            { !isPending && error && (
+            { !tag && error && (
                 <div className="formPage">
                     <h1>{ error }</h1>
                 </div>

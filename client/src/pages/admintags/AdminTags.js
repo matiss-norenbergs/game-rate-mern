@@ -18,7 +18,7 @@ const AdminTags = () => {
 
     useEffect(() => {
         data && setTags(data)
-    }, [data, isPending]);
+    }, [data]);
 
     async function handleDelete(id){
         await axios.delete(`/api/tags/${id}`, config);
@@ -31,7 +31,7 @@ const AdminTags = () => {
             <h1>Game tags</h1>
 
             { isPending && <h1>Fetching tags...</h1> }
-            { error && <h1>Error...</h1> }
+            { error && !tags && <h1>Error: { error }</h1> }
             { tags && 
                 <table>
                     <thead>
@@ -49,7 +49,8 @@ const AdminTags = () => {
                                 <td>{ tag.name }</td>
                                 <td>{ tag.meaning ? tag.meaning : "not defined" }</td>
                                 <td className="optionCell">
-                                    <Link className="cellOption" to={`/admin/tags/update/${tag._id}`}>Update</Link> | <button className="cellOption" onClick={ () => handleDelete(tag._id) }>Delete</button>    
+                                    <Link className="cellOption" to={`/admin/tags/update/${tag._id}`}>Update</Link>|
+                                    <button className="cellOption" onClick={ () => handleDelete(tag._id) }>Delete</button>    
                                 </td>
                             </tr>
                         ))

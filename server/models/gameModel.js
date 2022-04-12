@@ -54,11 +54,14 @@ const gameSchema = Schema(
             required: true,
             ref: "User"
         },
-        public: {
+        publicVisible: {
             type: Boolean,
             default: false
         },
-        publishedAt: Date
+        beenPublished: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamps: true

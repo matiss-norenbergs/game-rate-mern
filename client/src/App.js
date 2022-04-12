@@ -14,6 +14,7 @@ import AdminTags from './pages/admintags/AdminTags';
 import AdminGames from './pages/admingames/AdminGames';
 import TagCreate from './pages/admincreate/TagCreate';
 import TagUpdate from './pages/adminupdate/TagUpdate';
+import GameUpdate from './pages/adminupdate/GameUpdate';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route index element={ <AdminDashboard /> } />
             <Route path="dashboard" element={ <AdminDashboard /> } />
             <Route path="games" element={ <AdminGames /> } />
+            <Route path="games/update/:id" element={ <GameUpdate /> } />
             <Route path="tags" element={ <AdminTags /> } />
             <Route path="tags/create" element={ <TagCreate /> } />
             <Route path="tags/update/:id" element={ <TagUpdate /> } />

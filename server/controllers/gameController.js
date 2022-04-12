@@ -17,20 +17,20 @@ const getGames = asyncHandler( async (req, res) => {
         throw new Error("User is not an admin")
     }
 
-    const games = await Game.find();
+    const games = await Game.find().sort({ updatedAt: -1 });
 
     res.json(games);
 })
 
 // Fetch all published games
 const getGamesPublic = asyncHandler( async (req, res) => {
-    const games = await Game.find({ public: true });
+    const games = await Game.find({ publicVisible: true });
     res.json(games);
 })
 
 // Fetch 5 latest published games
 const getGamesPublicLast = asyncHandler( async (req, res) => {
-    const games = await Game.find({ public: true }).sort({ updatedAt: -1 }).limit(5);
+    const games = await Game.find({ publicVisible: true }).sort({ updatedAt: -1 }).limit(5);
     res.json(games);
 })
 

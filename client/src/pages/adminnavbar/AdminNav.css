@@ -86,33 +86,56 @@
 .adminPage > table tr th,
 .adminPage > table tr td {
     padding: .5rem 1rem;
-}
-
-.adminPage > table tr th, td {
     font-size: 1.1rem;
 }
 
+.adminPage > table tr td {
+    padding: 1rem;
+}
+
 .adminPage > table tr .optionCell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 4rem;
+    text-align: center;
 }
 
 .adminPage > table tr .optionCell .cellOption {
     width: fit-content;
     font-size: 1.1rem;
+    padding: 0 .6rem;
     background: transparent;
     color: #3189db;
-    padding: 0 .6rem;
+    cursor: pointer;
 }
 
 .adminPage > table tr .optionCell .cellOption:hover {
     color: var(--white2);
 }
 
+.adminPage > table tr .imageCell {
+    text-align: center;
+}
+
+.adminPage > table tr .imageCell img {
+    width: 6rem;
+}
+
+.adminPage > table tr .publicCell {
+    text-align: center;
+}
+
+.adminPage > table tr .publicCell .icon {
+    font-size: 2.2rem;
+}
+
+.adminPage > table tr .publicCell .green {
+    color: #494;
+}
+
+.adminPage > table tr .publicCell .red {
+    color: #922;
+}
+
 .adminPage .formPage {
-    padding: 4rem 0;
+    padding: 4rem 2rem;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 1rem;
 }
@@ -123,13 +146,23 @@
     padding-bottom: 2rem;
 }
 
-.adminPage .formPage > form {
-    width: 35rem;
-    margin: 0 auto;
+.adminPage .formPage .formData {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.adminPage .formPage > form input,
-.adminPage .formPage .textArea {
+.adminPage .formPage .formData .formImage > img {
+    width: 15rem;
+    margin-right: 2rem;
+}
+
+.adminPage .formPage .formData > form {
+    width: 36rem;
+}
+
+.adminPage .formPage .formData > form input,
+.adminPage .formPage .formData .textArea {
     width: 100%;
     margin-bottom: 1.5rem;
     padding: .5rem 1rem;
@@ -139,18 +172,19 @@
     border-radius: .5rem;
 }
 
-.adminPage .formPage > form textarea {
+.adminPage .formPage .formData > form textarea {
     width: 100%;
+    min-height: 12rem;
     resize: vertical;
 }
 
-.adminPage .formPage > form .formBtns {
+.adminPage .formPage .formData > form .formBtns {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.adminPage .formPage > form .formBtns .formBtn {
+.adminPage .formPage .formData > form .formBtns .formBtn {
     display: block;
     width: fit-content;
     font-size: 1.4rem;
@@ -162,6 +196,6 @@
     margin: 0 auto;
 }
 
-.adminPage .formPage > form .formBtns .formBtn:hover {
+.adminPage .formPage .formData > form .formBtns .formBtn:hover {
     background: transparent;
 }

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-
 const useAdminFetch = (API_URL) => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
