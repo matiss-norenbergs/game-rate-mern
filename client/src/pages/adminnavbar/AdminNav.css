@@ -83,7 +83,8 @@
     border-collapse: collapse;
 }
 
-.adminPage > table tr th, td {
+.adminPage > table tr th,
+.adminPage > table tr td {
     padding: .5rem 1rem;
 }
 
@@ -94,20 +95,24 @@
 .adminPage > table tr .optionCell {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 4rem;
 }
 
-.adminPage > table tr .optionCell > a {
+.adminPage > table tr .optionCell .cellOption {
+    width: fit-content;
+    font-size: 1.1rem;
+    background: transparent;
     color: #3189db;
     padding: 0 .6rem;
 }
 
-.adminPage > table tr .optionCell > a:hover {
+.adminPage > table tr .optionCell .cellOption:hover {
     color: var(--white2);
 }
 
 .adminPage .formPage {
-    padding: 2rem 0;
+    padding: 4rem 0;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 1rem;
 }
@@ -139,8 +144,15 @@
     resize: vertical;
 }
 
-.adminPage .formPage > form .formBtn {
+.adminPage .formPage > form .formBtns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.adminPage .formPage > form .formBtns .formBtn {
     display: block;
+    width: fit-content;
     font-size: 1.4rem;
     padding: .6rem 1rem;
     background: var(--accent-color);
@@ -150,6 +162,6 @@
     margin: 0 auto;
 }
 
-.adminPage .formPage > form .formBtn:hover {
+.adminPage .formPage > form .formBtns .formBtn:hover {
     background: transparent;
 }

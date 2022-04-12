@@ -73,7 +73,7 @@ const Submit = () => {
                         </div><hr />
     
                         <div className="row">
-                            <input type="text" value={cover} onChange={(e) => setCover(e.target.value)} placeholder="Game cover link" />
+                            <input type="text" value={cover} onChange={(e) => setCover(e.target.value)} placeholder="Game cover link" required />
                         </div><hr />
     
                         <div className="row">
