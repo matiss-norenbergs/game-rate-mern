@@ -47,7 +47,7 @@ const AdminNav = () => {
                             <Link to="dashboard">Dashboard <FontAwesomeIcon className="adminIcon" icon={ faChartColumn } /></Link>
                             <Link to="games">Game list <FontAwesomeIcon className="adminIcon" icon={ faGamepad } /></Link>
                             <Link to="tags">Tag list <FontAwesomeIcon className="adminIcon" icon={ faTags } /></Link>
-                            <Link to="createtag">Create tag</Link>
+                            <Link to="tags/create">Create tag</Link>
                         </nav>
                     </div>
                 </div>

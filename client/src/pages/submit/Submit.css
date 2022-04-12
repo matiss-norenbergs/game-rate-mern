@@ -111,18 +111,18 @@
     margin: 3.5rem 3%;
 }
 
-.submitNotLogged .submitPageMessage {
+.submitPageMessage {
     padding: 3rem 2rem;
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.4);
     animation: showSubmitResult 1s;
 }
 
-.submitNotLogged .submitPageMessage > * {
+.submitPageMessage > * {
     color: var(--white2);
 }
 
-.submitNotLogged .submitPageMessage > h1 {
+.submitPageMessage > h1 {
     text-align: center;
     font-size: 2rem;
     padding-bottom: .5rem;
@@ -131,26 +131,26 @@
     border-bottom-right-radius: 1rem;
 }
 
-.submitNotLogged .submitPageMessage > h2 {
+.submitPageMessage > h2 {
     font-size: 1.4rem;
     font-weight: 500;
     text-align: center;
     margin-top: .5rem;
 }
 
-.submitNotLogged .submitPageMessage > span {
+.submitPageMessage > span {
     display: block;
     text-align: center;
     font-size: 1.4rem;
     padding-top: 1.5rem;
 }
 
-.submitNotLogged .submitPageMessage > span a {
+.submitPageMessage > span a {
     color: var(--accent-color);
     text-decoration: underline;
 }
 
-.submitNotLogged .submitPageMessage > span a:hover {
+.submitPageMessage > span a:hover {
     color: var(--white2);
 }
 
@@ -165,7 +165,7 @@
     }
 }
 
-.submitNotLogged .submitPageMessage .icon {
+.submitPageMessage .icon {
     display: block;
     text-align: center;
     font-size: 6rem;
@@ -173,10 +173,10 @@
     animation: showIcon 1.5s;
 }
 
-.submitNotLogged .submitPageMessage .green {
+.submitPageMessage .green {
     color: #494;
 }
 
-.submitNotLogged .submitPageMessage .red {
+.submitPageMessage .red {
     color: #922;
 }

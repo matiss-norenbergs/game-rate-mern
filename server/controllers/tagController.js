@@ -8,6 +8,18 @@ const getTags = asyncHandler( async (req, res) => {
     res.json(tags);
 });
 
+// Fetch one tag by ID
+const getTag = asyncHandler( async (req, res) => {
+    const tag = await Tag.findById(req.params.id);
+
+    if(!tag){
+        res.status(400)
+        throw new Error("Game not found")
+    }
+
+    res.json(tag);
+})
+
 //Add a tag
 const addTag = asyncHandler( async (req, res) => {
     if(!req.body.name){
@@ -87,4 +99,4 @@ const deleteTag = asyncHandler( async (req, res) => {
     res.json({ id: req.params.id });
 })
 
-module.exports = { getTags, addTag, updateTag, deleteTag }
+module.exports = { getTags, getTag, addTag, updateTag, deleteTag }
