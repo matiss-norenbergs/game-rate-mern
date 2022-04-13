@@ -134,10 +134,11 @@ const Submit = () => {
                     </div>
                 )
             }else{
+                console.log(message)
                 return (
                     <div className="submitPageMessage">
                         <h1>Something went wrong...</h1>
-                        { message.message && <h2>{ message.message }</h2> }
+                        { message && <h2>{ message }</h2> }
                         <i className="icon red"><FontAwesomeIcon icon={ faTimes } /></i>
                     </div>
                 )
