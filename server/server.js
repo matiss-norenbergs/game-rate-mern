@@ -16,7 +16,7 @@ app.use("/api/games", require("./routes/gameRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/tags", require("./routes/tagRoutes"));
 
-//Serve front end "client"
+//Serve front end  "client side"
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname, "../client/build")));
 
