@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv").config({ path: "./config.env" });
@@ -16,6 +17,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/games", require("./routes/gameRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/tags", require("./routes/tagRoutes"));
+
+//Serve front end "client"
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "../client/build")));
+
+    app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "../", "client", "build", "index.html")));
+}else{
+    app.get("/", (req, res) => res.send("Please set to production"));
+}
 
 app.use(errorHandler);
 
