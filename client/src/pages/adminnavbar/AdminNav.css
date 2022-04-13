@@ -161,7 +161,7 @@
     width: 36rem;
 }
 
-.adminPage .formPage .formData > form input,
+.adminPage .formPage .formData > form > input,
 .adminPage .formPage .formData .textArea {
     width: 100%;
     margin-bottom: 1.5rem;
@@ -172,10 +172,21 @@
     border-radius: .5rem;
 }
 
-.adminPage .formPage .formData > form textarea {
-    width: 100%;
+.adminPage .formPage .formData > form .textArea {
     min-height: 12rem;
     resize: vertical;
+}
+
+.adminPage .formPage .formData > form > select {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+    padding: .5rem;
+    font-size: 1.4rem;
+    background: var(--background);
+    color: var(--white2);
+    border-radius: .5rem;
 }
 
 .adminPage .formPage .formData > form .formBtns {

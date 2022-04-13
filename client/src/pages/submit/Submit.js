@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { submitGame, reset } from "../../redux/features/games/gameSlice";
@@ -11,19 +11,53 @@ const Submit = () => {
     const [title, setTitle] = useState("");
     const [summary, setSummary] = useState("");
     const [cover, setCover] = useState("");
+    const [checkedState, setCheckedState] = useState();
+    const [tags, setTags] = useState([]);
     const [submitted, setSubmitted] = useState(false);
-
-    const { data: tags, isPending: dataIsPending, error } = useFetch("/api/tags/");
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const { user } = useSelector((state) => state.auth);
     const { isError, isSuccess, isPending, message } = useSelector((state) => state.games);
+    const { data: tagList, isPending: dataIsPending, error } = useFetch("/api/tags/");
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        if(!dataIsPending && tagList){
+            setCheckedState(
+                new Array(tagList.length).fill(false)
+            );
+        }
+    }, [tagList, dataIsPending]);
+
+    const setSelectedTags = () => {
+        let selected = [];
+        tagList.map(({name}, index) => {
+            if(checkedState[index] === true){
+                selected.push(name)
+            }
+        });
+        setTags(selected);
+    }
+
+    const handleOnChange = async (position) => {
+        const updatedCheckedState = checkedState.map((item, index) => 
+            index === position ? !item : item
+        );
+
+        setCheckedState(updatedCheckedState);
+    }
+
+    useEffect(() => {
+        if(checkedState && checkedState.length > 0){
+            setSelectedTags();
+        }
+    }, [checkedState]);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        dispatch(submitGame({ title, summary, cover }));
+        dispatch(submitGame({ title, summary, cover, tags }));
         setTitle("");
         setSummary("");
         setCover("");
@@ -55,12 +89,14 @@ const Submit = () => {
                     <section className="gameTags">
                         <h2>Game tags</h2>
 
-                        { !dataIsPending && tags.map((tag) => (
-                            <div className="tagRow" key={tag._id}>
-                                <input type="checkbox" name={ tag.name } />
-                                <label htmlFor={ tag.name } title={ tag.meaning }>{ tag.name }</label>
-                            </div>
-                        )) }
+                        { !dataIsPending && checkedState && tagList.map(({name, meaning}, index) =>  {
+                            return (
+                                <div className="tagRow" key={index}>
+                                    <input type="checkbox" id={`custom-checkbox-${index}`} name={ name } value={ name } checked={ checkedState[index] } onChange={() => handleOnChange(index)} />
+                                    <label htmlFor={`custom-checkbox-${index}`} title={ meaning }>{ name }</label>
+                                </div>
+                            )
+                        }) }
                     </section>
     
                     <section className="formInput">

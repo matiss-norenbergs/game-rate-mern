@@ -30,7 +30,7 @@ const getGamesPublic = asyncHandler( async (req, res) => {
 
 // Fetch 5 latest published games
 const getGamesPublicLast = asyncHandler( async (req, res) => {
-    const games = await Game.find({ publicVisible: true }).sort({ updatedAt: -1 }).limit(5);
+    const games = await Game.find({ publicVisible: true }, 'title cover updatedAt').sort({ updatedAt: -1 }).limit(5);
     res.json(games);
 })
 
@@ -48,7 +48,7 @@ const getGame = asyncHandler( async (req, res) => {
 
 // Add a game
 const addGame = asyncHandler( async (req, res) => {
-    if(!req.body.title || !req.body.cover || !req.body.summary){
+    if(!req.body.title || !req.body.cover || !req.body.summary || !req.body.tags.length > 0){
         res.status(400)
         throw new Error("Please provide all necessary data")
     }
@@ -63,6 +63,7 @@ const addGame = asyncHandler( async (req, res) => {
         title: req.body.title,
         cover: req.body.cover,
         summary: req.body.summary,
+        tags: req.body.tags,
         submittedBy: req.user.id,
     });
 

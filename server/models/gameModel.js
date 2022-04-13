@@ -21,11 +21,10 @@ const gameSchema = Schema(
             type: String,
             required: [true, "Provide a summary for the game"]
         },
-        tags: [
-            {
-                type: String
-            }
-        ],
+        tags: {
+            type: Array,
+            required: [true, "Provide at least one tag"]
+        },
         rating1: {
             type: Number,
             default: 0
