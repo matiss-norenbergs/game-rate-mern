@@ -24,7 +24,7 @@ const getGames = asyncHandler( async (req, res) => {
 
 // Fetch all published games
 const getGamesPublic = asyncHandler( async (req, res) => {
-    const games = await Game.find({ publicVisible: true });
+    const games = await Game.find({ publicVisible: true }, 'title cover');
     res.json(games);
 })
 
