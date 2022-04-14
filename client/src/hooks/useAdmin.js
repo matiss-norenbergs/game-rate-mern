@@ -22,19 +22,16 @@ const useAdmin = () => {
     }
 
     useEffect(() => {
-        const unsubscribe = async () => {
-            try {
-                const response = await axios.get("/api/users/isAdmin/", config);
-                setIsPending(false);
-                setIsAdmin(response.data);
-            } catch (error) {
-                setIsPending(false);
-                setError(error.message)
-            }
-        };
-
         if(user){
-            return unsubscribe;
+            axios.get("/api/users/isAdmin/", config)
+            .then(res => {
+                setIsAdmin(res.data);
+                setIsPending(false)
+            })
+            .catch(err => {
+                setError(err)
+                setIsPending(false);
+            })
         }else{
             navigate("/");
         }

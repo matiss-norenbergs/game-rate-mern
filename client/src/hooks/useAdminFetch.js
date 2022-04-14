@@ -15,18 +15,17 @@ const useAdminFetch = (API_URL) => {
     }
 
     useEffect(() => {
-        const unsubscribe = async () => {
-            try {
-                const response = await axios.get(API_URL, config);
-                setData(response.data);
-                setIsPending(false);
-            } catch (error) {
-                setIsPending(false);
-                setError(error.message)
-            }
-        };
+        console.log("Fetching... url: " + API_URL)
 
-        return unsubscribe;
+        axios.get(API_URL, config)
+        .then(res => {
+            setData(res.data);
+            setIsPending(false)
+        })
+        .catch(err => {
+            setError(err)
+            setIsPending(false);
+        })
     }, [API_URL]);
     
     return { data, isPending, error };

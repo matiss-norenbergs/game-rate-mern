@@ -6,23 +6,18 @@ const useFetch = (API_URL) => {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const unsubscribe = async () => {
-            try {
-                const response = await axios.get(API_URL);
-                console.log("response from useFetch file: ")
-                console.log(response)
-                console.log(response.data)
-                setData(response.data);
-                setIsPending(false);
-            } catch (error) {
-                setIsPending(false);
-                setError(error.message)
-            }
-        };
+    useEffect( () => {
+        console.log("Fetching... url: " + API_URL)
 
-        console.log("Fetching...")
-        return unsubscribe;
+        axios.get(API_URL)
+        .then(res => {
+            setData(res.data);
+            setIsPending(false)
+        })
+        .catch(err => {
+            setError(err)
+            setIsPending(false);
+        })
     }, [API_URL]);
     
     return { data, isPending, error };
