@@ -10,6 +10,9 @@ const useFetch = (API_URL) => {
         const unsubscribe = async () => {
             try {
                 const response = await axios.get(API_URL);
+                console.log("response from fetch file: ")
+                console.log(response)
+                console.log(response.data)
                 setData(response.data);
                 setIsPending(false);
             } catch (error) {
