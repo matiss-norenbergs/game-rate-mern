@@ -15,8 +15,6 @@ const useAdminFetch = (API_URL) => {
     }
 
     useEffect(() => {
-        console.log("Fetching... url: " + API_URL)
-
         axios.get(API_URL, config)
         .then(res => {
             setData(res.data);

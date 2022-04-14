@@ -7,8 +7,6 @@ const useFetch = (API_URL) => {
     const [error, setError] = useState(null);
 
     useEffect( () => {
-        console.log("Fetching... url: " + API_URL)
-
         axios.get(API_URL)
         .then(res => {
             setData(res.data);
