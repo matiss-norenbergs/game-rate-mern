@@ -7,5 +7,5 @@
 ### MERN stack aplikācija (MongoDB, Express, React, NodeJS)
 ### Izmanto MongoDB Atlas
 
-# Šī brīža stāāvoklis:
+# Šī brīža stadija:
 ## Izstrādes progresā
