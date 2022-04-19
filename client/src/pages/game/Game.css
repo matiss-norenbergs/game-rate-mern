@@ -42,3 +42,137 @@
     font-size: 1.2rem;
     color: var(--white2);
 }
+
+.gameInfo > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-width: 40rem;
+    margin: 0 auto;
+    margin-top: 4rem;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 1.5rem;
+}
+
+.gameInfo > form .rate {
+    align-self: flex-start;
+    padding-bottom: 1rem; 
+}
+
+.gameInfo > form .rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+
+.gameInfo > form .rate:not(:checked) > label {
+    float :right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 40px;
+    color: #ccc;
+}
+
+.gameInfo > form .rate:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.gameInfo > form .rate > input:checked ~ label {
+    color: #ffc700;    
+}
+
+.gameInfo > form .rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+
+.gameInfo > form .rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.gameInfo > form textarea {
+    resize: vertical;
+    font-size: 1.4rem;
+    height: 8rem;
+    width: 100%;
+    padding: 1rem;
+    background: var(--background);
+    color: var(--white2);
+    border-radius: 5px;
+}
+
+.gameInfo > form button {
+    font-size: 1.3rem;
+    width: fit-content;
+    margin-top: 1.5rem;
+    padding: .8rem 1.6rem;
+    border-radius: 5px;
+    background: var(--accent-color);
+    color: var(--white2);
+    border: 2px solid var(--accent-color);
+}
+
+.gameInfo > form button:hover {
+    background: transparent;
+}
+
+.gameInfo .gameReviews {
+    width: 90%;
+    min-width: 40rem;
+    margin: 4rem auto;
+    margin-top: 5rem;
+    padding: 1.5rem 10%;
+    border-radius: 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.gameInfo .gameReviews > h1 {
+    font-size: 2rem;
+    text-align: right;
+    margin-bottom: 2rem;
+}
+
+.gameInfo .gameReviews .review {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--background);
+}
+
+.gameInfo .gameReviews .review > p {
+    font-size: 1.3rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--accent-color);
+}
+
+.gameInfo .gameReviews .review > span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding-top: 1rem;
+}
+
+.gameInfo .gameReviews .review > h4 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+.gameInfo .gameReviews .review > h4 span {
+    text-decoration: underline 4px var(--accent-color);
+}
+
+.gameInfo .gameReviews .review > h5 {
+    font-size: .9rem;
+    text-align: right;
+    font-weight: lighter;
+    margin-top: .5rem;
+}
