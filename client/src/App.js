@@ -38,7 +38,6 @@ function App() {
             <Route path="tags" element={ <AdminTags /> } />
             <Route path="tags/create" element={ <TagCreate /> } />
             <Route path="tags/update/:id" element={ <TagUpdate /> } />
-            
           </Route>
         </Routes>
       </Router>

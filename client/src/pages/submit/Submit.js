@@ -71,8 +71,8 @@ const Submit = () => {
 
     if(!user){
         return (
-            <div className="submitNotLogged">
-                <div className="submitPageMessage">
+            <div className="submitMessageContainer">
+                <div className="message">
                     <h1>You must be logged in to submit a game</h1>
                     <span>Click <Link to="/login">HERE</Link> to login</span>
                 </div>
@@ -89,14 +89,19 @@ const Submit = () => {
                     <section className="gameTags">
                         <h2>Game tags</h2>
 
-                        { !dataIsPending && checkedState && tagList.map(({name, meaning}, index) =>  {
-                            return (
-                                <div className="tagRow" key={index}>
-                                    <input type="checkbox" id={`custom-checkbox-${index}`} name={ name } value={ name } checked={ checkedState[index] } onChange={() => handleOnChange(index)} />
-                                    <label htmlFor={`custom-checkbox-${index}`} title={ meaning }>{ name }</label>
-                                </div>
-                            )
-                        }) }
+                        <div className="tagList">
+                            { !dataIsPending && error && (
+                                <h4>Error... { error }</h4>
+                            )}
+                            { !dataIsPending && checkedState && tagList.map(({name, meaning}, index) =>  {
+                                return (
+                                    <div className="tagRow" key={index}>
+                                        <input type="checkbox" id={`custom-checkbox-${index}`} name={ name } value={ name } checked={ checkedState[index] } onChange={() => handleOnChange(index)} />
+                                        <label htmlFor={`custom-checkbox-${index}`} title={ meaning }>{ name }</label>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </section>
     
                     <section className="formInput">
@@ -127,19 +132,23 @@ const Submit = () => {
         }else{
             if(isSuccess && !isError){
                 return (
-                    <div className="submitPageMessage">
-                        <h1>Submission was successful!</h1>
-                        { message.message && <h2>{ message.message }</h2> }
-                        <i className="icon green"><FontAwesomeIcon icon={ faCheck } /></i>
+                    <div className="submitMessageContainer">
+                        <div className="message">
+                            <h1>Submission was successful!</h1>
+                            { message.message && <h2>{ message.message }</h2> }
+                            <i className="icon green"><FontAwesomeIcon icon={ faCheck } /></i>
+                        </div>
                     </div>
                 )
             }else{
                 console.log(message)
                 return (
-                    <div className="submitPageMessage">
-                        <h1>Something went wrong...</h1>
-                        { message && <h2>{ message }</h2> }
-                        <i className="icon red"><FontAwesomeIcon icon={ faTimes } /></i>
+                    <div className="submitMessageContainer">
+                        <div className="message">
+                            <h1>Something went wrong...</h1>
+                            { message && <h2>{ message }</h2> }
+                            <i className="icon red"><FontAwesomeIcon icon={ faTimes } /></i>
+                        </div>
                     </div>
                 )
             }

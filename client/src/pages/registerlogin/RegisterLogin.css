@@ -1,6 +1,6 @@
 .registerLoginBox {
     width: 34rem;
-    margin: 3rem auto;
+    margin: 3.5rem auto;
     padding: 1.5rem 2rem;
     border-radius: 1rem;
     background: rgba(0, 0, 0, 0.3);
@@ -8,7 +8,7 @@
 
 .registerLoginBox > h1 {
     text-align: center;
-    margin-bottom: .5rem;
+    margin-bottom: 1.2rem;
 }
 
 .registerLoginBox .info {
@@ -54,7 +54,7 @@
     font-size: 1.3rem;
     width: fit-content;
     margin: 0 auto;
-    margin-top: 1.5rem;
+    margin-top: .5rem;
     padding: .8rem 1.6rem;
     border-radius: 5px;
     background: var(--accent-color);

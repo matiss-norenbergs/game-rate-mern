@@ -10,6 +10,7 @@ const GameUpdate = () => {
     const [title, setTitle] = useState("");
     const [cover, setCover] = useState("");
     const [summary, setSummary] = useState("");
+    const [trailer, setTrailer] = useState("");
     const [publicVisible, setPublicVisible] = useState(false);
     const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ const GameUpdate = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const gameData = { title, cover, summary, publicVisible };
+        const gameData = { title, cover, summary, trailer, publicVisible };
         const response = await axios.put(`/api/games/${id}`, gameData, config);
         //console.log(response);
         navigate("/admin/games");
@@ -33,6 +34,7 @@ const GameUpdate = () => {
             setTitle(game.title);
             setCover(game.cover);
             setSummary(game.summary);
+            setTrailer(game.trailer);
             setPublicVisible(game.publicVisible);
         }
     }, [game]);
@@ -49,12 +51,18 @@ const GameUpdate = () => {
                         </div>
 
                         <form onSubmit={ handleSubmit }>
-                            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="* Title of game..." required />
-                            <textarea className="textArea" value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="* Summary of game..." required></textarea>
-                            <input type="text" value={cover} onChange={(e) => setCover(e.target.value)} placeholder="* Cover of game (link)..." required />
-                            <select value={publicVisible} onChange={(e) => setPublicVisible(e.target.value)}>
-                                <option value={false}>Private</option>
-                                <option value={true}>Public</option>
+                            <label>Title:</label>
+                            <input type="text" value={ title } onChange={ (e) => setTitle(e.target.value) } placeholder="* Title of game..." required />
+                            <label>Summary:</label>
+                            <textarea className="textArea" value={ summary } onChange={ (e) => setSummary(e.target.value) } placeholder="* Summary of game..." required></textarea>
+                            <label>Cover link:</label>
+                            <input type="text" value={cover} onChange={ (e) => setCover(e.target.value)} placeholder="* Cover of game (link)..." required />
+                            <label>Trailer link:</label>
+                            <input type="text" value={ trailer } onChange={ (e) => setTrailer(e.target.value) } placeholder="Trailer for the game..." />
+                            <label>Visibility:</label>
+                            <select value={publicVisible} onChange={ (e) => setPublicVisible(e.target.value) }>
+                                <option value={ false }>Private</option>
+                                <option value={ true }>Public</option>
                             </select>
 
                             <div className="formBtns">

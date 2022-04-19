@@ -20,22 +20,21 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
-html::-webkit-scrollbar{
-  width: .8rem;
+html *::-webkit-scrollbar{
+  width: .6rem;
 }
 
-html::-webkit-scrollbar-track{
+html *::-webkit-scrollbar-track{
   background: transparent;
 }
 
-html::-webkit-scrollbar-thumb{
+html *::-webkit-scrollbar-thumb{
   background: #777;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
-html::-webkit-scrollbar-thumb:hover{
+html *::-webkit-scrollbar-thumb:hover{
   background: #aaa;
-  border-radius: 6px;
 }
 
 body {
