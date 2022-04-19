@@ -87,7 +87,7 @@ const Game = () => {
                                 <label htmlFor="star1" title="text">1 star</label>
                             </div>
 
-                            <textarea value={ review } onChange={ (e) => setReview(e.target.value) } placeholder="Your review..."></textarea>
+                            <textarea value={ review } onChange={ (e) => setReview(e.target.value) } placeholder="Write your review..."></textarea>
 
                             <button>Submit review</button>
                         </form>

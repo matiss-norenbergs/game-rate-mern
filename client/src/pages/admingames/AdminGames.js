@@ -19,9 +19,8 @@ const AdminGames = () => {
 
     const whenCreated = (date) => {
         const moment = require("moment");
-        require("moment/locale/lv");
 
-        let daysAgo = moment(date).format('LLL');
+        let daysAgo = moment(date).format('DD.MM.YYYY, HH:mm');
         return daysAgo;
     }
 
@@ -50,6 +49,7 @@ const AdminGames = () => {
                             <th>Created</th>
                             <th>Submitted by</th>
                             <th>Public</th>
+                            <th>Reviews</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -61,6 +61,7 @@ const AdminGames = () => {
                                 <td>{ whenCreated(game.createdAt) }</td>
                                 <td>{ game.submittedBy }</td>
                                 <td className="publicCell">{ game.publicVisible === true ? <FontAwesomeIcon className="icon green" icon={faCheck} /> : <FontAwesomeIcon className="icon red" icon={faTimes} /> }</td>
+                                <td className="numberCell">{ game.reviews.length }</td>
                                 <td className="optionCell">
                                     <Link className="cellOption" to={`/admin/games/update/${game._id}`}>Update</Link>|
                                     <button className="cellOption" onClick={ () => handleDelete(game._id) }>Delete</button>
