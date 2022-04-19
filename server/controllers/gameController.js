@@ -94,9 +94,9 @@ const addGameReview = asyncHandler(  async (req, res) => {
     const authorId = req.user._id;
     const reviews = { review, author, authorId, rating };
 
-    const addedGameReview = await Game.findByIdAndUpdate(req.params.id, { $push: { reviews } }, { new: false });
+    await Game.findByIdAndUpdate(req.params.id, { $push: { reviews } }, { new: true, timestamps: false });
 
-    res.json(addedGameReview);
+    res.json(reviews);
 })
 
 // Update a game

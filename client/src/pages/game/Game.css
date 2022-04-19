@@ -161,11 +161,18 @@
 }
 
 .gameInfo .gameReviews .review > h4 {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 500;
     text-align: right;
 }
 
 .gameInfo .gameReviews .review > h4 span {
     text-decoration: underline 4px var(--accent-color);
+}
+
+.gameInfo .gameReviews .review > h5 {
+    font-size: .9rem;
+    text-align: right;
+    font-weight: lighter;
+    margin-top: .5rem;
 }

@@ -27,7 +27,13 @@ const Game = () => {
 
         const reviewData = { review, rating };
         const response = await axios.put(`/api/games/addreview/${id}`, reviewData, config);
-        console.log(response);
+        if(response){
+            if(response.status === 200){
+                window.location.reload(false);
+            }else{
+                console.log(response);
+            }
+        }
     }
 
     const handleSubmit = (e) => {
@@ -38,6 +44,12 @@ const Game = () => {
         }else{
             alert("Fill out all fields!");
         }
+    }
+    
+    const formatPostTime = (datePosted) => {
+        const moment = require("moment");
+        let timePosted = moment(datePosted).format('MMMM Do YYYY, HH:mm');
+        return timePosted;
     }
 
     useEffect(() => {
@@ -81,7 +93,7 @@ const Game = () => {
                         </form>
                     ) }
 
-                    { game.reviews.length > 0 && (
+                    { game && game.reviews.length > 0 && (
                         <div className="gameReviews">
                             <h1>{ game.title } reviews & ratings</h1>
                             {game.reviews.map((review, index) => (
@@ -89,6 +101,7 @@ const Game = () => {
                                     <p>{ review.review }</p>
                                     <span>Rating: { review.rating } ★</span>
                                     <h4>Review by: <span>{ review.author }</span></h4>
+                                    <h5>{ formatPostTime(review.createdAt) }</h5>
                                 </div>
                             ))}
                         </div>
