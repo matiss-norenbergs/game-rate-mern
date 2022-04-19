@@ -54,22 +54,22 @@ const Register = () => {
             <form onSubmit={ handleSubmit }>
                 <div className="formRow">
                     <label>Username</label>
-                    <input type="text" value={name} onChange={ (e) => setName(e.target.value) } placeholder="Enter your username" />
+                    <input type="text" value={name} onChange={ (e) => setName(e.target.value) } placeholder="* Enter your username" />
                 </div><hr />
 
                 <div className="formRow">
                     <label>E-mail</label>
-                    <input type="email" value={email} onChange={ (e) => setEmail(e.target.value) } placeholder="Enter your email" />
+                    <input type="email" value={email} onChange={ (e) => setEmail(e.target.value) } placeholder="* Enter your email" />
                 </div><hr />
 
                 <div className="formRow">
                     <label>Password</label>
-                    <input type="password" value={password} onChange={ (e) => setPassword(e.target.value) } placeholder="Enter you password" />
+                    <input type="password" value={password} onChange={ (e) => setPassword(e.target.value) } placeholder="* Enter you password" />
                 </div><hr />
 
                 <div className="formRow">
                     <label>Password repeat</label>
-                    <input type="password" value={password2} onChange={ (e) => setPassword2(e.target.value) } placeholder="Enter your password again" />
+                    <input type="password" value={password2} onChange={ (e) => setPassword2(e.target.value) } placeholder="* Enter your password again" />
                 </div><hr />
 
                 <div className="formRow">

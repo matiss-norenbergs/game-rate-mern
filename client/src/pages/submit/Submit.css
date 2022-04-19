@@ -9,9 +9,7 @@
 }
 
 .submitForm .gameTags {
-    width: 10rem;
-    height: max-content;
-    padding-right: 1rem;
+    width: fit-content;
     margin-right: 1.5rem;
     border-right: 1px solid var(--accent-color);
 }
@@ -22,17 +20,27 @@
     padding-bottom: 1rem;
 }
 
-.submitForm .gameTags .tagRow {
+.submitForm .gameTags .tagList {
+    height: 30rem;
+    overflow-y: scroll;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    background: var(--background);
+}
+
+.submitForm .gameTags .tagList .tagRow {
+    display: flex;
+    align-items: center;
     color: var(--white2);
     padding: 2px 0;
 }
 
-.submitForm .gameTags .tagRow input[type=checkbox] {
+.submitForm .gameTags .tagList .tagRow input[type=checkbox] {
     height: 1rem;
     width: 1rem;
 }
 
-.submitForm .gameTags .tagRow > label {
+.submitForm .gameTags .tagList .tagRow > label {
     margin-left: .5rem;
     font-size: 1.2rem;
 }
@@ -106,23 +114,23 @@
     }
 }
 
-.submitNotLogged {
+.submitMessageContainer {
     overflow-x: hidden;
-    margin: 3.5rem 3%;
 }
 
-.submitPageMessage {
+.submitMessageContainer .message {
+    margin: 3.5rem 3%;
     padding: 3rem 2rem;
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.4);
     animation: showSubmitResult 1s;
 }
 
-.submitPageMessage > * {
+.submitMessageContainer .message > * {
     color: var(--white2);
 }
 
-.submitPageMessage > h1 {
+.submitMessageContainer .message > h1 {
     text-align: center;
     font-size: 2rem;
     padding-bottom: .5rem;
@@ -131,26 +139,26 @@
     border-bottom-right-radius: 1rem;
 }
 
-.submitPageMessage > h2 {
+.submitMessageContainer .message > h2 {
     font-size: 1.4rem;
     font-weight: 500;
     text-align: center;
     margin-top: .5rem;
 }
 
-.submitPageMessage > span {
+.submitMessageContainer .message > span {
     display: block;
     text-align: center;
     font-size: 1.4rem;
     padding-top: 1.5rem;
 }
 
-.submitPageMessage > span a {
+.submitMessageContainer .message > span a {
     color: var(--accent-color);
     text-decoration: underline;
 }
 
-.submitPageMessage > span a:hover {
+.submitMessageContainer .message > span a:hover {
     color: var(--white2);
 }
 
@@ -165,7 +173,7 @@
     }
 }
 
-.submitPageMessage .icon {
+.submitMessageContainer .message .icon {
     display: block;
     text-align: center;
     font-size: 6rem;
@@ -173,10 +181,10 @@
     animation: showIcon 1.5s;
 }
 
-.submitPageMessage .green {
+.submitMessageContainer .message .green {
     color: #494;
 }
 
-.submitPageMessage .red {
+.submitMessageContainer .message .red {
     color: #922;
 }

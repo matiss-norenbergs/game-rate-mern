@@ -48,7 +48,8 @@ const getGame = asyncHandler( async (req, res) => {
 
 // Add a game
 const addGame = asyncHandler( async (req, res) => {
-    if(!req.body.title || !req.body.cover || !req.body.summary || !req.body.tags.length > 0){
+    const { title, cover, summary, tags } = req.body;
+    if(!title || !cover || !summary || !tags.length > 0){
         res.status(400)
         throw new Error("Please provide all necessary data")
     }
@@ -59,15 +60,16 @@ const addGame = asyncHandler( async (req, res) => {
         throw new Error("User not found")
     }
 
-    const game = await Game.create({
-        title: req.body.title,
-        cover: req.body.cover,
-        summary: req.body.summary,
-        tags: req.body.tags,
+    //Create new game
+    await Game.create({
+        title,
+        cover,
+        summary,
+        tags,
         submittedBy: req.user.id,
     });
 
-    res.json({ message: `Game submitted: ${req.body.title}` });
+    res.json({ message: `Game submitted: ${title}` });
 })
 
 //Add review for a game
@@ -102,7 +104,6 @@ const addGameReview = asyncHandler(  async (req, res) => {
 // Update a game
 const updateGame = asyncHandler( async (req, res) => {
     const game = await Game.findById(req.params.id);
-    const moment = require("moment");
 
     if(!game){
         res.status(400)

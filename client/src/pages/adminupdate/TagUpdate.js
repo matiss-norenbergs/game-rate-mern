@@ -40,7 +40,9 @@ const TagUpdate = () => {
 
                     <div className="formData">
                         <form onSubmit={ handleSubmit }>
+                            <label>Tag name:</label>
                             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="* Tag name..." required />
+                            <label>Meaning:</label>
                             <textarea className="textArea" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Tags meaning..."></textarea>
                             
                             <div className="formBtns">

@@ -3,15 +3,9 @@ const { Schema } = mongoose;
 
 const reviewSchema = Schema(
     {
-        review: {
-            type: String
-        },
-        author: {
-            type: String
-        },
-        authorId: {
-            type: mongoose.Schema.Types.ObjectId
-        },
+        review: String,
+        author: String,
+        authorId: mongoose.Schema.Types.ObjectId,
         rating: Number
     },
     {
@@ -32,6 +26,10 @@ const gameSchema = Schema(
         summary: {
             type: String,
             required: [true, "Provide a summary for the game"]
+        },
+        trailer: {
+            type: String,
+            default: ""
         },
         tags: {
             type: Array,
@@ -55,7 +53,7 @@ const gameSchema = Schema(
         },
         rating5: {
             type: Number,
-            default: 1
+            default: 0
         },
         reviews: [
             reviewSchema

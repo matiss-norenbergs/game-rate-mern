@@ -86,7 +86,7 @@
 .adminPage > table tr th,
 .adminPage > table tr td {
     padding: .5rem 1rem;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
 }
 
 .adminPage > table tr td {
@@ -134,8 +134,13 @@
     color: #922;
 }
 
+.adminPage > table tr .numberCell {
+    text-align: center;
+    font-size: 1.3rem;
+}
+
 .adminPage .formPage {
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 1rem;
 }
@@ -161,10 +166,16 @@
     width: 36rem;
 }
 
+.adminPage .formPage .formData > form label {
+    display: block;
+    font-size: 1.4rem;
+    padding-bottom: .3rem;
+}
+
 .adminPage .formPage .formData > form > input,
 .adminPage .formPage .formData .textArea {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     padding: .5rem 1rem;
     font-size: 1.4rem;
     background: var(--background);
