@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, updateGame, deleteGame } = require("../controllers/gameController");
+const { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, addGameReview, updateGame, deleteGame } = require("../controllers/gameController");
 const { protect } = require("../middleware/authMiddleware");
 
 
@@ -13,6 +13,8 @@ router.get('/publiclast', getGamesPublicLast);
 router.get('/:id', getGame);
 
 router.post('/', protect, addGame);
+
+router.put('/addreview/:id', protect, addGameReview);
 
 router.put('/:id', protect, updateGame);
 

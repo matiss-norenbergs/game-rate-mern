@@ -1,0 +1,77 @@
+.usersData {
+    display: flex;
+    margin-top: 1rem;
+    border-top: 5px solid var(--accent-color);
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.usersData .userImg {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    padding: 4rem;
+    padding-right: 2rem;
+}
+
+.usersData .userImg > img {
+    height: 9rem;
+    width: 9rem;
+    border-radius: 50%;
+}
+
+.usersData .userImg > h2 {
+    margin-left: 1rem;
+}
+
+.usersData .userInfo {
+    text-align: left;
+    width: 50%;
+    min-width: fit-content;
+    padding: 3rem 2rem;
+}
+
+.usersData .userInfo > h2{
+    padding: 1rem 0;
+}
+
+.usersData .userInfo .profileBtns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.usersData .userInfo .profileBtns > button {
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    padding: 1rem 2rem;
+    background: var(--accent-color);
+    color: var(--white2);
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+}
+
+.usersData .userInfo .profileBtns > button:hover {
+    background: transparent;
+}
+
+.usersData .userInfo > form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+
+.usersData .userInfo > form label {
+    font-size: 1.4rem;
+    margin-bottom: .8rem;
+}
+
+.usersData .userInfo > form select,
+.usersData .userInfo > form input {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    padding: .5rem 1rem;
+    background: var(--background);
+    color: var(--white2);
+}

@@ -17,12 +17,16 @@ const userSchema = Schema(
             required: [true, "Please add a password"]
         },
         picture: {
-            data: Buffer,
-            contentType: String
+            type: String,
+            default: "profile1.jpg"
         },
         role: {
             type: String,
             default: "user"
+        },
+        reviews: {
+            type: Number,
+            default: 0
         }
     },
     {

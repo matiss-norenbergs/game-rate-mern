@@ -1,11 +1,23 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const reviewSchema = Schema({
-    reviewText: { type: String },
-    reviewAuthor: { type: String },
-    reviewAuthorId: { type: String }
-}, { _id : true });
+const reviewSchema = Schema(
+    {
+        review: {
+            type: String
+        },
+        author: {
+            type: String
+        },
+        authorId: {
+            type: mongoose.Schema.Types.ObjectId
+        },
+        rating: Number
+    },
+    {
+        timestamps: true
+    }
+);
 
 const gameSchema = Schema(
     {
