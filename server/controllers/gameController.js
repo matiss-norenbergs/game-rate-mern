@@ -70,6 +70,35 @@ const addGame = asyncHandler( async (req, res) => {
     res.json({ message: `Game submitted: ${req.body.title}` });
 })
 
+//Add review for a game
+const addGameReview = asyncHandler(  async (req, res) => {
+    if(!req.body.review || !req.body.rating){
+        res.status(400)
+        throw new Error("Please provide all necessary data")
+    }
+
+    const game = await Game.findById(req.params.id);
+
+    if(!game){
+        res.status(400)
+        throw new Error("Game not found")
+    }
+
+    //Check for user
+    if(!req.user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+    const { review, rating } = req.body;
+    const author = req.user.name;
+    const authorId = req.user._id;
+    const reviews = { review, author, authorId, rating };
+
+    const addedGameReview = await Game.findByIdAndUpdate(req.params.id, { $push: { reviews } }, { new: false });
+
+    res.json(addedGameReview);
+})
+
 // Update a game
 const updateGame = asyncHandler( async (req, res) => {
     const game = await Game.findById(req.params.id);
@@ -123,4 +152,4 @@ const deleteGame = asyncHandler( async (req, res) => {
     res.json({ id: req.params.id });
 })
 
-module.exports = { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, updateGame, deleteGame }
+module.exports = { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, addGameReview, updateGame, deleteGame }
