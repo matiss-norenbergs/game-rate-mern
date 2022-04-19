@@ -57,7 +57,7 @@ const Login = () => {
                 </div><hr />
 
                 <div className="formRow">
-                    <input type="submit" value="Login" />
+                    <button type="submit">Login</button>
                 </div>
             </form>
 

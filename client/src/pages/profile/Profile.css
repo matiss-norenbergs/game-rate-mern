@@ -18,6 +18,7 @@
     height: 9rem;
     width: 9rem;
     border-radius: 50%;
+    border: 2px solid var(--accent-color);
 }
 
 .usersData .userImg > h2 {

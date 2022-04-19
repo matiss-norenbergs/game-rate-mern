@@ -35,12 +35,16 @@
 }
 
 .navBar .navOptions .optionBtn {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding: .5rem 1rem;
     border: 1px solid var(--white2);
     border-radius: 5px;
     background: transparent;
     color: var(--white2);
+}
+
+.navBar .navOptions .optionBtn:nth-child(2) {
+    margin-left: .5rem;
 }
 
 .navBar .navOptions .optionBtn:hover {
