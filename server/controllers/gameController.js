@@ -49,6 +49,7 @@ const getGame = asyncHandler( async (req, res) => {
 // Add a game
 const addGame = asyncHandler( async (req, res) => {
     const { title, cover, summary, tags } = req.body;
+
     if(!title || !cover || !summary || !tags.length > 0){
         res.status(400)
         throw new Error("Please provide all necessary data")
@@ -58,6 +59,24 @@ const addGame = asyncHandler( async (req, res) => {
     if(!req.user){
         res.status(401)
         throw new Error("User not found")
+    }
+
+    //Check users recent submission amount
+    const moment = require("moment");
+    const timeNow = moment(Date.now()).subtract(2, 'minutes').format();
+    const userCreatedGame = await Game.find({ submittedBy: req.user._id, createdAt: { $gt: timeNow } }).sort({ createdAt: -1 });
+
+    if(userCreatedGame.length >= 1){
+        res.status(400)
+        throw new Error("User can submit 1 game per 2 minutes " + userCreatedGame[0].title)
+    }
+
+    //Check if simular game exists
+    const game = await Game.find({ title: { $regex: `${title}`, $options: "i" }}, 'title').limit(1);
+
+    if(game.length >= 1){
+        res.status(400)
+        throw new Error("Game already exists: " + game[0].title)
     }
 
     //Create new game
@@ -74,11 +93,14 @@ const addGame = asyncHandler( async (req, res) => {
 
 //Add review for a game
 const addGameReview = asyncHandler(  async (req, res) => {
-    if(!req.body.review || !req.body.rating){
+    const { review, rating } = req.body;
+
+    if(!review || !rating){
         res.status(400)
         throw new Error("Please provide all necessary data")
     }
 
+    //Check for game
     const game = await Game.findById(req.params.id);
 
     if(!game){
@@ -91,7 +113,16 @@ const addGameReview = asyncHandler(  async (req, res) => {
         res.status(401)
         throw new Error("User not found")
     }
-    const { review, rating } = req.body;
+
+    //Check if user has a review already
+    const userCreatedReview = await Game.find({ _id: req.params.id, 'reviews.authorId': req.user._id }).limit(1);
+
+    if(userCreatedReview.length >= 1){
+        res.status(401)
+        throw new Error("You already have a review for this game")
+    }
+
+    //Add the users review
     const author = req.user.name;
     const authorId = req.user._id;
     const reviews = { review, author, authorId, rating };
@@ -124,7 +155,7 @@ const updateGame = asyncHandler( async (req, res) => {
 
     const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
-    res.json(updatedGame);
+    res.json(updatedGame.title);
 })
 
 // Delete a game

@@ -74,9 +74,11 @@ const loginUser = asyncHandler( async (req, res) => {
 const getAdmin = asyncHandler( async (req, res) => {
     if(req.user.role === "admin"){
         res.status(200).json(true);
+        return;
     }
 
     res.status(200).json(false);
+    return;
 })
 
 //Generate JWT
