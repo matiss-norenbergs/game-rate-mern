@@ -1,22 +1,19 @@
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import useFetch from "../../hooks/useFetch";
-import "./Game.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import useFetch from "../../hooks/useFetch";
+import "./Game.css";
 
 const Game = () => {
     const { id } = useParams();
     const { data: game, isPending, error } = useFetch(`/api/games/${id}`);
+    const { user } = useSelector((state) => state.auth);
 
     const [review, setReview] = useState("");
-    const [author, setAuthor] = useState("");
-    const [authorId, setAuthorId] = useState("");
     const [rating, setRating] = useState(0);
-
-    const { user } = useSelector((state) => state.auth);
 
     const addReview = async () => {
         const config = {
@@ -31,7 +28,7 @@ const Game = () => {
             if(response.status === 200){
                 window.location.reload(false);
             }else{
-                console.log(response);
+                console.log(response.message);
             }
         }
     }
@@ -39,7 +36,7 @@ const Game = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(review !== "" && author !== "" && authorId !== "" && rating !== 0){
+        if(review !== "" && rating !== 0){
             addReview();
         }else{
             alert("Fill out all fields!");
@@ -51,13 +48,6 @@ const Game = () => {
         let timePosted = moment(datePosted).format('MMMM Do YYYY, HH:mm');
         return timePosted;
     }
-
-    useEffect(() => {
-        if(user){
-            setAuthor(user.name);
-            setAuthorId(user._id);
-        }
-    }, [user]);
 
     return (
         <div className="gameRatePages">
@@ -87,16 +77,16 @@ const Game = () => {
                                 <label htmlFor="star1" title="text">1 star</label>
                             </div>
 
-                            <textarea value={ review } onChange={ (e) => setReview(e.target.value) } placeholder="Write your review..."></textarea>
+                            <textarea value={ review } onChange={ (e) => setReview(e.target.value) } placeholder="Write your review..." required></textarea>
 
                             <button>Submit review</button>
                         </form>
-                    ) }
+                    )}
 
                     { game && game.reviews.length > 0 && (
                         <div className="gameReviews">
                             <h1>{ game.title } reviews & ratings</h1>
-                            {game.reviews.map((review, index) => (
+                            { game.reviews.map((review, index) => (
                                 <div className="review" key={ index }>
                                     <p>{ review.review }</p>
                                     <span>Rating: { review.rating } ★</span>
@@ -105,7 +95,7 @@ const Game = () => {
                                 </div>
                             ))}
                         </div>
-                    ) }
+                    )}
                 </div>
             )}
         </div>

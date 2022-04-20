@@ -30,16 +30,6 @@ const Submit = () => {
         }
     }, [tagList, dataIsPending]);
 
-    const setSelectedTags = () => {
-        let selected = [];
-        tagList.map(({name}, index) => {
-            if(checkedState[index] === true){
-                selected.push(name)
-            }
-        });
-        setTags(selected);
-    }
-
     const handleOnChange = async (position) => {
         const updatedCheckedState = checkedState.map((item, index) => 
             index === position ? !item : item
@@ -49,24 +39,63 @@ const Submit = () => {
     }
 
     useEffect(() => {
+        const setSelectedTags = () => {
+            let selected = [];
+
+            tagList.forEach(({ name }, index) => {
+                if(checkedState[index] === true){
+                    selected.push(name)
+                }
+            });
+
+            setTags(selected);
+        }
+
         if(checkedState && checkedState.length > 0){
             setSelectedTags();
         }
-    }, [checkedState]);
+    }, [checkedState, tagList]);
 
-    const handleSubmit = async (e) => {
+    function checkIfImageExists(url, callback) {
+        const img = new Image();
+        img.src = url;
+        
+        if (img.complete) {
+            callback(true);
+        } else {
+            img.onload = () => {
+                callback(true);
+            };
+            
+            img.onerror = () => {
+                callback(false);
+            };
+        }
+    }
+
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(submitGame({ title, summary, cover, tags }));
-        setTitle("");
-        setSummary("");
-        setCover("");
-        setSubmitted(true);
-
-        setTimeout(() => {
-            dispatch(reset());
-            navigate("/games");
-        },[ 3000]);
+        if(title && summary && cover && tags.length > 0 ){
+            checkIfImageExists(cover, (exists) => {
+                if(exists){
+                    dispatch(submitGame({ title, summary, cover, tags }));
+                    setTitle("");
+                    setSummary("");
+                    setCover("");
+                    setSubmitted(true);
+    
+                    setTimeout(() => {
+                        dispatch(reset());
+                        navigate("/games");
+                    },[ 3000]);
+                }else{
+                    alert('Image url isn\'t valid!')
+                }
+            });
+        }else{
+            alert("Provide all information!")
+        }
     }
 
     if(!user){
