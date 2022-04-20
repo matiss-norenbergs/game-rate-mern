@@ -7,6 +7,7 @@ import "./AdminNav.css";
 
 const AdminNav = () => {
     const { isAdmin, isPending, error } = useAdmin();
+    if(error){console.log(error)}
     const navigate = useNavigate();
     const [displayNav, setDisplayNav] = useState("block");
 
@@ -16,9 +17,9 @@ const AdminNav = () => {
         }
 
         if(!isPending && !isAdmin){
-            return redirectHome()
+            return redirectHome();
         }
-    }, [isAdmin, isPending]);
+    }, [isAdmin, isPending, navigate]);
 
     function hideNavigation() {
         if(displayNav === "block"){

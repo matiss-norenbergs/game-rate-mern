@@ -25,7 +25,7 @@ const GameUpdate = () => {
         e.preventDefault();
         const gameData = { title, cover, summary, trailer, publicVisible };
         const response = await axios.put(`/api/games/${id}`, gameData, config);
-        //console.log(response);
+        console.log(response);
         navigate("/admin/games");
     }
 
