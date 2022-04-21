@@ -43,6 +43,56 @@
     color: var(--white2);
 }
 
+.gameInfo .gameTags {
+    margin: 2rem 0;
+    margin-top: 4rem;
+}
+
+.gameInfo .gameTags > h2 {
+    font-size: 1.4rem;
+    text-align: right;
+    margin-bottom: .5rem;
+}
+
+.gameInfo .gameTags .assocTags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: .5rem 1rem;
+    border-radius: 0 0 2rem 2rem;
+    border-top: 2px solid var(--accent-color);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.gameInfo .gameTags .assocTags > span {
+    font-size: 1rem;
+    margin: .3rem;
+    padding: .4rem .6rem;
+    border-radius: .5rem;
+    background: var(--background);
+}
+
+.gameInfo .gameTrailer {
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 1rem 3rem;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.gameInfo .gameTrailer > h2 {
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.gameInfo .gameTrailer > iframe {
+    height: 25rem;
+    width: 45rem;
+    border: 2px solid var(--accent-color);
+}
+
 .gameInfo > form {
     display: flex;
     flex-direction: column;
@@ -51,7 +101,7 @@
     width: 70%;
     min-width: 40rem;
     margin: 0 auto;
-    margin-top: 4rem;
+    margin-top: 3rem;
     padding: 1rem 2rem;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 1.5rem;

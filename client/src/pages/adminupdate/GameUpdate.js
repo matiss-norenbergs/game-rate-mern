@@ -57,8 +57,8 @@ const GameUpdate = () => {
                             <textarea className="textArea" value={ summary } onChange={ (e) => setSummary(e.target.value) } placeholder="* Summary of game..." required></textarea>
                             <label>Cover link:</label>
                             <input type="text" value={cover} onChange={ (e) => setCover(e.target.value)} placeholder="* Cover of game (link)..." required />
-                            <label>Trailer link:</label>
-                            <input type="text" value={ trailer } onChange={ (e) => setTrailer(e.target.value) } placeholder="Trailer for the game..." />
+                            <label>Trailer video id:</label>
+                            <input type="text" value={ trailer } onChange={ (e) => setTrailer(e.target.value) } placeholder="Trailer id for the game..." />
                             <label>Visibility:</label>
                             <select value={publicVisible} onChange={ (e) => setPublicVisible(e.target.value) }>
                                 <option value={ false }>Private</option>
