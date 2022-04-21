@@ -17,7 +17,7 @@ const NewGames = (props) => {
                     <img src={ game.cover } alt={ game.title } />
                     <div className="textContents">
                         <h2 className="gameTitle">{ game.title }</h2>
-                        <span className="gamePublished">{ formatPostTime(game.updatedAt) }</span>
+                        <span className="gamePublished">{ formatPostTime(game.publishedAt) }</span>
                     </div>
                 </Link>
             ))}

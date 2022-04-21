@@ -67,9 +67,9 @@ const gameSchema = Schema(
             type: Boolean,
             default: false
         },
-        beenPublished: {
-            type: Boolean,
-            default: false
+        publishedAt: {
+            type: Date,
+            default: null
         }
     },
     {

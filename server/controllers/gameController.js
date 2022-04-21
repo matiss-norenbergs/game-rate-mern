@@ -1,7 +1,5 @@
 const asyncHandler = require("express-async-handler");
-
 const Game = require("../models/gameModel");
-
 
 // Fetch all games
 const getGames = asyncHandler( async (req, res) => {
@@ -30,7 +28,7 @@ const getGamesPublic = asyncHandler( async (req, res) => {
 
 // Fetch 5 latest published games
 const getGamesPublicLast = asyncHandler( async (req, res) => {
-    const games = await Game.find({ publicVisible: true }, 'title cover updatedAt').sort({ updatedAt: -1 }).limit(5);
+    const games = await Game.find({ publicVisible: true }, 'title cover publishedAt').sort({ publishedAt: -1 }).limit(5);
     res.json(games);
 })
 
@@ -153,7 +151,17 @@ const updateGame = asyncHandler( async (req, res) => {
         throw new Error("User is not an admin")
     }
 
-    const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const isPublished = async (data) => {
+        const moment = require("moment");
+        const publishedAt = moment(Date.now()).format();
+
+        return data.publicVisible && !game.publishedAt ? { ...data, publishedAt } : { ...data };
+    }
+
+    //Checking if published or not
+    const gameData = await isPublished(req.body);
+
+    const updatedGame = await Game.findByIdAndUpdate(req.params.id, gameData, { new: true });
 
     res.json(updatedGame.title);
 })
