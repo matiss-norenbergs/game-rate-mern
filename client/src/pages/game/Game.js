@@ -62,6 +62,31 @@ const Game = () => {
                         <p>{ game.summary }</p>
                     </div>
 
+                    { game.tags.length > 0 && (
+                        <div className="gameTags">
+                            <h2>Tags associated with - { game.title }</h2>
+                            
+                            <div className="assocTags">
+                                { game.tags.map((tag, index) => (
+                                    <span key={ index }>{ tag }</span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    { game.trailer && (
+                        <div className="gameTrailer">
+                            <h2>Game trailer</h2>
+
+                            <iframe 
+                                src={`https://www.youtube.com/embed/${ game.trailer }`} 
+                                frameBorder="0"
+                                allowFullScreen 
+                                title="Game trailer" 
+                            />
+                        </div>
+                    )}
+
                     { user && (
                         <form onSubmit={handleSubmit}>
                             <div className="rate">
