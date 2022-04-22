@@ -21,6 +21,20 @@
     to{transform: rotate(359deg);}
 }
 
+.gameInfo .adminEdit {
+    float: right;
+    padding: .5rem 1.5rem;
+    font-size: 1.4rem;
+    border-radius: .5rem;
+    border: 2px solid var(--accent-color);
+    background: var(--accent-color);
+    color: var(--white2);
+}
+
+.gameInfo .adminEdit:hover {
+    background: transparent;
+}
+
 .gameInfo > h1 {
     padding-bottom: 2rem;
     text-align: center;

@@ -57,7 +57,9 @@ const AdminGames = () => {
                         games.map((game) => (
                             <tr key={game._id}>
                                 <td className="imageCell"><img src={game.cover} alt={game.title} /></td>
-                                <td>{ game.title }</td>
+                                <td className="titleCell">
+                                    <Link to={`/game/${game._id}`}>{ game.title }</Link>
+                                </td>
                                 <td>{ whenCreated(game.createdAt) }</td>
                                 <td>{ game.submittedBy }</td>
                                 <td className="publicCell">{ game.publicVisible === true ? <FontAwesomeIcon className="icon green" icon={faCheck} /> : <FontAwesomeIcon className="icon red" icon={faTimes} /> }</td>
