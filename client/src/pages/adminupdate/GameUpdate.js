@@ -10,6 +10,7 @@ const GameUpdate = () => {
     const [title, setTitle] = useState("");
     const [cover, setCover] = useState("");
     const [summary, setSummary] = useState("");
+    const [tags, setTags] = useState([]);
     const [trailer, setTrailer] = useState("");
     const [publicVisible, setPublicVisible] = useState(false);
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ const GameUpdate = () => {
             setTitle(game.title);
             setCover(game.cover);
             setSummary(game.summary);
+            setTags(game.tags);
             setTrailer(game.trailer);
             setPublicVisible(game.publicVisible);
         }
@@ -48,6 +50,15 @@ const GameUpdate = () => {
                     <div className="formData">
                         <div className="formImage">
                             { cover && <img src={ cover } alt={ game.title } /> }
+                            { tags.length > 0 && (
+                                <ul className="suggTags">
+                                    <h2>Suggested tags:</h2>
+
+                                    { tags.map((tag, index) => (
+                                        <li key={ index }>{ tag }</li>
+                                    ))}
+                                </ul>
+                            )}
                         </div>
 
                         <form onSubmit={ handleSubmit }>

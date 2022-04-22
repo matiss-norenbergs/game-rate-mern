@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -55,6 +55,10 @@ const Game = () => {
             { isPending && <div className="stateInfo">Loading... <FontAwesomeIcon className="icon loading" icon={faSpinner} /></div> }
             { game && isPending === false && error === null && (
                 <div className="gameInfo">
+                    { user && user.role === "admin" && (
+                        <Link to={`/admin/games/update/${game._id}`} className="adminEdit">Update info</Link>
+                    )}
+
                     <h1>{ game.title }</h1>
 
                     <div className="contents">
@@ -79,7 +83,7 @@ const Game = () => {
                             <h2>Game trailer</h2>
 
                             <iframe 
-                                src={`https://www.youtube.com/embed/${ game.trailer }`} 
+                                src={`https://www.youtube.com/embed/${ game.trailer }?playlist=${ game.trailer }&loop=1`} 
                                 frameBorder="0"
                                 allowFullScreen 
                                 title="Game trailer" 

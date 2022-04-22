@@ -115,7 +115,17 @@
 }
 
 .adminPage > table tr .imageCell img {
-    width: 6rem;
+    width: 5.5rem;
+}
+
+.adminPage > table tr .titleCell > a {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--white2);
+}
+
+.adminPage > table tr .titleCell > a:hover {
+    text-decoration: underline 3px var(--accent-color);
 }
 
 .adminPage > table tr .publicCell {
@@ -160,6 +170,16 @@
 .adminPage .formPage .formData .formImage > img {
     width: 15rem;
     margin-right: 2rem;
+}
+
+.adminPage .formPage .formData .formImage .suggTags > h2 {
+    margin-bottom: .4rem;
+}
+
+.adminPage .formPage .formData .formImage .suggTags > li {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    list-style-type: circle;
 }
 
 .adminPage .formPage .formData > form {
