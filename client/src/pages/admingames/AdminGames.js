@@ -50,7 +50,7 @@ const AdminGames = () => {
                             <th>Submitted by</th>
                             <th>Public</th>
                             <th>Reviews</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>{
