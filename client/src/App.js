@@ -15,6 +15,7 @@ import AdminGames from './pages/admingames/AdminGames';
 import TagCreate from './pages/admincreate/TagCreate';
 import TagUpdate from './pages/adminupdate/TagUpdate';
 import GameUpdate from './pages/adminupdate/GameUpdate';
+import ProtectedRoutes from './components/protectedroutes/ProtectedRoutes';
 
 function App() {
   return (
@@ -27,7 +28,9 @@ function App() {
           <Route path="/games" element={ <Games /> } />
           <Route path="/game/:id" element={ <Game /> } />
           <Route path="/submit" element={ <Submit /> } />
-          <Route path="/profile" element={ <Profile /> } />
+          <Route element={ <ProtectedRoutes /> }>
+            <Route path="/profile" element={ <Profile /> } />
+          </Route>
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
           <Route path="/admin" element={ <AdminNav /> } >
