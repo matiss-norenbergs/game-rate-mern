@@ -89,7 +89,7 @@ const GameUpdate = () => {
 
     return (
         <>
-            { isPending && tagIsPending && <Pending text={"Loading game data..."} center={true} size={"2rem"} /> }
+            { isPending && <Pending text={"Loading game data..."} center={true} size={"2rem"} /> }
             { !isPending && game && (
                 <div className="formPage">
                     <h1>Selected game: { game.title }</h1>
@@ -97,7 +97,8 @@ const GameUpdate = () => {
                     <div className="formData">
                         <div className="formImage">
                             { cover && <img src={ cover } alt={ game.title } /> }
-                            { tags.length > 0 && (
+                            { tagIsPending && <Pending text={"Loading..."} /> }
+                            { !tagIsPending && tags.length > 0 && (
                                 <ul className="selecTags">
                                     <h2>Selected tags:</h2>
 
@@ -127,6 +128,7 @@ const GameUpdate = () => {
                                 { !tagIsPending && tagError && (
                                     <h2>Tags can't be loaded...</h2>
                                 )}
+                                { tagIsPending && <Pending text={"Loading..."} /> }
                                 { !tagIsPending && checkedState && tagList && tagList.length > 0 && (
                                     <div className="tags">
                                         { tagList.map(({name, meaning}, index) => (
