@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 const Profile = () => {
-    const navigate = useNavigate();
     const { user } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
 
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
@@ -20,20 +20,20 @@ const Profile = () => {
         { name: "Ape", picture: "profile5.jpg" },
         { name: "Neon girl", picture: "profile6.jpg" }
     ];
-
-    useEffect(() => {
-        if(!user){
-            navigate("/");
-        }else{
-            setPicture(user.picture);
-        }
-    }, [user, navigate]);
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         console.log("Submitted")
     }
+    
+    useEffect(() => {
+        if(user){
+            setPicture(user.picture);
+        }else{
+            navigate("/");
+        }
+    }, [user, navigate]);
 
     return (
         <div className="gameRatePages">

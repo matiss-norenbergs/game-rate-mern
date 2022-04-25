@@ -2,12 +2,12 @@ import { faAnglesLeft, faAnglesRight, faChartColumn, faGamepad, faTags } from "@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import Pending from "../../components/pending/Pending";
 import useAdmin from "../../hooks/useAdmin";
 import "./AdminNav.css";
 
 const AdminNav = () => {
     const { isAdmin, isPending, error } = useAdmin();
-    if(error){console.log(error)}
     const navigate = useNavigate();
     const [displayNav, setDisplayNav] = useState("block");
 
@@ -29,8 +29,9 @@ const AdminNav = () => {
         }
     }
 
-    { isPending && <h1>Checking status...</h1> }
-    if(!isPending && isAdmin){
+    { !isPending && error && console.log(error) }
+    { isPending && <Pending text={"Checking status..."} center={true} size={"2rem"} /> }
+    if(!isPending && isAdmin === true){
         return (
             <div className="adminSection">
                 <div className="navSection">
@@ -57,7 +58,6 @@ const AdminNav = () => {
                     <Outlet />
                 </div>
             </div>
-    
         )
     }
 }

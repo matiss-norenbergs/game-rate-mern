@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Pending from "../../components/pending/Pending";
 import useAdminFetch from "../../hooks/useAdminFetch";
 
 const AdminGames = () => {
@@ -38,7 +39,7 @@ const AdminGames = () => {
         <>
             <h1>Game list</h1>
 
-            { isPending && <h1>Fetching games...</h1> }
+            { isPending && <Pending text={"Fetching games..."} center={true} size={"2rem"} /> }
             { error && !games && <h1>Error: { error }</h1> }
             { games &&
                 <table>
@@ -46,6 +47,7 @@ const AdminGames = () => {
                         <tr>
                             <th className="imageCell">Cover</th>
                             <th>Title</th>
+                            <th>Tags</th>
                             <th>Created</th>
                             <th>Submitted by</th>
                             <th>Public</th>
@@ -60,6 +62,7 @@ const AdminGames = () => {
                                 <td className="titleCell">
                                     <Link to={`/game/${game._id}`}>{ game.title }</Link>
                                 </td>
+                                <td className="numberCell">{ game.tags.length }</td>
                                 <td>{ whenCreated(game.createdAt) }</td>
                                 <td>{ game.submittedBy }</td>
                                 <td className="publicCell">{ game.publicVisible === true ? <FontAwesomeIcon className="icon green" icon={faCheck} /> : <FontAwesomeIcon className="icon red" icon={faTimes} /> }</td>

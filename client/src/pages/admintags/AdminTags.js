@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Pending from "../../components/pending/Pending";
 
 const AdminTags = () => {
     const { data, isPending, error } = useFetch("/api/tags/");
@@ -30,7 +31,7 @@ const AdminTags = () => {
         <>
             <h1>Game tags</h1>
 
-            { isPending && <h1>Fetching tags...</h1> }
+            { isPending && <Pending text={"Fetching tags..."} center={true} size={"2rem"} /> }
             { error && !tags && <h1>Error: { error }</h1> }
             { tags && 
                 <table>

@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Pending from "../../components/pending/Pending";
 
 const TagUpdate = () => {
     const { id } = useParams();
@@ -34,6 +35,7 @@ const TagUpdate = () => {
 
     return (
         <>
+            { isPending && <Pending text={"Loading tag data..."} center={true} size={"2rem"} /> }
             { !isPending && tag && (
                 <div className="formPage">
                     <h1>Selected tag: { tag.name }</h1>
