@@ -11,16 +11,6 @@
     margin-right: .8rem;
 }
 
-.stateInfo .loading {
-    margin-left: .8rem;
-    animation: rotate 2s infinite linear;
-}
-
-@keyframes rotate {
-    from{transform: rotate(0deg);}
-    to{transform: rotate(359deg);}
-}
-
 .gameInfo .adminEdit {
     float: right;
     padding: .5rem 1.5rem;

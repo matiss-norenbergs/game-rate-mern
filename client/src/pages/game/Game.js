@@ -1,9 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
 import "./Game.css";
 
@@ -14,6 +15,7 @@ const Game = () => {
 
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(0);
+    const [message, setMessage] = useState("");
 
     const addReview = async () => {
         const config = {
@@ -26,9 +28,13 @@ const Game = () => {
         const response = await axios.put(`/api/games/addreview/${id}`, reviewData, config);
         if(response){
             if(response.status === 200){
-                window.location.reload(false);
+                setMessage(response.data.message);
+
+                setTimeout(() => {
+                    window.location.reload(false);
+                }, [1700])
             }else{
-                console.log(response.message);
+                console.log(response);
             }
         }
     }
@@ -52,7 +58,7 @@ const Game = () => {
     return (
         <div className="gameRatePages">
             { error && <div className="stateInfo"><FontAwesomeIcon className="icon" icon={faExclamationCircle} /> { error }</div> }
-            { isPending && <div className="stateInfo">Loading... <FontAwesomeIcon className="icon loading" icon={faSpinner} /></div> }
+            { isPending && <Pending text={"Loading..."} /> }
             { game && isPending === false && error === null && (
                 <div className="gameInfo">
                     { user && user.role === "admin" && (
@@ -66,7 +72,7 @@ const Game = () => {
                         <p>{ game.summary }</p>
                     </div>
 
-                    { game.tags.length > 0 && (
+                    { game && game.tags && game.tags.length > 0 && (
                         <div className="gameTags">
                             <h2>Tags associated with - { game.title }</h2>
                             
@@ -93,6 +99,7 @@ const Game = () => {
 
                     { user && (
                         <form onSubmit={handleSubmit}>
+                            { message && <h2>{ message }</h2> }
                             <div className="rate">
                                 <input onChange={ (e) => setRating(e.target.value) } type="radio" id="star5" name="rate" value="5" />
                                 <label htmlFor="star5" title="text">5 stars</label>
@@ -112,7 +119,7 @@ const Game = () => {
                         </form>
                     )}
 
-                    { game && game.reviews.length > 0 && (
+                    { game && game.reviews && game.reviews.length > 0 && (
                         <div className="gameReviews">
                             <h1>{ game.title } reviews & ratings</h1>
                             { game.reviews.map((review, index) => (

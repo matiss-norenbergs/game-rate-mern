@@ -31,7 +31,6 @@
 .submitForm .gameTags .tagList .tagRow {
     display: flex;
     align-items: center;
-    color: var(--white2);
     padding: 2px 0;
 }
 
