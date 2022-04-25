@@ -172,11 +172,12 @@
     margin-right: 2rem;
 }
 
-.adminPage .formPage .formData .formImage .suggTags > h2 {
+.adminPage .formPage .formData .formImage .selecTags > h2 {
+    margin-top: .3rem;
     margin-bottom: .4rem;
 }
 
-.adminPage .formPage .formData .formImage .suggTags > li {
+.adminPage .formPage .formData .formImage .selecTags > li {
     margin-left: 1rem;
     font-size: 1.2rem;
     list-style-type: circle;
@@ -206,6 +207,30 @@
 .adminPage .formPage .formData > form .textArea {
     min-height: 12rem;
     resize: vertical;
+}
+
+.adminPage .formPage .formData > form .checkList > .tags {
+    height: 15rem;
+    overflow-y: scroll;
+    margin-bottom: 1.2rem;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    background: var(--background);
+}
+
+.adminPage .formPage .formData > form .checkList > .tags .tagRow {
+    display: flex;
+    align-items: center;
+}
+
+.adminPage .formPage .formData > form .checkList > .tags .tagRow input[type=checkbox] {
+    height: 1rem;
+    width: 1rem;
+}
+
+.adminPage .formPage .formData > form .checkList > .tags .tagRow > label {
+    margin-left: .5rem;
+    font-size: 1.2rem;
 }
 
 .adminPage .formPage .formData > form > select {
