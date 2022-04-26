@@ -47,6 +47,11 @@
     color: var(--white2);
 }
 
+.gameInfo > h2 .star {
+    font-size: 1.8rem;
+    color: #ffc700;
+}
+
 .gameInfo .gameTags {
     margin: 2rem 0;
     margin-top: 4rem;
@@ -212,6 +217,11 @@
     font-size: 1.5rem;
     font-weight: 400;
     padding-top: 1rem;
+}
+
+.gameInfo .gameReviews .review > span .star {
+    font-size: 1.8rem;
+    color: #ffc700;
 }
 
 .gameInfo .gameReviews .review > h4 {
