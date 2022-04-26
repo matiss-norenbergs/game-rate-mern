@@ -6,7 +6,7 @@ const { protect } = require("../middleware/authMiddleware");
 
 router.get('/', protect, getGames);
 
-router.get('/public', getGamesPublic);
+router.get('/public/:field/:order', getGamesPublic);
 
 router.get('/publiclast', getGamesPublicLast);
 

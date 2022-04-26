@@ -22,7 +22,8 @@ const getGames = asyncHandler( async (req, res) => {
 
 // Fetch all published games
 const getGamesPublic = asyncHandler( async (req, res) => {
-    const games = await Game.find({ publicVisible: true }, 'title cover');
+    const { field, order } = req.params;
+    const games = await Game.find({ publicVisible: true }, 'title cover rating').sort({[field]: order});
     res.json(games);
 })
 
@@ -126,6 +127,20 @@ const addGameReview = asyncHandler(  async (req, res) => {
     const reviews = { review, author, authorId, rating };
 
     await Game.findByIdAndUpdate(req.params.id, { $push: { reviews } }, { new: true, timestamps: false });
+
+    const gameRating = await Game.findById(req.params.id);
+
+    if(gameRating){
+        const reviewCount = gameRating.reviews.length;
+        let revievSum = 0;
+
+        gameRating.reviews.forEach(({rating}) => {
+            revievSum += rating;
+        });
+
+        const rating = revievSum / reviewCount;
+        await Game.findByIdAndUpdate(req.params.id, { rating }, { new: true, timestamps: false });
+    }
 
     res.json({ message: "Review added!" });
 })
