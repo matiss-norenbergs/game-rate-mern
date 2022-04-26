@@ -72,6 +72,8 @@ const Game = () => {
                         <p>{ game.summary }</p>
                     </div>
 
+                    <h2>Rating: { game.rating } <span className="star">★</span></h2>
+
                     { game && game.tags && game.tags.length > 0 && (
                         <div className="gameTags">
                             <h2>Tags associated with - { game.title }</h2>
@@ -125,7 +127,7 @@ const Game = () => {
                             { game.reviews.map((review, index) => (
                                 <div className="review" key={ index }>
                                     <p>{ review.review }</p>
-                                    <span>Rating: { review.rating } ★</span>
+                                    <span>Rating: { review.rating } <span className="star">★</span></span>
                                     <h4>Review by: <span>{ review.author }</span></h4>
                                     <h5>{ formatPostTime(review.createdAt) }</h5>
                                 </div>

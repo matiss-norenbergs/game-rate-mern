@@ -35,23 +35,7 @@ const gameSchema = Schema(
             type: Array,
             required: [true, "Provide at least one tag"]
         },
-        rating1: {
-            type: Number,
-            default: 0
-        },
-        rating2: {
-            type: Number,
-            default: 0
-        },
-        rating3: {
-            type: Number,
-            default: 0
-        },
-        rating4: {
-            type: Number,
-            default: 0
-        },
-        rating5: {
+        rating: {
             type: Number,
             default: 0
         },

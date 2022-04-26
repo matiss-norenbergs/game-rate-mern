@@ -28,9 +28,11 @@ function App() {
           <Route path="/games" element={ <Games /> } />
           <Route path="/game/:id" element={ <Game /> } />
           <Route path="/submit" element={ <Submit /> } />
+
           <Route element={ <ProtectedRoutes /> }>
             <Route path="/profile" element={ <Profile /> } />
           </Route>
+          
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
           <Route path="/admin" element={ <AdminNav /> } >
