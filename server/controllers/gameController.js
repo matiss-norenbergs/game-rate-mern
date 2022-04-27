@@ -23,7 +23,18 @@ const getGames = asyncHandler( async (req, res) => {
 // Fetch all published games
 const getGamesPublic = asyncHandler( async (req, res) => {
     const { field, order } = req.params;
-    const games = await Game.find({ publicVisible: true }, 'title cover rating').sort({[field]: order});
+    const tags = JSON.parse(req.params.tags);
+
+    const getGamesFiltered = () => {
+        if(tags.length > 0){
+            return Game.find({ publicVisible: true, tags: { $all: tags } }, 'title cover rating').sort({[field]: order});
+        }else{
+            return Game.find({ publicVisible: true }, 'title cover rating').sort({[field]: order});
+        }
+    }
+
+    const games = await getGamesFiltered();
+
     res.json(games);
 })
 
@@ -138,7 +149,7 @@ const addGameReview = asyncHandler(  async (req, res) => {
             revievSum += rating;
         });
 
-        const rating = revievSum / reviewCount;
+        const rating = Math.round((revievSum / reviewCount) * 10) / 10;
         await Game.findByIdAndUpdate(req.params.id, { rating }, { new: true, timestamps: false });
     }
 
