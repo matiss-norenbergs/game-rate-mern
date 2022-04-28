@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const moment = require("moment");
 const Game = require("../models/gameModel");
 
 // Fetch all games
@@ -72,7 +73,6 @@ const addGame = asyncHandler( async (req, res) => {
     }
 
     //Check users recent submission amount
-    const moment = require("moment");
     const timeNow = moment(Date.now()).subtract(2, 'minutes').format();
     const userCreatedGame = await Game.find({ submittedBy: req.user._id, createdAt: { $gt: timeNow } }).sort({ createdAt: -1 });
 
@@ -178,7 +178,6 @@ const updateGame = asyncHandler( async (req, res) => {
     }
 
     const isPublished = async (data) => {
-        const moment = require("moment");
         const publishedAt = moment(Date.now()).format();
 
         return data.publicVisible && !game.publishedAt ? { ...data, publishedAt } : { ...data };
@@ -218,4 +217,41 @@ const deleteGame = asyncHandler( async (req, res) => {
     res.json({ id: req.params.id });
 })
 
-module.exports = { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, addGameReview, updateGame, deleteGame }
+// Getting game data for admin panel
+const gameData = asyncHandler( async (req, res) => {
+    if(!req.user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    if(req.user.role !== "admin"){
+        res.status(401)
+        throw new Error("User is not an admin")
+    }
+
+    const yesterday = moment().subtract(1, "days").format();
+
+    const games = await Game.countDocuments({});
+    const publicGames = await Game.countDocuments({ publicVisible: true });
+    const gamesSubmitted = await Game.countDocuments({ createdAt: { $gt: yesterday } })
+
+    res.json({ games, publicGames, gamesSubmitted });
+})
+
+// Fetch last 10 submitted games
+const getGamesLastSubmit = asyncHandler( async (req, res) => {
+    if(!req.user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    if(req.user.role !== "admin"){
+        res.status(401)
+        throw new Error("User is not an admin")
+    }
+    
+    const games = await Game.find({}, 'title createdAt updatedAt publicVisible').sort({ createdAt: -1 }).limit(10);
+    res.json(games);
+})
+
+module.exports = { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, addGameReview, updateGame, deleteGame, gameData, getGamesLastSubmit }

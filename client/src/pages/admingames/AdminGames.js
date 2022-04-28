@@ -20,9 +20,9 @@ const AdminGames = () => {
 
     const whenCreated = (date) => {
         const moment = require("moment");
+        let dateFormated = moment(date).format('DD.MM.YYYY, HH:mm');
 
-        let daysAgo = moment(date).format('DD.MM.YYYY, HH:mm');
-        return daysAgo;
+        return dateFormated;
     }
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const AdminGames = () => {
 
             { isPending && <Pending text={"Fetching games..."} center={true} size={"2rem"} /> }
             { error && !games && <h1>Error: { error }</h1> }
-            { games &&
+            { !isPending && games &&
                 <table>
                     <thead>
                         <tr>
@@ -55,9 +55,10 @@ const AdminGames = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>{
-                        games.map((game) => (
-                            <tr key={game._id}>
+
+                    <tbody>
+                        { games.map((game, index) => (
+                            <tr key={ index }>
                                 <td className="imageCell"><img src={game.cover} alt={game.title} /></td>
                                 <td className="titleCell">
                                     <Link to={`/game/${game._id}`}>{ game.title }</Link>
@@ -65,15 +66,23 @@ const AdminGames = () => {
                                 <td className="numberCell">{ game.tags.length }</td>
                                 <td>{ whenCreated(game.createdAt) }</td>
                                 <td>{ game.submittedBy }</td>
-                                <td className="publicCell">{ game.publicVisible === true ? <FontAwesomeIcon className="icon green" icon={faCheck} /> : <FontAwesomeIcon className="icon red" icon={faTimes} /> }</td>
+
+                                <td className="publicCell">
+                                    { game.publicVisible === true ?
+                                        <FontAwesomeIcon className="icon green" icon={faCheck} />
+                                    :
+                                        <FontAwesomeIcon className="icon red" icon={faTimes} /> 
+                                    }
+                                </td>
+                                
                                 <td className="numberCell">{ game.reviews.length }</td>
                                 <td className="optionCell">
                                     <Link className="cellOption" to={`/admin/games/update/${game._id}`}>Update</Link>|
                                     <button className="cellOption" onClick={ () => handleDelete(game._id) }>Delete</button>
                                 </td>
                             </tr>
-                        ))
-                    }</tbody>
+                        ))}
+                    </tbody>
                 </table>
             }
         </>
