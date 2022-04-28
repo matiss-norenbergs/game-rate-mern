@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { faAnglesDown, faAnglesUp, faPlus } from "@fortawesome/free-solid-svg-icons"
 import GameList from "../../components/gamelist/GameList";
 import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
@@ -12,6 +12,7 @@ const Games = () => {
     const [order, setOrder] = useState(-1);
     const [tags, setTags] = useState([]);
     const [checkedState, setCheckedState] = useState();
+    const [display, setDisplay] = useState("none");
     const { data: games, isPending, error } = useFetch(`/api/games/public/${field}/${order}/${JSON.stringify(tags)}`);
     const { data: tagList, isPending: dataIsPending, error: tagError } = useFetch("/api/tags/");
 
@@ -30,24 +31,26 @@ const Games = () => {
 
         setCheckedState(updatedCheckedState);
     }
+    
+    const setSelectedTags = () => {
+        let selected = [];
 
-    useEffect(() => {
-        const setSelectedTags = () => {
-            let selected = [];
+        tagList.forEach(({ name }, index) => {
+            if(checkedState[index] === true){
+                selected.push(name)
+            }
+        });
 
-            tagList.forEach(({ name }, index) => {
-                if(checkedState[index] === true){
-                    selected.push(name)
-                }
-            });
+        setTags(selected);
+    }
 
-            setTags(selected);
+    function showTagList(){
+        if(display === "none"){
+            setDisplay("flex");
+        }else{
+            setDisplay("none");
         }
-
-        if(checkedState && checkedState.length > 0){
-            setSelectedTags();
-        }
-    }, [checkedState, tagList]);
+    }
 
     return (
         <div className="gameRatePages">
@@ -69,9 +72,24 @@ const Games = () => {
                     <option value={-1}>Descending &#8595;</option>
                     <option value={1}>Ascending &#8593;</option>
                 </select>
+
+                { display === "none" ?
+                    <button onClick={ () => showTagList() }>
+                        Show tags <FontAwesomeIcon icon={faAnglesDown} />
+                    </button>
+                :
+                    <>
+                        <button onClick={ () => showTagList() }>
+                            Hide tags <FontAwesomeIcon icon={faAnglesUp} />
+                        </button>
+
+                        <button onClick={ setSelectedTags }>Apply tag filter</button>
+                    </>
+                }
+                
             </div>
 
-            <div className="gameFilterTags">
+            <div className="gameFilterTags" style={{ display: display }}>
                 { tagError && <h2>Error: { tagError }</h2> }
                 { dataIsPending && <Pending text={"Loading tags..."} /> }
                 { !dataIsPending && checkedState && tagList.map(({name, meaning}, index) => {
@@ -86,7 +104,7 @@ const Games = () => {
 
             <h1>All published games</h1>
             { error && !games && <span>{ error }</span> }
-            { isPending && <Pending text={"Loading..."} /> }
+            { isPending && <Pending text={"Loading games..."} /> }
             { games && <GameList games={ games } /> }
         </div>
     );

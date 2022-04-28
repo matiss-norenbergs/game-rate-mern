@@ -40,25 +40,49 @@
     color: var(--white2);
 }
 
+.gameFilter > button {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 1rem;
+    padding: .2rem .5rem;
+    border-radius: 5px;
+    border: 1px solid var(--accent-color);
+    background: var(--accent-color);
+    color: var(--white2);
+}
+
+.gameFilter > button:hover {
+    background: transparent;
+}
+
 .gameFilterTags {
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
+    padding-bottom: 1.5rem;
+    
+}
+
+@keyframes showTagList {
+    from { transform: translateY(-100px); }
+    to { transform: translateY(0px); }
 }
 
 .gameFilterTags > .tagRow {
     display: flex;
     align-items: center;
     margin: .2rem;
-    padding: .2rem .5rem;
+    padding: .2rem .4rem;
     background: rgba(0, 0, 0, 0.4);
+    animation: showTagList .5s linear forwards;
 }
 
 .gameFilterTags > .tagRow > input {
-    width: 1rem;
-    height: 1rem;
-    margin-right: .5rem;
+    width: .9rem;
+    height: .9rem;
+    margin-right: .4rem;
 }
 
 .gameFilterTags > .tagRow > label {
-    font-size: 1.1rem;
+    font-size: 1rem;
 }

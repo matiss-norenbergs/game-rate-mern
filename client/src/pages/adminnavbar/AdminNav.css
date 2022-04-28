@@ -67,10 +67,15 @@
     padding: 1rem 2%;
 }
 
-.adminPage > h1 {
+.adminPage > h1,
+.adminPage > h2 {
     text-align: center;
     font-size: 2rem;
     padding-bottom: 2rem;
+}
+
+.adminPage > h2 {
+    font-size: 1.8rem;
 }
 
 .adminPage > table {
@@ -265,4 +270,38 @@
 
 .adminPage .formPage .formData > form .formBtns .formBtn:hover {
     background: transparent;
+}
+
+.adminPage .dashSum {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 3px solid var(--accent-color);
+    margin-bottom: 2rem;
+}
+
+.adminPage .dashSum .sumCard {
+    flex: 1 1 15rem;
+    margin: .2rem .5rem;
+    padding: .5rem;
+    border-bottom-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.adminPage .dashSum .sumCard > h2 {
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    width: fit-content;
+}
+
+.adminPage .dashSum .sumCard > span {
+    display: block;
+    margin: 0 auto;
+    width: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 2px dashed var(--accent-color);
 }
