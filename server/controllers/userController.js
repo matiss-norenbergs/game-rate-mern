@@ -88,4 +88,20 @@ const generateToken = (id) => {
     })
 }
 
-module.exports = { registerUser, loginUser, getAdmin }
+const countUsers = asyncHandler( async (req, res) => {
+    if(!req.user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    if(req.user.role !== "admin"){
+        res.status(401)
+        throw new Error("User is not an admin")
+    }
+    
+    const users = await User.countDocuments({ role: "user" });
+
+    res.json({ users });
+})
+
+module.exports = { registerUser, loginUser, getAdmin, countUsers }
