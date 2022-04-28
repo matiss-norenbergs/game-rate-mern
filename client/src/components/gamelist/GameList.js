@@ -8,7 +8,8 @@ const GameList = (props) => {
             { games.map((game) => (
                 <Link to={`/game/${game._id}`} className="listedGame" style={{ backgroundImage: `url(${game.cover})` }} key={ game._id }>
                     <div className="listedGameInfo">
-                        <h2>{ game.title }</h2>
+                        <h2>{ game.title }</h2><hr />
+                        <h3>Rating: { game.rating } <span>★</span></h3>
                     </div>
                 </Link>
             )) }

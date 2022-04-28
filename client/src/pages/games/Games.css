@@ -39,3 +39,26 @@
     background: rgba(0, 0, 0, 0.4);
     color: var(--white2);
 }
+
+.gameFilterTags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gameFilterTags > .tagRow {
+    display: flex;
+    align-items: center;
+    margin: .2rem;
+    padding: .2rem .5rem;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.gameFilterTags > .tagRow > input {
+    width: 1rem;
+    height: 1rem;
+    margin-right: .5rem;
+}
+
+.gameFilterTags > .tagRow > label {
+    font-size: 1.1rem;
+}
