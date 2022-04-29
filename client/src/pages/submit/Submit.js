@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../../hooks/useFetch";
 import "./Submit.css";
+import Pending from "../../components/pending/Pending";
 
 const Submit = () => {
     const [title, setTitle] = useState("");
@@ -122,6 +123,7 @@ const Submit = () => {
                             { !dataIsPending && error && (
                                 <h4>Error... { error }</h4>
                             )}
+                            { dataIsPending && <Pending text={"Loading..."} size={"1.2rem"} /> }
                             { !dataIsPending && checkedState && tagList.map(({name, meaning}, index) =>  {
                                 return (
                                     <div className="tagRow" key={index}>

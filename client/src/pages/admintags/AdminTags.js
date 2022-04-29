@@ -49,7 +49,7 @@ const AdminTags = () => {
                                 <td>{ nr++ }.</td>
                                 <td>{ tag.name }</td>
                                 <td>{ tag.meaning ? tag.meaning : "not defined" }</td>
-                                <td className="optionCell">
+                                <td className="centerCell">
                                     <Link className="cellOption" to={`/admin/tags/update/${tag._id}`}>Update</Link>|
                                     <button className="cellOption" onClick={ () => handleDelete(tag._id) }>Delete</button>    
                                 </td>

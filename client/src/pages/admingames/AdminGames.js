@@ -59,15 +59,15 @@ const AdminGames = () => {
                     <tbody>
                         { games.map((game, index) => (
                             <tr key={ index }>
-                                <td className="imageCell"><img src={game.cover} alt={game.title} /></td>
+                                <td className="centerCell"><img src={game.cover} alt={game.title} width="90" /></td>
                                 <td className="titleCell">
                                     <Link to={`/game/${game._id}`}>{ game.title }</Link>
                                 </td>
-                                <td className="numberCell">{ game.tags.length }</td>
+                                <td className="centerCell">{ game.tags.length }</td>
                                 <td>{ whenCreated(game.createdAt) }</td>
                                 <td>{ game.submittedBy }</td>
 
-                                <td className="publicCell">
+                                <td className="centerCell">
                                     { game.publicVisible === true ?
                                         <FontAwesomeIcon className="icon green" icon={faCheck} />
                                     :
@@ -75,8 +75,8 @@ const AdminGames = () => {
                                     }
                                 </td>
                                 
-                                <td className="numberCell">{ game.reviews.length }</td>
-                                <td className="optionCell">
+                                <td className="centerCell">{ game.reviews.length }</td>
+                                <td className="centerCell">
                                     <Link className="cellOption" to={`/admin/games/update/${game._id}`}>Update</Link>|
                                     <button className="cellOption" onClick={ () => handleDelete(game._id) }>Delete</button>
                                 </td>
