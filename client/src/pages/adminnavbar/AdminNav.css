@@ -98,31 +98,6 @@
     padding: 1rem;
 }
 
-.adminPage > table tr .optionCell {
-    text-align: center;
-}
-
-.adminPage > table tr .optionCell .cellOption {
-    width: fit-content;
-    font-size: 1.1rem;
-    padding: 0 .6rem;
-    background: transparent;
-    color: #3189db;
-    cursor: pointer;
-}
-
-.adminPage > table tr .optionCell .cellOption:hover {
-    color: var(--white2);
-}
-
-.adminPage > table tr .imageCell {
-    text-align: center;
-}
-
-.adminPage > table tr .imageCell img {
-    width: 5.5rem;
-}
-
 .adminPage > table tr .titleCell > a {
     font-size: 1.2rem;
     font-weight: 500;
@@ -133,25 +108,34 @@
     text-decoration: underline 3px var(--accent-color);
 }
 
-.adminPage > table tr .publicCell {
+.adminPage > table tr .centerCell {
     text-align: center;
+    font-size: 1.2rem;
 }
 
-.adminPage > table tr .publicCell .icon {
+.adminPage > table tr .centerCell .icon {
     font-size: 2.2rem;
 }
 
-.adminPage > table tr .publicCell .green {
+.adminPage > table tr .centerCell .green {
     color: #494;
 }
 
-.adminPage > table tr .publicCell .red {
+.adminPage > table tr .centerCell .red {
     color: #922;
 }
 
-.adminPage > table tr .numberCell {
-    text-align: center;
-    font-size: 1.3rem;
+.adminPage > table tr .centerCell .cellOption {
+    width: fit-content;
+    font-size: 1.1rem;
+    padding: 0 .6rem;
+    background: transparent;
+    color: #3189db;
+    cursor: pointer;
+}
+
+.adminPage > table tr .centerCell .cellOption:hover {
+    color: var(--white2);
 }
 
 .adminPage .formPage {

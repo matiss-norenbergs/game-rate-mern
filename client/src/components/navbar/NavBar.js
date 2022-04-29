@@ -35,7 +35,7 @@ const NavBar = () => {
                         </>
                     ) : (
                         <>
-                            <div className="loggedUser" onClick={ handleLogout }><FontAwesomeIcon icon={faUserAlt} /> { user.name }</div>
+                            <button className="optionBtn" onClick={ handleLogout }><FontAwesomeIcon icon={faUserAlt} /> { user.name }</button>
                         </>
                     ) }
                 </div>

@@ -52,6 +52,15 @@ const Games = () => {
         }
     }
 
+    function resetFilters(){
+        setCheckedState(
+            new Array(tagList.length).fill(false)
+        );
+        setTags([]);
+        setField("publishedAt");
+        setOrder(-1);
+    }
+
     return (
         <div className="gameRatePages">
             <div className="gamesBtns">
@@ -86,7 +95,8 @@ const Games = () => {
                         <button onClick={ setSelectedTags }>Apply tag filter</button>
                     </>
                 }
-                
+
+                <button onClick={ () => resetFilters() }>Reset</button>
             </div>
 
             <div className="gameFilterTags" style={{ display: display }}>
