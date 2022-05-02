@@ -3,7 +3,7 @@
     margin: 3.5rem auto;
     padding: 1.5rem 2rem;
     border-radius: 1rem;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.25);
 }
 
 .registerLoginBox > h1 {
@@ -57,9 +57,9 @@
     margin-top: .5rem;
     padding: .8rem 1.6rem;
     border-radius: 5px;
-    background: var(--accent-color);
-    color: var(--white2);
     border: 2px solid var(--accent-color);
+    background: var(--accent-color);
+    color: #ddd;
 }
 
 .registerLoginBox > form .formRow button:hover {

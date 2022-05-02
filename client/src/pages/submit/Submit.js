@@ -158,7 +158,7 @@ const Submit = () => {
     }else{
         if(isPending){
             return (
-                <h1>Processing...</h1>
+                <Pending text={"Processing..."} center={true} size={"2.2rem"} />
             )
         }else{
             if(isSuccess && !isError){

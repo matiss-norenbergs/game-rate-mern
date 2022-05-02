@@ -90,9 +90,9 @@
     font-size: 1.3rem;
     padding: .8rem 1.6rem;
     border-radius: 5px;
-    background: var(--accent-color);
-    color: var(--white2);
     border: 2px solid var(--accent-color);
+    background: var(--accent-color);
+    color: #ddd;
 }
 
 .submitForm .formInput .row > input[type=submit]:hover {
@@ -121,7 +121,7 @@
     margin: 3.5rem 3%;
     padding: 3rem 2rem;
     border-radius: 2rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.25);
     animation: showSubmitResult 1s;
 }
 
@@ -149,12 +149,13 @@
     display: block;
     text-align: center;
     font-size: 1.4rem;
+    font-weight: 500;
     padding-top: 1.5rem;
 }
 
 .submitMessageContainer .message > span a {
-    color: var(--accent-color);
     text-decoration: underline;
+    color: var(--accent-color);
 }
 
 .submitMessageContainer .message > span a:hover {
