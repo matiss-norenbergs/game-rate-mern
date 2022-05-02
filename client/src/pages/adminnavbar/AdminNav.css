@@ -3,11 +3,11 @@
 }
 
 .navSection {
-    background: rgba(0, 0, 0, 0.4);
     height: fit-content;
     border-right: 2px solid var(--accent-color);
     border-bottom: 2px solid var(--accent-color);
     border-bottom-right-radius: 15px;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .navSection .navSectionBtn {
@@ -15,9 +15,9 @@
     line-height: 4rem;
     width: 100%;
     min-width: 4rem;
-    background: transparent;
-    color: var(--white2);
     border-bottom-right-radius: 15px;
+    background: transparent;
+    color: #ddd;
 }
 
 .navSection .navSectionBtn:hover {
@@ -38,7 +38,7 @@
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--accent-color);
     border-bottom-right-radius: .5rem;
-    color: var(--white2);
+    color: #ddd;
 }
 
 .navSection .adminNav > nav {
@@ -51,7 +51,7 @@
     font-size: 1.4rem;
     font-weight: 500;
     padding: .3rem .5rem;
-    color: var(--white2);
+    color: #ddd;
 }
 
 .navSection .adminNav > nav a:hover {
@@ -80,11 +80,11 @@
 
 .adminPage > table {
     width: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .adminPage > table, th, td {
-    border: 2px solid #aaa;
+    border: 2px solid var(--white2);
     border-collapse: collapse;
 }
 
@@ -118,20 +118,20 @@
 }
 
 .adminPage > table tr .centerCell .green {
-    color: #494;
+    color: #393;
 }
 
 .adminPage > table tr .centerCell .red {
-    color: #922;
+    color: #911;
 }
 
 .adminPage > table tr .centerCell .cellOption {
     width: fit-content;
     font-size: 1.1rem;
     padding: 0 .6rem;
+    cursor: pointer;
     background: transparent;
     color: #3189db;
-    cursor: pointer;
 }
 
 .adminPage > table tr .centerCell .cellOption:hover {
@@ -140,8 +140,8 @@
 
 .adminPage .formPage {
     padding: 3rem 2rem;
-    background: rgba(0, 0, 0, 0.4);
     border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .adminPage .formPage > h1 {
@@ -188,9 +188,9 @@
     margin-bottom: 1.2rem;
     padding: .5rem 1rem;
     font-size: 1.4rem;
+    border-radius: .5rem;
     background: var(--background);
     color: var(--white2);
-    border-radius: .5rem;
 }
 
 .adminPage .formPage .formData > form .textArea {
@@ -229,9 +229,9 @@
     margin-bottom: 1.5rem;
     padding: .5rem;
     font-size: 1.4rem;
+    border-radius: .5rem;
     background: var(--background);
     color: var(--white2);
-    border-radius: .5rem;
 }
 
 .adminPage .formPage .formData > form .formBtns {
@@ -244,12 +244,12 @@
     display: block;
     width: fit-content;
     font-size: 1.4rem;
+    margin: 0 auto;
     padding: .6rem 1rem;
-    background: var(--accent-color);
-    color: var(--white2);
     border-radius: .5rem;
     border: 2px solid var(--accent-color);
-    margin: 0 auto;
+    background: var(--accent-color);
+    color: #ddd;
 }
 
 .adminPage .formPage .formData > form .formBtns .formBtn:hover {
@@ -259,8 +259,8 @@
 .adminPage .dashSum {
     display: flex;
     flex-wrap: wrap;
-    border-top: 3px solid var(--accent-color);
     margin-bottom: 2rem;
+    border-top: 3px solid var(--accent-color);
 }
 
 .adminPage .dashSum .sumCard {

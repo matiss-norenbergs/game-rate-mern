@@ -9,7 +9,6 @@
     padding: .8rem 1rem;
     border-radius: 5px;
     border: 2px solid var(--accent-color);
-    background: transparent;
     color: var(--white2);
 }
 
@@ -38,19 +37,19 @@
     padding: .2rem .5rem;
     border-radius: 5px;
     border: 1px solid var(--accent-color);
-    color: var(--white2);
-}
-
-.gameFilter > select {
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--accent-color);
+    color: #ddd;
 }
 
 .gameFilter > button {
     background: var(--accent-color);
 }
 
+.gameFilter > select:hover,
+.gameFilter > select:focus,
 .gameFilter > button:hover {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--white2);
 }
 
 .gameFilterTags {
