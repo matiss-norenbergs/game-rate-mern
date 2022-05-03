@@ -23,6 +23,7 @@
 
 .gameInfo .adminEdit:hover {
     background: var(--accent-color);
+    color: #ddd;
 }
 
 .gameInfo > h1 {
@@ -44,12 +45,14 @@
 .gameInfo .contents > p {
     padding: 1rem 0rem 1rem 4rem;
     font-size: 1.2rem;
+    line-height: 1.8rem;
     color: var(--white2);
 }
 
 .gameInfo > h2 .star {
-    font-size: 1.8rem;
+    font-size: 40px;
     color: #ffc700;
+    -webkit-text-stroke: 1px var(--accent-color);
 }
 
 .gameInfo .gameTags {
@@ -71,7 +74,7 @@
     padding: .5rem 1rem;
     border-radius: 0 0 2rem 2rem;
     border-top: 2px solid var(--accent-color);
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
 }
 
 .gameInfo .gameTags .assocTags > span {
@@ -87,7 +90,7 @@
     margin: 2rem auto;
     padding: 1rem 3rem;
     border-radius: 15px;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
 }
 
 .gameInfo .gameTrailer > h2 {
@@ -112,7 +115,7 @@
     margin: 0 auto;
     margin-top: 3rem;
     padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
     border-radius: 1.5rem;
 }
 
@@ -123,7 +126,7 @@
 
 .gameInfo > form .rate:not(:checked) > input {
     position: absolute;
-    top: -9999px;
+    display: none;
 }
 
 .gameInfo > form .rate:not(:checked) > label {
@@ -138,15 +141,16 @@
 
 .gameInfo > form .rate:not(:checked) > label:before {
     content: '★ ';
+    -webkit-text-stroke: 1px var(--accent-color);
 }
 
 .gameInfo > form .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
 
 .gameInfo > form .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #deb217;
 }
 
 .gameInfo > form .rate > input:checked + label:hover,
@@ -190,7 +194,7 @@
     margin-top: 3rem;
     padding: 1.5rem 3rem;
     border-radius: 1.5rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
 }
 
 .gameInfo .gameReviews > h1 {
@@ -220,8 +224,9 @@
 }
 
 .gameInfo .gameReviews .review > span .star {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #ffc700;
+    -webkit-text-stroke: 1px var(--accent-color);
 }
 
 .gameInfo .gameReviews .review > h4 {

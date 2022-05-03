@@ -9,6 +9,7 @@
   --dark-grey: #333;
   --black: #000;
   --background: #222;
+  --transparen-black: rgba(0, 0, 0, 0.4);
 }
 
 * {

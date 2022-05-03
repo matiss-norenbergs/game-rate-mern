@@ -5,7 +5,7 @@
     height: 8rem;
     margin: 1rem 0;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--transparen-black);
     border: 1px solid var(--accent-color);
     animation: showCard .4s ease-in-out;
     animation-fill-mode: forwards;

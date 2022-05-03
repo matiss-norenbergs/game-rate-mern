@@ -16,6 +16,9 @@ import TagCreate from './pages/admincreate/TagCreate';
 import TagUpdate from './pages/adminupdate/TagUpdate';
 import GameUpdate from './pages/adminupdate/GameUpdate';
 import ProtectedRoutes from './components/protectedroutes/ProtectedRoutes';
+import AdminPosts from './pages/adminposts/AdminPosts';
+import PostCreate from './pages/admincreate/PostCreate';
+import PostUpdate from './pages/adminupdate/PostUpdate';
 
 function App() {
   return (
@@ -43,6 +46,9 @@ function App() {
             <Route path="tags" element={ <AdminTags /> } />
             <Route path="tags/create" element={ <TagCreate /> } />
             <Route path="tags/update/:id" element={ <TagUpdate /> } />
+            <Route path="posts" element={ <AdminPosts /> } />
+            <Route path="posts/create" element={ <PostCreate /> } />
+            <Route path="posts/update/:id" element={ <PostUpdate /> } />
           </Route>
         </Routes>
       </Router>

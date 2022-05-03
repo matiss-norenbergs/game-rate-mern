@@ -44,8 +44,8 @@ const AdminTags = () => {
                         </tr>
                     </thead>
                     <tbody>{
-                        tags.map((tag) => (
-                            <tr key={ tag._id }>
+                        tags.map((tag, index) => (
+                            <tr key={ index }>
                                 <td>{ nr++ }.</td>
                                 <td>{ tag.name }</td>
                                 <td>{ tag.meaning ? tag.meaning : "not defined" }</td>
