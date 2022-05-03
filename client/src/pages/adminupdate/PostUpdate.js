@@ -5,11 +5,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
 
-const TagUpdate = () => {
+const PostUpdate = () => {
     const { id } = useParams();
-    const { data: tag, isPending, error } = useFetch(`/api/tags/${id}`);
-    const [name, setName] = useState("");
-    const [meaning, setMeaning] = useState("");
+    const { data: post, isPending, error } = useFetch(`/api/posts/${id}`);
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
     const navigate = useNavigate();
 
     const { user } = useSelector((state) => state.auth);
@@ -21,39 +21,39 @@ const TagUpdate = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.put(`/api/tags/${id}`, { name, meaning }, config);
+        const response = await axios.put(`/api/posts/${id}`, { title, text }, config);
         console.log(response);
-        navigate("/admin/tags");
+        navigate("/admin/posts");
     }
 
     useEffect(() => {
-        if(tag){
-            setName(tag.name);
-            setMeaning(tag.meaning)
+        if(post){
+            setTitle(post.title);
+            setText(post.text);
         }
-    }, [tag]);
+    }, [post]);
 
     return (
         <>
-            { isPending && <Pending text={"Loading tag data..."} center={true} size={"2rem"} /> }
-            { error && !tag &&  (
+            { isPending && <Pending text={"Loading post data..."} center={true} size={"2rem"} /> }
+            { error && !post && (
                 <div className="formPage">
                     <h1>{ error }</h1>
                 </div>
             ) }
-            { !isPending && tag && (
+            { !isPending && post && (
                 <div className="formPage">
-                    <h1>Selected tag: { tag.name }</h1>
+                    <h1>Update post: { post.title }</h1>
 
                     <div className="formData">
                         <form onSubmit={ handleSubmit }>
-                            <label>Tag name:</label>
-                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="* Tag name..." required />
-                            <label>Meaning:</label>
-                            <textarea className="textArea" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Tags meaning..."></textarea>
+                            <label>Post title:</label>
+                            <input type="text" value={ title } onChange={(e) => setTitle(e.target.value)} placeholder="* Post title..." required />
+                            <label>Post text:</label>
+                            <textarea className="textArea" value={ text } onChange={(e) => setText(e.target.value)} placeholder="Posts text..."></textarea>
                             
                             <div className="formBtns">
-                                <Link className="formBtn" to="/admin/tags">Return</Link>
+                                <Link className="formBtn" to="/admin/posts">Return</Link>
                                 <button className="formBtn" type="submit">Update</button>
                             </div>
                         </form>
@@ -64,4 +64,4 @@ const TagUpdate = () => {
     );
 }
  
-export default TagUpdate;
+export default PostUpdate;

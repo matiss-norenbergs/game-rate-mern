@@ -14,6 +14,7 @@
 
 .gamesBtns > .btn:hover {
     background: var(--accent-color);
+    color: #ddd;
 }
 
 .gamesBtns > .btn .icon {
@@ -48,7 +49,7 @@
 .gameFilter > select:hover,
 .gameFilter > select:focus,
 .gameFilter > button:hover {
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
     color: var(--white2);
 }
 
@@ -69,7 +70,7 @@
     align-items: center;
     margin: .2rem;
     padding: .2rem .4rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
     animation: showTagList .5s linear forwards;
 }
 

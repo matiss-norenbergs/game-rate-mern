@@ -47,6 +47,7 @@
 }
 
 .gameList .listedGame .listedGameInfo > h3 span {
+    font-size: 1.6rem;
     color: #ffc700;
 }
 

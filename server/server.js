@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/games", require("./routes/gameRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/tags", require("./routes/tagRoutes"));
+app.use("/api/posts", require("./routes/postRoutes"));
 
 //Serve frontend  "client side"
 if(process.env.NODE_ENV === "production"){
