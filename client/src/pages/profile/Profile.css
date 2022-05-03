@@ -3,8 +3,8 @@
     margin-top: 1rem;
     border-top: 5px solid var(--accent-color);
     border-radius: 15px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #ddd;
+    background: var(--transparen-black);
+    color: var(--white2);
 }
 
 .usersData .userImg {
@@ -46,21 +46,22 @@
     font-size: 1.4rem;
     margin-top: 3rem;
     padding: 1rem 2rem;
-    background: var(--accent-color);
-    color: #ddd;
     border: 2px solid var(--accent-color);
     border-radius: 5px;
+    background: var(--accent-color);
+    color: #ddd;
 }
 
 .usersData .userInfo .profileBtns > button:hover {
     background: transparent;
+    color: var(--white2);
 }
 
 .usersData .userInfo > form {
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
     border-radius: 15px;
 }
 

@@ -13,14 +13,15 @@ const NavBar = () => {
     const [mode, setMode] = useState(currentMode ? currentMode : "dark");
 
     const modes = {
-        dark: { bg: "#222", text1: "#fff", text2: "#ddd" },
-        light: { bg: "#ddd", text1: "#000", text2: "#222" }
+        dark: { bg: "#222", tpBlack: "rgba(0, 0, 0, 0.4)", text1: "#fff", text2: "#ddd" },
+        light: { bg: "#fff", tpBlack: "rgba(0, 0, 0, 0.15)", text1: "#000", text2: "#222" }
     };
 
     function setColors (mode, val){
         const setStyling = document.documentElement.style;
 
         setStyling.setProperty('--background', mode.bg);
+        setStyling.setProperty('--transparen-black', mode.tpBlack);
         setStyling.setProperty('--white', mode.text1);
         setStyling.setProperty('--white2', mode.text2);
 

@@ -7,7 +7,7 @@
     border-right: 2px solid var(--accent-color);
     border-bottom: 2px solid var(--accent-color);
     border-bottom-right-radius: 15px;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--transparen-black);
 }
 
 .navSection .navSectionBtn {
@@ -17,7 +17,7 @@
     min-width: 4rem;
     border-bottom-right-radius: 15px;
     background: transparent;
-    color: #ddd;
+    color: var(--white2);
 }
 
 .navSection .navSectionBtn:hover {
@@ -38,7 +38,7 @@
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--accent-color);
     border-bottom-right-radius: .5rem;
-    color: #ddd;
+    color: var(--white2);
 }
 
 .navSection .adminNav > nav {
@@ -51,7 +51,7 @@
     font-size: 1.4rem;
     font-weight: 500;
     padding: .3rem .5rem;
-    color: #ddd;
+    color: var(--white2);
 }
 
 .navSection .adminNav > nav a:hover {
@@ -80,7 +80,7 @@
 
 .adminPage > table {
     width: 100%;
-    background: rgba(0, 0, 0, 0.15);
+    background: var(--transparen-black);
 }
 
 .adminPage > table, th, td {
@@ -141,7 +141,7 @@
 .adminPage .formPage {
     padding: 3rem 2rem;
     border-radius: 1rem;
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--transparen-black);
 }
 
 .adminPage .formPage > h1 {
@@ -254,6 +254,7 @@
 
 .adminPage .formPage .formData > form .formBtns .formBtn:hover {
     background: transparent;
+    color: var(--white2);
 }
 
 .adminPage .dashSum {
