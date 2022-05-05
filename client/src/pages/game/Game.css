@@ -38,7 +38,6 @@
 
 .gameInfo .contents > img {
     width: 18rem;
-    height: auto;
     border: 2px solid var(--accent-color);
 }
 
@@ -56,14 +55,15 @@
 }
 
 .gameInfo .gameTags {
-    margin: 2rem 0;
-    margin-top: 4rem;
+    margin: 1.5rem 0;
+    clear: both;
 }
 
 .gameInfo .gameTags > h2 {
+    margin-bottom: .5rem;
+    padding-top: 1.5rem;
     font-size: 1.4rem;
     text-align: right;
-    margin-bottom: .5rem;
 }
 
 .gameInfo .gameTags .assocTags {
@@ -74,7 +74,7 @@
     padding: .5rem 1rem;
     border-radius: 0 0 2rem 2rem;
     border-top: 2px solid var(--accent-color);
-    background: var(--transparen-black);
+    background: var(--transparent-black);
 }
 
 .gameInfo .gameTags .assocTags > span {
@@ -86,11 +86,11 @@
 }
 
 .gameInfo .gameTrailer {
-    width: fit-content;
+    width: 70%;
     margin: 2rem auto;
     padding: 1rem 3rem;
     border-radius: 15px;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
 }
 
 .gameInfo .gameTrailer > h2 {
@@ -100,8 +100,8 @@
 }
 
 .gameInfo .gameTrailer > iframe {
-    height: 25rem;
-    width: 45rem;
+    width: 100%;
+    height: 28rem;
     border: 2px solid var(--accent-color);
 }
 
@@ -115,7 +115,7 @@
     margin: 0 auto;
     margin-top: 3rem;
     padding: 1rem 2rem;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
     border-radius: 1.5rem;
 }
 
@@ -192,9 +192,9 @@
     min-width: 40rem;
     margin: 4rem auto;
     margin-top: 3rem;
-    padding: 1.5rem 3rem;
+    padding: 1rem 2rem;
     border-radius: 1.5rem;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
 }
 
 .gameInfo .gameReviews > h1 {
@@ -205,7 +205,7 @@
 
 .gameInfo .gameReviews .review {
     margin: 1.5rem 0;
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     background: var(--background);
 }
 
@@ -244,4 +244,109 @@
     text-align: right;
     font-weight: lighter;
     margin-top: .5rem;
+}
+
+@media (max-width: 940px) {
+    .gameInfo .contents {
+        display: block;
+    }
+
+    .gameInfo .contents > p {
+        padding: 0rem;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+    }
+
+    .gameInfo .contents > img {
+        float: right;
+        width: 12rem;
+        margin-left: 1rem;
+        height: fit-content;
+    }
+
+    .gameInfo .gameTrailer {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .gameInfo .gameTrailer > iframe {
+        height: 25rem;
+    }
+
+    .gameInfo > form {
+        width: 100%;
+        min-width: 0;
+        margin: 0 auto;
+        margin-top: 1.5rem;
+        padding: 1rem;
+    }
+
+    .gameInfo > form textarea {
+        font-size: 1.2rem;
+        height: 8rem;
+        width: 100%;
+        padding: .5rem;
+    }
+
+    .gameInfo .gameReviews {
+        width: 100%;
+        min-width: 0;
+        margin: 2rem auto;
+        padding: .5rem 1rem;
+    }
+
+    .gameInfo .gameReviews > h1 {
+        font-size: 1.5rem;
+        margin-bottom: .5rem;
+    }
+
+    .gameInfo .gameReviews .review {
+        margin: 1rem 0;
+        padding: .5rem;
+        background: var(--background);
+    }
+
+    .gameInfo .gameReviews .review > p {
+        font-size: 1.2rem;
+        padding: .4rem .5rem;
+    }
+
+    .gameInfo .gameReviews .review > span {
+        font-size: 1.25rem;
+    }
+
+    .gameInfo .gameReviews .review > span .star {
+        font-size: 1.6rem;
+    }
+
+    .gameInfo .gameReviews .review > h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .gameInfo > h1 {
+        padding-bottom: 1rem;
+        font-size: 1.6rem;
+    }
+
+    .gameInfo .contents > p {
+        font-size: 1.1rem;
+        line-height: 1.6rem;
+    }
+
+    .gameInfo .gameTags .assocTags {
+        width: 100%;
+        padding: .4rem .8rem;
+    }
+    
+    .gameInfo .gameTags .assocTags > span {
+        font-size: .9rem;
+        margin: .2rem;
+        padding: .3rem .5rem;
+    }
+
+    .gameInfo .gameTrailer > iframe {
+        height: 12rem;
+    }
 }

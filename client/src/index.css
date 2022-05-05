@@ -9,7 +9,7 @@
   --dark-grey: #333;
   --black: #000;
   --background: #222;
-  --transparen-black: rgba(0, 0, 0, 0.4);
+  --transparent-black: rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -53,4 +53,14 @@ body {
 .gameRatePages > h1 {
   font-size: 1.8rem;
   text-align: center;
+}
+
+@media (max-width: 950px) {
+  .gameRatePages {
+    padding: 1rem 5%;
+  }
+
+  .gameRatePages > h1 {
+    font-size: 1.6rem;
+  }
 }
