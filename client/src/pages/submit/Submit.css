@@ -4,7 +4,7 @@
     width: fit-content;
     margin: 2rem auto;
     padding: 2rem;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
     border-radius: 1.5rem;
 }
 
@@ -121,7 +121,7 @@
     margin: 3.5rem 3%;
     padding: 3rem 2rem;
     border-radius: 2rem;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
     animation: showSubmitResult 1s;
 }
 

@@ -5,10 +5,9 @@
     height: 8rem;
     margin: 1rem 0;
     overflow: hidden;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
     border: 1px solid var(--accent-color);
-    animation: showCard .4s ease-in-out;
-    animation-fill-mode: forwards;
+    animation: showCard .4s ease-in-out forwards;
     transition: width .5s;
 }
 
@@ -51,4 +50,26 @@
     font-size: 1rem;
     text-align: right;
     color: var(--white2);
+}
+
+@media (max-width: 940px) {
+    .newGames .gameCard {
+        height: 8%;
+    }
+
+    .newGames .gameCard:hover {
+        width: 105%;
+    }
+
+    .newGames .gameCard > img {
+        width: 27%;
+    }
+
+    .newGames .gameCard .textContents .gameTitle {
+        font-size: 130%;
+    }
+
+    .newGames .gameCard .textContents .gamePublished {
+        margin-top: 2rem;
+    }
 }
