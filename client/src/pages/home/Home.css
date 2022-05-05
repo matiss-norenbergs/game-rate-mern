@@ -6,10 +6,28 @@
 
 .homeContents .newsBox {
     width: 100%;
+    padding-right: 2rem;
 }
 
 .homeContents .newAddedGames {
-    width: 30rem;
-    padding-left: 1.5rem;
+    width: 32rem;
+    padding-left: 2rem;
     border-left: 1px solid var(--accent-color);
+}
+
+@media (max-width: 940px) {
+    .homeContents {
+        display: block;
+        padding-top: 1rem;
+    }
+
+    .homeContents .newsBox {
+        padding-right: 0;
+    }
+
+    .homeContents .newAddedGames {
+        width: 100%;
+        padding-left: 0;
+        border-left: none;
+    }
 }

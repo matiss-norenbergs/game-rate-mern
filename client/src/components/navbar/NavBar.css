@@ -7,6 +7,8 @@
 }
 
 .navBar .navLogo {
+    display: flex;
+    align-items: center;
     font-size: 2.2rem;
     font-weight: bold;
     color: #ddd;
@@ -85,5 +87,25 @@
 }
 
 .navBar .navOptions .options > .option:hover {
-    background: var(--transparen-black);
+    background: var(--transparent-black);
+}
+
+.navBar .navOptions .options > .mobile {
+    display: none;
+}
+
+@media (max-width: 940px) {
+    .navBar > nav {
+        display: none;
+    }
+
+    .navBar .navOptions .options > .mobile {
+        display: flex;
+    }
+}
+
+@media (max-width: 600px) {
+    .navBar .navLogo {
+        font-size: 1.8rem;
+    }
 }

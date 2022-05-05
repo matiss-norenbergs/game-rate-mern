@@ -3,7 +3,7 @@
     margin-top: 1rem;
     border-top: 5px solid var(--accent-color);
     border-radius: 15px;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
     color: var(--white2);
 }
 
@@ -33,7 +33,7 @@
     padding: 3rem 2rem;
 }
 
-.usersData .userInfo > h2{
+.usersData .userInfo > h2 {
     padding: 1rem 0;
 }
 
@@ -61,7 +61,7 @@
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    background: var(--transparen-black);
+    background: var(--transparent-black);
     border-radius: 15px;
 }
 
@@ -77,4 +77,46 @@
     padding: .5rem 1rem;
     background: var(--background);
     color: var(--white2);
+}
+
+@media (max-width: 940px) {
+    .usersData {
+        display: block;
+    }
+
+    .usersData .userImg {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .usersData .userInfo {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .usersData .userInfo > h2 {
+        font-size: 1.2rem;
+    }
+
+    .usersData .userInfo .profileBtns > button {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        padding: .5rem 1rem;
+    }
+
+    .usersData .userInfo > form {
+        padding: 1rem;
+    }
+
+    .usersData .userInfo > form label {
+        font-size: 1.2rem;
+    }
+
+    .usersData .userInfo > form select,
+    .usersData .userInfo > form input {
+        width: 100%;
+        margin-bottom: 1.8rem;
+        padding: .4rem .8rem;
+        font-size: 1.2rem;
+    }
 }

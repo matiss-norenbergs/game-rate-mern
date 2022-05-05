@@ -21,7 +21,7 @@ const NavBar = () => {
         const setStyling = document.documentElement.style;
 
         setStyling.setProperty('--background', mode.bg);
-        setStyling.setProperty('--transparen-black', mode.tpBlack);
+        setStyling.setProperty('--transparent-black', mode.tpBlack);
         setStyling.setProperty('--white', mode.text1);
         setStyling.setProperty('--white2', mode.text2);
 
@@ -68,6 +68,11 @@ const NavBar = () => {
                     )}
 
                     <div className="options">
+                        <Link className="option mobile" to="/">Home</Link>
+                        <Link className="option mobile" to="/games">Games</Link>
+                        { user && <Link className="option mobile" to="/profile">Profile</Link> }
+                        { user && user.role === "admin" && <Link className="option mobile" to="/admin">Admin dashboard</Link> }
+
                         { !user ? (
                             <>
                                 <Link className="option" to="/login">Login <FontAwesomeIcon icon={faRightToBracket} /></Link>
@@ -76,6 +81,7 @@ const NavBar = () => {
                         ) : (
                             <button className="option" onClick={ handleLogout }>Logout <FontAwesomeIcon icon={faRightFromBracket} /></button>
                         )}
+
                         <button className="option" onClick={ changeMode }>Mode: { mode } <FontAwesomeIcon icon={faFillDrip} /></button>
                     </div>
                 </div>
