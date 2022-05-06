@@ -15,7 +15,6 @@
     line-height: 4rem;
     width: 100%;
     min-width: 4rem;
-    border-bottom-right-radius: 15px;
     background: transparent;
     color: var(--white2);
 }
@@ -25,31 +24,31 @@
 }
 
 .navSection .adminNav {
-    width: 20rem;
-    padding: 1rem 2rem;
+    width: max-content;
+    padding: .8rem 1.4rem;
 }
 
 .navSection .adminNav .adminNavHeader {
-    display: block;
+    width: 100%;
+    padding-bottom: .2rem;
     font-size: 1.8rem;
-    font-weight: bold;
-    padding-bottom: .5rem;
-    margin-right: 2.5rem;
-    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 3rem;
+    border-bottom-right-radius: .4rem;
     border-bottom: 2px solid var(--accent-color);
-    border-bottom-right-radius: .5rem;
     color: var(--white2);
 }
 
 .navSection .adminNav > nav {
     display: flex;
     flex-direction: column;
-    padding-bottom: 2rem;
+    padding-bottom: 1.8rem;
 }
 
 .navSection .adminNav > nav a {
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.8rem;
     padding: .3rem .5rem;
     color: var(--white2);
 }
@@ -59,7 +58,17 @@
 }
 
 .navSection .adminNav > nav a .adminIcon {
-    margin-left: .5rem;
+    width: 1.6rem;
+    margin-right: .5rem;
+}
+
+.navSection .adminNav > nav span {
+    padding-right: 2rem;
+}
+
+.navSection .adminNav > nav .active {
+    color: var(--white);
+    font-weight: 600;
 }
 
 .adminPage {
@@ -71,11 +80,28 @@
 .adminPage > h2 {
     text-align: center;
     font-size: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .adminPage > h2 {
     font-size: 1.8rem;
+}
+
+.adminPage .adminBtn {
+    float: right;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: .6rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 5px;
+    border: 2px solid var(--accent-color);
+    background: var(--accent-color);
+    color: #ddd;
+}
+
+.adminPage .adminBtn:hover {
+    background: transparent;
+    color: var(--white2);
 }
 
 .adminPage > table {

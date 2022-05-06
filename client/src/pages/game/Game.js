@@ -62,7 +62,7 @@ const Game = () => {
             { game && isPending === false && error === null && (
                 <div className="gameInfo">
                     { user && user.role === "admin" && (
-                        <Link to={`/admin/games/update/${game._id}`} className="adminEdit">Update info</Link>
+                        <Link to={`/admin/game/update/${game._id}`} className="adminEdit">Update</Link>
                     )}
 
                     <h1>{ game.title }</h1>
