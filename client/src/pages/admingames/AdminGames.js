@@ -39,6 +39,8 @@ const AdminGames = () => {
         <>
             <h1>Game list</h1>
 
+            <Link to="/submit" className="adminBtn">Add game</Link>
+
             { isPending && <Pending text={"Fetching games..."} center={true} size={"2rem"} /> }
             { error && !games && <h1>Error: { error }</h1> }
             { !isPending && games &&
@@ -77,7 +79,7 @@ const AdminGames = () => {
                                 
                                 <td className="centerCell">{ game.reviews.length }</td>
                                 <td className="centerCell">
-                                    <Link className="cellOption" to={`/admin/games/update/${game._id}`}>Update</Link>|
+                                    <Link className="cellOption" to={`/admin/game/update/${game._id}`}>Update</Link>|
                                     <button className="cellOption" onClick={ () => handleDelete(game._id) }>Delete</button>
                                 </td>
                             </tr>

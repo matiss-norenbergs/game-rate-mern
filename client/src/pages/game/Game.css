@@ -61,7 +61,7 @@
 
 .gameInfo .gameTags > h2 {
     margin-bottom: .5rem;
-    padding-top: 1.5rem;
+    padding-top: 1rem;
     font-size: 1.4rem;
     text-align: right;
 }
@@ -330,9 +330,18 @@
         font-size: 1.6rem;
     }
 
+    .gameInfo .adminEdit {
+        padding: .4rem 1rem;
+        font-size: 1.2rem;
+    }
+
     .gameInfo .contents > p {
         font-size: 1.1rem;
         line-height: 1.6rem;
+    }
+
+    .gameInfo .gameTags > h2 {
+        font-size: 1.25rem;
     }
 
     .gameInfo .gameTags .assocTags {
@@ -344,6 +353,11 @@
         font-size: .9rem;
         margin: .2rem;
         padding: .3rem .5rem;
+    }
+
+    .gameInfo .gameTrailer > h2 {
+        font-size: 1.5rem;
+        margin-bottom: .5rem;
     }
 
     .gameInfo .gameTrailer > iframe {

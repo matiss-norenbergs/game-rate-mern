@@ -37,6 +37,8 @@ const AdminPosts = () => {
         <>
             <h1>News posts</h1>
 
+            <Link to="/admin/post/create" className="adminBtn">Create post</Link>
+
             { isPending && <Pending text={"Fetching posts..."} center={true} size={"2rem"} /> }
             { error && !posts && <h1>Error: { error }</h1> }
             { posts && 
@@ -56,7 +58,7 @@ const AdminPosts = () => {
                                 <td>{ post.text }</td>
                                 <td>{ whenCreated(post.createdAt) }</td>
                                 <td className="centerCell">
-                                    <Link className="cellOption" to={`/admin/posts/update/${post._id}`}>Update</Link>|
+                                    <Link className="cellOption" to={`/admin/post/update/${post._id}`}>Update</Link>|
                                     <button className="cellOption" onClick={ () => handleDelete(post._id) }>Delete</button>
                                 </td>
                             </tr>

@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faFillDrip, faRightFromBracket, faRightToBracket, faUserAlt, faUserPen } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faChartColumn, faFillDrip, faGamepad, faHouse, faRightFromBracket, faRightToBracket, faUserAlt, faUserPen } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../../redux/features/auth/authSlice";
 import "./NavBar.css";
-import { useState } from "react";
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -54,35 +54,46 @@ const NavBar = () => {
                 <Link to="/" className="navLogo">GameRate</Link>
 
                 <nav>
-                    <Link to="/">Home</Link>
-                    <Link to="/games">Games</Link>
-                    { user && <Link to="/profile">Profile</Link> }
-                    { user && user.role === "admin" && <Link to="/admin">Admin dashboard</Link> }
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/games">Games</NavLink>
+                    { user && <NavLink to="/profile">Profile</NavLink> }
+                    { user && user.role === "admin" && <NavLink to="/admin">Admin dashboard</NavLink> }
                 </nav>
 
                 <div className="navOptions">
                     { !user ? (
-                        <button className="optionBtn" style={{ fontSize: "1.8rem" }}><FontAwesomeIcon icon={faBars} /></button>
+                        <button className="optionBtn" style={{ fontSize: "1.8rem" }}><FontAwesomeIcon icon={ faBars } /></button>
                     ) : (
-                        <button className="optionBtn"><FontAwesomeIcon icon={faUserAlt} /> { user.name }</button>
+                        <button className="optionBtn"><FontAwesomeIcon icon={ faUserAlt } /> { user.name }</button>
                     )}
 
                     <div className="options">
-                        <Link className="option mobile" to="/">Home</Link>
-                        <Link className="option mobile" to="/games">Games</Link>
-                        { user && <Link className="option mobile" to="/profile">Profile</Link> }
-                        { user && user.role === "admin" && <Link className="option mobile" to="/admin">Admin dashboard</Link> }
+                        <NavLink className="option mobile" to="/">Home <FontAwesomeIcon icon={ faHouse } /></NavLink>
+                        <NavLink className="option mobile" to="/games">Games <FontAwesomeIcon icon={ faGamepad } /></NavLink>
+
+                        { user &&
+                            <NavLink className="option mobile" to="/profile">
+                                Profile
+                                <FontAwesomeIcon icon={ faUserAlt } />
+                            </NavLink>
+                        }
+                        { user && user.role === "admin" &&
+                            <NavLink className="option mobile" to="/admin">
+                                Admin dashboard
+                                <FontAwesomeIcon icon={ faChartColumn } />
+                            </NavLink>
+                        }
 
                         { !user ? (
                             <>
-                                <Link className="option" to="/login">Login <FontAwesomeIcon icon={faRightToBracket} /></Link>
-                                <Link className="option" to="/register">Register <FontAwesomeIcon icon={faUserPen} /></Link>
+                                <NavLink className="option" to="/login">Login <FontAwesomeIcon icon={ faRightToBracket } /></NavLink>
+                                <NavLink className="option" to="/register">Register <FontAwesomeIcon icon={ faUserPen } /></NavLink>
                             </>
                         ) : (
-                            <button className="option" onClick={ handleLogout }>Logout <FontAwesomeIcon icon={faRightFromBracket} /></button>
+                            <button className="option" onClick={ handleLogout }>Logout <FontAwesomeIcon icon={ faRightFromBracket } /></button>
                         )}
 
-                        <button className="option" onClick={ changeMode }>Mode: { mode } <FontAwesomeIcon icon={faFillDrip} /></button>
+                        <button className="option" onClick={ changeMode }>Mode: { mode } <FontAwesomeIcon icon={ faFillDrip } /></button>
                     </div>
                 </div>
             </div>

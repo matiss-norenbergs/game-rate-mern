@@ -25,12 +25,16 @@
     margin-bottom: 1rem;
 }
 
-.gameFilter > label {
+.gameFilter .filter {
+    display: inline-block;
+}
+
+.gameFilter .filter > label {
     font-size: 1.2rem;
 }
 
-.gameFilter > select,
-.gameFilter > button {
+.gameFilter .filter > select,
+.gameFilter .filter > button {
     font-size: 1.1rem;
     font-weight: 500;
     margin-top: .5rem;
@@ -42,13 +46,13 @@
     color: #ddd;
 }
 
-.gameFilter > button {
+.gameFilter .filter > button {
     background: var(--accent-color);
 }
 
-.gameFilter > select:hover,
-.gameFilter > select:focus,
-.gameFilter > button:hover {
+.gameFilter .filter > select:hover,
+.gameFilter .filter > select:focus,
+.gameFilter .filter > button:hover {
     background: var(--transparent-black);
     color: var(--white2);
 }

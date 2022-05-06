@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PostCreate = () => {
     const [title, setTitle] = useState("");
@@ -43,6 +43,7 @@ const PostCreate = () => {
                     <textarea className="textArea" value={ text } onChange={(e) => setText(e.target.value)} placeholder="Posts text..."></textarea>
                     
                     <div className="formBtns">
+                        <Link to="/admin/posts" className="formBtn">Return</Link>
                         <button className="formBtn" type="submit">Create post</button>
                     </div>
                 </form>

@@ -66,10 +66,11 @@
     }
 
     .newGames .gameCard .textContents .gameTitle {
-        font-size: 130%;
+        font-size: 120%;
     }
 
     .newGames .gameCard .textContents .gamePublished {
         margin-top: 2rem;
+        text-align: center;
     }
 }
