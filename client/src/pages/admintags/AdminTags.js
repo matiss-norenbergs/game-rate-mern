@@ -31,6 +31,8 @@ const AdminTags = () => {
         <>
             <h1>Game tags</h1>
 
+            <Link to="/admin/tag/create" className="adminBtn">Create tag</Link>
+
             { isPending && <Pending text={"Fetching tags..."} center={true} size={"2rem"} /> }
             { error && !tags && <h1>Error: { error }</h1> }
             { tags && 
@@ -50,7 +52,7 @@ const AdminTags = () => {
                                 <td>{ tag.name }</td>
                                 <td>{ tag.meaning ? tag.meaning : "not defined" }</td>
                                 <td className="centerCell">
-                                    <Link className="cellOption" to={`/admin/tags/update/${tag._id}`}>Update</Link>|
+                                    <Link className="cellOption" to={`/admin/tag/update/${tag._id}`}>Update</Link>|
                                     <button className="cellOption" onClick={ () => handleDelete(tag._id) }>Delete</button>    
                                 </td>
                             </tr>

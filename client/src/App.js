@@ -42,13 +42,13 @@ function App() {
             <Route index element={ <AdminDashboard /> } />
             <Route path="dashboard" element={ <AdminDashboard /> } />
             <Route path="games" element={ <AdminGames /> } />
-            <Route path="games/update/:id" element={ <GameUpdate /> } />
+            <Route path="game/update/:id" element={ <GameUpdate /> } />
             <Route path="tags" element={ <AdminTags /> } />
-            <Route path="tags/create" element={ <TagCreate /> } />
-            <Route path="tags/update/:id" element={ <TagUpdate /> } />
+            <Route path="tag/create" element={ <TagCreate /> } />
+            <Route path="tag/update/:id" element={ <TagUpdate /> } />
             <Route path="posts" element={ <AdminPosts /> } />
-            <Route path="posts/create" element={ <PostCreate /> } />
-            <Route path="posts/update/:id" element={ <PostUpdate /> } />
+            <Route path="post/create" element={ <PostCreate /> } />
+            <Route path="post/update/:id" element={ <PostUpdate /> } />
           </Route>
         </Routes>
       </Router>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TagCreate = () => {
     const [name, setName] = useState("");
@@ -43,6 +43,7 @@ const TagCreate = () => {
                     <textarea className="textArea" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Tags meaning..."></textarea>
                     
                     <div className="formBtns">
+                        <Link to="/admin/tags" className="formBtn">Return</Link>
                         <button className="formBtn" type="submit">Create tag</button>
                     </div>
                 </form>

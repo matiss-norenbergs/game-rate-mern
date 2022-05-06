@@ -69,34 +69,40 @@ const Games = () => {
             </div>
 
             <div className="gameFilter">
-                <label>Sort by: </label>
-                <select value={ field } onChange={ (e) => setField(e.target.value) }>
-                    <option value="publishedAt">Publishing date</option>
-                    <option value="title">Title</option>
-                    <option value="rating">Rating</option>
-                </select>
+                <div className="filter">
+                    <label>Sort by: </label>
+                    <select value={ field } onChange={ (e) => setField(e.target.value) }>
+                        <option value="publishedAt">Publishing date</option>
+                        <option value="title">Title</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </div>
 
-                <label>Order: </label>
-                <select value={ order } onChange={ (e) => setOrder(e.target.value) }>
-                    <option value={-1}>Descending &#8595;</option>
-                    <option value={1}>Ascending &#8593;</option>
-                </select>
+                <div className="filter">
+                    <label>Order: </label>
+                    <select value={ order } onChange={ (e) => setOrder(e.target.value) }>
+                        <option value={-1}>Descending &#8595;</option>
+                        <option value={1}>Ascending &#8593;</option>
+                    </select>
+                </div>
 
-                { display === "none" ?
-                    <button onClick={ () => showTagList() }>
-                        Show tags <FontAwesomeIcon icon={faAnglesDown} />
-                    </button>
-                :
-                    <>
+                <div className="filter">
+                    { display === "none" ?
                         <button onClick={ () => showTagList() }>
-                            Hide tags <FontAwesomeIcon icon={faAnglesUp} />
+                            Show tags <FontAwesomeIcon icon={faAnglesDown} />
                         </button>
+                    :
+                        <>
+                            <button onClick={ () => showTagList() }>
+                                Hide tags <FontAwesomeIcon icon={faAnglesUp} />
+                            </button>
 
-                        <button onClick={ setSelectedTags }>Apply tag filter</button>
-                    </>
-                }
+                            <button onClick={ setSelectedTags }>Apply tag filter</button>
+                        </>
+                    }
 
-                <button onClick={ () => resetFilters() }>Reset</button>
+                    <button onClick={ () => resetFilters() }>Reset</button>
+                </div>
             </div>
 
             <div className="gameFilterTags" style={{ display: display }}>

@@ -17,7 +17,7 @@
 
 @media (max-width: 940px) {
     .homeContents {
-        display: block;
+        flex-direction: column-reverse;
         padding-top: 1rem;
     }
 
