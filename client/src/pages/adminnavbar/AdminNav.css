@@ -104,6 +104,33 @@
     color: var(--white2);
 }
 
+.adminPage .tableFilter {
+    width: fit-content;
+    border: 2px solid var(--white2);
+    border-bottom: none;
+}
+
+.adminPage .tableFilter > input,
+.adminPage .tableFilter > button {
+    height: 3rem;
+    font-size: 1.3rem;
+    background: var(--transparent-black);
+    color: var(--white2);
+}
+
+.adminPage .tableFilter > input {
+    padding: 1rem;
+}
+
+.adminPage .tableFilter > button {
+    width: 3rem;
+}
+
+.adminPage .tableFilter > button:hover {
+    background: var(--white2);
+    color: var(--background);
+}
+
 .adminPage > table {
     width: 100%;
     background: var(--transparent-black);

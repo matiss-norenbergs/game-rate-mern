@@ -46,7 +46,6 @@ body {
 .gameRatePages {
   padding: var(--page-padding);
   color: var(--white2);
-  border-bottom: 1px solid var(--accent-color);
   overflow-x: hidden;
 }
 
