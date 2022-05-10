@@ -42,9 +42,10 @@
     justify-content: space-evenly;
 }
 
-.usersData .userInfo .profileBtns > button {
+.usersData .userInfo .profileBtns > button,
+.usersData .userInfo .profileBtns .btnSmall {
     font-size: 1.4rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     padding: 1rem 2rem;
     border: 2px solid var(--accent-color);
     border-radius: 5px;
@@ -55,6 +56,14 @@
 .usersData .userInfo .profileBtns > button:hover {
     background: transparent;
     color: var(--white2);
+}
+
+.usersData .userInfo .profileBtns .btnSmall {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
 }
 
 .usersData .userInfo > form {
@@ -73,10 +82,44 @@
 .usersData .userInfo > form select,
 .usersData .userInfo > form input {
     font-size: 1.3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     padding: .5rem 1rem;
     background: var(--background);
     color: var(--white2);
+}
+
+@keyframes showProfileMessage {
+    0% {
+        display: block;
+        opacity: 0;
+    }
+
+    50% {
+        display: block;
+        opacity: 1;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+.profileMessage {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    background: var(--accent-color);
+    color: #ddd;
+    opacity: 0;
+    animation: showProfileMessage 3s forwards;
+}
+
+.profileMessage > h2 {
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 1.6rem;
 }
 
 @media (max-width: 940px) {
@@ -118,5 +161,9 @@
         margin-bottom: 1.8rem;
         padding: .4rem .8rem;
         font-size: 1.2rem;
+    }
+
+    .profileMessage > h2 {
+        font-size: 1.4rem;
     }
 }

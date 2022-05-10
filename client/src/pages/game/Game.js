@@ -45,7 +45,7 @@ const Game = () => {
         if(review !== "" && rating !== 0){
             addReview();
         }else{
-            alert("Fill out all fields!");
+            alert("Fill out all fields and provide a rating!");
         }
     }
     
