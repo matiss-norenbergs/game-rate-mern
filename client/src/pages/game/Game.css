@@ -48,10 +48,14 @@
     color: var(--white2);
 }
 
+.gameInfo h2 {
+    font-weight: 500;
+}
+
 .gameInfo > h2 .star {
     font-size: 40px;
     color: #ffc700;
-    -webkit-text-stroke: 1px var(--accent-color);
+    -webkit-text-stroke: 2px var(--accent-color);
 }
 
 .gameInfo .gameTags {
@@ -219,7 +223,7 @@
 .gameInfo .gameReviews .review > span {
     display: block;
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: 300;
     padding-top: .2rem;
 }
 
@@ -231,12 +235,18 @@
 
 .gameInfo .gameReviews .review > h4 {
     font-size: 1.3rem;
-    font-weight: 500;
+    font-weight: 300;
     text-align: right;
 }
 
-.gameInfo .gameReviews .review > h4 span {
+.gameInfo .gameReviews .review > h4 a {
+    font-weight: 500;
+    color: var(--white2);
     text-decoration: underline 4px var(--accent-color);
+}
+
+.gameInfo .gameReviews .review > h4 a:hover {
+    color: var(--white);
 }
 
 .gameInfo .gameReviews .review > h5 {

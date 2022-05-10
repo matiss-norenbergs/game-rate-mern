@@ -1,4 +1,4 @@
-import { faAnglesLeft, faAnglesRight, faChartColumn, faFileCirclePlus, faGamepad, faNewspaper, faTag, faTags } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesLeft, faAnglesRight, faChartColumn, faFileCirclePlus, faGamepad, faNewspaper, faTag, faTags, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
@@ -85,6 +85,11 @@ const AdminNav = () => {
                             <NavLink to="post/create">
                                 <FontAwesomeIcon className="adminIcon" style={ resizeNav() } icon={ faFileCirclePlus } />
                                 <span style={{ display: displayNav }}>Create post</span>
+                            </NavLink>
+
+                            <NavLink to="users">
+                                <FontAwesomeIcon className="adminIcon" style={ resizeNav() } icon={ faUsers } />
+                                <span style={{ display: displayNav }}>User list</span>
                             </NavLink>
                         </nav>
                     </div>

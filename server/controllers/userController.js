@@ -70,6 +70,79 @@ const loginUser = asyncHandler( async (req, res) => {
     }
 })
 
+// Get single users data - public
+const getUser = asyncHandler( async (req, res) => {
+    const userId = req.params.id;
+
+    if(!userId){
+        res.status(400)
+        throw new Error("ID not found")
+    }
+
+    const user = await User.findById(userId, 'name picture reviews');
+
+    res.json(user);
+})
+
+const getUsers = asyncHandler( async (req, res) => {
+    //Check for user
+    if(!req.user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    //Checking if the user is admin
+    if(req.user.role !== "admin"){
+        res.status(401)
+        throw new Error("User is not an admin")
+    }
+
+    const users = await User.find({}, 'name email role createdAt updatedAt');
+
+    res.json(users);
+})
+
+// Change users profile picture
+const updatePicture = asyncHandler( async (req, res) => {
+    const user = await User.findById(req.user.id);
+
+    if(!user){
+        res.status(400)
+        throw new Error("User doesn't exist")
+    }
+
+    const picture = req.body.picture;
+
+    await User.findByIdAndUpdate(req.user.id, { picture }, { new: true, timestamps: false });
+
+    res.json({ message: "Picture updated!" });
+})
+
+// Change users password
+const updatePassword = asyncHandler( async (req, res) => {
+    const user = await User.findById(req.user.id);
+
+    if(!user){
+        res.status(400)
+        throw new Error("User doesn't exist")
+    }
+
+    const { password, password2 } = req.body;
+
+    if(password.lenght >= 8 || password !== password2){
+        res.status(400)
+        throw new Error("Invalid users input")
+    }
+
+    //Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    await User.findByIdAndUpdate(req.user.id, { password: hashedPassword }, { new: true });
+
+    res.json({ message: "Password updated!" });
+})
+
 // Checks if the current user has "admin" role
 const getAdmin = asyncHandler( async (req, res) => {
     if(req.user.role === "admin"){
@@ -104,4 +177,4 @@ const countUsers = asyncHandler( async (req, res) => {
     res.json({ users });
 })
 
-module.exports = { registerUser, loginUser, getAdmin, countUsers }
+module.exports = { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, getAdmin, countUsers }

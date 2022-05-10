@@ -45,6 +45,21 @@ const getGamesPublicLast = asyncHandler( async (req, res) => {
     res.json(games);
 })
 
+// Fetch games that user has reviewed
+const getUsersReviewedGames = asyncHandler( async (req, res) => {
+
+    const userId = req.params.id;
+
+    if(!userId){
+        res.status(400)
+        throw new Error("ID not found")
+    }
+
+    const games = await Game.find({ 'reviews.authorId': userId }, {title: 1, reviews: { $elemMatch: { authorId: userId } } } );
+
+    res.json(games);
+})
+
 // Fetch one game by ID
 const getGame = asyncHandler( async (req, res) => {
     const game = await Game.findById(req.params.id);
@@ -254,4 +269,4 @@ const getGamesLastSubmit = asyncHandler( async (req, res) => {
     res.json(games);
 })
 
-module.exports = { getGames, getGamesPublic, getGamesPublicLast, getGame, addGame, addGameReview, updateGame, deleteGame, gameData, getGamesLastSubmit }
+module.exports = { getGames, getGamesPublic, getGamesPublicLast, getUsersReviewedGames, getGame, addGame, addGameReview, updateGame, deleteGame, gameData, getGamesLastSubmit }
