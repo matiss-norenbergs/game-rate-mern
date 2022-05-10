@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
 import "./Profile.css";
@@ -9,14 +9,7 @@ import "./Profile.css";
 const Profile = () => {
     const { user } = useSelector((state) => state.auth);
     const navigate = useNavigate();
-
-    const id = user._id;
-
-    const { data: games, isPending, error: gameError } = useFetch(`/api/games/users_reviews/${id}`);
-
-    if(games && !isPending){
-        console.log(games);
-    }
+    const { data: games, isPending, error: gameError } = useFetch(`/api/games/users_reviews/${user._id}`);
 
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
@@ -81,6 +74,13 @@ const Profile = () => {
             }, [3000]);
         }
     }
+
+    const dateFormat = (date) => {
+        const moment = require("moment");
+        let daysAgo = moment(date).format('DD.MM.YYYY, HH:mm');
+        
+        return daysAgo;
+    }
     
     useEffect(() => {
         if(user){
@@ -118,20 +118,28 @@ const Profile = () => {
                         </section>
                     )}
 
-                    <h1>My reviews</h1>
+                    { gameError && <h2>{ gameError }</h2> }
+                    { isPending && <Pending text={"Loading reviews..."} /> }
+                    { !isPending && games && games.length > 0 && (
+                        <>
+                            <h1 className="profHead">My reviews</h1>
+                            <div className="usersData myReviews">
 
-                    <div className="userData">
-                        { gameError && <h2>{ gameError }</h2> }
-                        { isPending && <Pending text={"Loading reviews..."} /> }
-                        { !isPending && games && games.map((game, index) => (
-                            <div key={ index }>
-                                <h2>{ game.title }</h2>
-                                <h3>{ game.rating }</h3>
-                                <h3>{ game.reviews[0].review }</h3>
-                                <span>{ game.reviews[0].createdAt }</span>
+                                { games.map((game, index) => (
+                                    <div className="myReview" key={ index }>
+                                        <Link to={`/game/${game._id}`}>
+                                            <h2>{ game.title }</h2>
+                                        </Link>
+                                            
+                                        <p>{ game.reviews[0].review }</p>
+                                        <h3>Your rating: { game.reviews[0].rating }</h3>
+                                        <span>Posted at: { dateFormat(game.reviews[0].createdAt) }</span>
+                                    </div>
+                                )) }
                             </div>
-                        )) }
-                    </div>
+                        </>
+                    ) }
+                    
                 </>
             ) : (
                 <>

@@ -132,7 +132,7 @@ const Game = () => {
                                 <div className="review" key={ index }>
                                     <p>{ review.review }</p>
                                     <span>Rating: { review.rating } <span className="star">★</span></span>
-                                    <h4>Review by: <span>{ review.author }</span></h4>
+                                    <h4>Review by: <Link className="reviewAuthor" to={`/user/${review.authorId}`}>{ review.author }</Link></h4>
                                     <h5>{ formatPostTime(review.createdAt) }</h5>
                                 </div>
                             ))}

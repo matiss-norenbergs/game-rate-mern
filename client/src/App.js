@@ -19,6 +19,8 @@ import ProtectedRoutes from './components/protectedroutes/ProtectedRoutes';
 import AdminPosts from './pages/adminposts/AdminPosts';
 import PostCreate from './pages/admincreate/PostCreate';
 import PostUpdate from './pages/adminupdate/PostUpdate';
+import UsersProfile from './pages/profile/UsersProfile';
+import AdminUsers from './pages/adminusers/AdminUsers';
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
             <Route path="/profile" element={ <Profile /> } />
           </Route>
           
+          <Route path="/user/:id" element={ <UsersProfile /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
           <Route path="/admin" element={ <AdminNav /> } >
@@ -49,6 +52,7 @@ function App() {
             <Route path="posts" element={ <AdminPosts /> } />
             <Route path="post/create" element={ <PostCreate /> } />
             <Route path="post/update/:id" element={ <PostUpdate /> } />
+            <Route path="users" element={ <AdminUsers /> } />
           </Route>
         </Routes>
       </Router>

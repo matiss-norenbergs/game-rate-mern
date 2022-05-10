@@ -70,6 +70,38 @@ const loginUser = asyncHandler( async (req, res) => {
     }
 })
 
+// Get single users data - public
+const getUser = asyncHandler( async (req, res) => {
+    const userId = req.params.id;
+
+    if(!userId){
+        res.status(400)
+        throw new Error("ID not found")
+    }
+
+    const user = await User.findById(userId, 'name picture reviews');
+
+    res.json(user);
+})
+
+const getUsers = asyncHandler( async (req, res) => {
+    //Check for user
+    if(!req.user){
+        res.status(401)
+        throw new Error("User not found")
+    }
+
+    //Checking if the user is admin
+    if(req.user.role !== "admin"){
+        res.status(401)
+        throw new Error("User is not an admin")
+    }
+
+    const users = await User.find({}, 'name email role createdAt updatedAt');
+
+    res.json(users);
+})
+
 // Change users profile picture
 const updatePicture = asyncHandler( async (req, res) => {
     const user = await User.findById(req.user.id);
@@ -145,4 +177,4 @@ const countUsers = asyncHandler( async (req, res) => {
     res.json({ users });
 })
 
-module.exports = { registerUser, loginUser, updatePicture, updatePassword, getAdmin, countUsers }
+module.exports = { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, getAdmin, countUsers }
