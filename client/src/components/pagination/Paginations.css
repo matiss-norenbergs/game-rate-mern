@@ -1,0 +1,63 @@
+.gameList {
+    width: 100%;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    padding-top: 1.5rem;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.paginationItem {
+    cursor: pointer;
+    position: relative;
+    height: 50px;
+    width: 50px;
+    margin: 0 5px;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    background: var(--transparent-black);
+    color: var(--white2);
+}
+
+.paginationItem > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    line-height: 50px;
+    border: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    background: var(--transparent-black);
+    color: var(--white2);
+}
+
+.paginationItem.active {
+    border: 1px solid #888;
+    color: #888;
+    pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+    pointer-events: none;
+    box-shadow: none;
+    color: #999;
+}

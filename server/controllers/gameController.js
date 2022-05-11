@@ -93,7 +93,7 @@ const addGame = asyncHandler( async (req, res) => {
 
     if(userCreatedGame.length >= 1){
         res.status(400)
-        throw new Error("User can submit 1 game per 2 minutes " + userCreatedGame[0].title)
+        throw new Error("User can submit 1 game per 2 minutes")
     }
 
     //Check if simular game exists
