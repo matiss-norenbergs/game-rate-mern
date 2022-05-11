@@ -50,7 +50,7 @@ const AdminUsers = () => {
                         <tbody>
                             { users.filter((value) => {
                                 if(!searchValue){
-                                    return value
+                                    return value;
                                 }else if(value.name.toLowerCase().includes(searchValue.toLowerCase()) || value._id.toLowerCase().includes(searchValue.toLowerCase())){
                                     return value;
                                 }

@@ -1,11 +1,4 @@
-.gameList {
-    display: grid;
-    grid-gap: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-    padding-top: 1.5rem;
-}
-
-.gameList .listedGame {
+.listedGame {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +21,7 @@
     }
 }
 
-.gameList .listedGame .listedGameInfo {
+.listedGame .listedGameInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,12 +32,12 @@
     opacity: 0;
 }
 
-.gameList .listedGame .listedGameInfo:hover {
+.listedGame .listedGameInfo:hover {
     opacity: 1;
 }
 
-.gameList .listedGame .listedGameInfo > h2,
-.gameList .listedGame .listedGameInfo > h3{
+.listedGame .listedGameInfo > h2,
+.listedGame .listedGameInfo > h3{
     width: 100%;
     padding: .3rem .8rem;
     font-size: 1.3rem;
@@ -53,23 +46,23 @@
     text-shadow: 0px 0px 8px #000;
 }
 
-.gameList .listedGame .listedGameInfo > h3 {
+.listedGame .listedGameInfo > h3 {
     font-size: 1.4rem;
 }
 
-.gameList .listedGame .listedGameInfo > h3 span {
+.listedGame .listedGameInfo > h3 span {
     font-size: 1.6rem;
     color: #ffc700;
 }
 
-.gameList .listedGame .listedGameInfo > hr {
+.listedGame .listedGameInfo > hr {
     width: 85%;
     height: 4px;
     background: linear-gradient(to right , rgba(0, 0, 0, 0.2), var(--accent-color), rgba(0, 0, 0, 0.2));
 }
 
 @media (max-width: 940px) {
-    .gameList .listedGame .listedGameInfo {
+    .listedGame .listedGameInfo {
         opacity: 1;
     }
 }
