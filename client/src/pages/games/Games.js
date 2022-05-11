@@ -118,10 +118,9 @@ const Games = () => {
                 })}
             </div>
 
-            <h1>All published games</h1>
             { error && !games && <span>{ error }</span> }
             { isPending && <Pending text={"Loading games..."} /> }
-            { games && <GameList games={ games } /> }
+            { !isPending && games && <GameList games={ games } title="All published games" /> }
         </div>
     );
 }
