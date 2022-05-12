@@ -1,5 +1,5 @@
 import Pagination from "../pagination/Pagination";
-import Game from "../game/Game";
+import GameCard from "../gamecard/GameCard";
 
 const GameList = (props) => {
     const { games, title } = props;
@@ -7,7 +7,7 @@ const GameList = (props) => {
     return (
         <Pagination 
             data={ games }
-            RenderComponent={ Game }
+            RenderComponent={ GameCard }
             title={ title }
             listClass="gameList"
             pageLimit={ 5 }

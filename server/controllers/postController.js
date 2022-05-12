@@ -1,10 +1,16 @@
 const asyncHandler = require("express-async-handler");
-const moment = require("moment");
 const Post = require("../models/postModel");
 
 //Fetch all posts
 const getPosts = asyncHandler( async (req, res) => {
     const posts = await Post.find().sort({ createdAt: -1 });
+
+    res.json(posts);
+})
+
+//Fetch last 4 posts
+const getPostsLast = asyncHandler( async (req, res) => {
+    const posts = await Post.find().sort({ createdAt: -1 }).limit(4);
 
     res.json(posts);
 })
@@ -105,4 +111,4 @@ const deletePost = asyncHandler( async (req, res) => {
     res.json({ id: req.params.id });
 })
 
-module.exports = { getPosts, getPost, addPost, updatePost, deletePost }
+module.exports = { getPosts, getPostsLast, getPost, addPost, updatePost, deletePost }
