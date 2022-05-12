@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./Game.css";
+import "./GameCard.css";
 
-function Game (props){
+function GameCard (props){
     const { _id, title, cover, rating } = props.data;
 
     return (
@@ -14,4 +14,4 @@ function Game (props){
     );
 }
 
-export default Game;
+export default GameCard;

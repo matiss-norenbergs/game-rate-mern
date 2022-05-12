@@ -52,7 +52,7 @@ const getUsersReviewedGames = asyncHandler( async (req, res) => {
 
     if(!userId){
         res.status(400)
-        throw new Error("ID not found")
+        throw new Error("Users ID not found")
     }
 
     const games = await Game.find({ 'reviews.authorId': userId }, {title: 1, reviews: { $elemMatch: { authorId: userId } } } );
@@ -87,11 +87,17 @@ const addGame = asyncHandler( async (req, res) => {
         throw new Error("User not found")
     }
 
+    // Check if user is suspended
+    if(req.user.role === "suspended"){
+        res.status(401)
+        throw new Error("User is suspended")
+    }
+
     //Check users recent submission amount
     const timeNow = moment(Date.now()).subtract(2, 'minutes').format();
     const userCreatedGame = await Game.find({ submittedBy: req.user._id, createdAt: { $gt: timeNow } }).sort({ createdAt: -1 });
 
-    if(userCreatedGame.length >= 1){
+    if(userCreatedGame.length >= 1 && req.user.role !== "admin"){
         res.status(400)
         throw new Error("User can submit 1 game per 2 minutes")
     }
@@ -137,6 +143,12 @@ const addGameReview = asyncHandler(  async (req, res) => {
     if(!req.user){
         res.status(401)
         throw new Error("User not found")
+    }
+
+    // Check if user is suspended
+    if(req.user.role === "suspended"){
+        res.status(401)
+        throw new Error("User is suspended")
     }
 
     //Check if user has a review already

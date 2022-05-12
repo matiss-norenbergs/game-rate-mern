@@ -21,6 +21,7 @@ import PostCreate from './pages/admincreate/PostCreate';
 import PostUpdate from './pages/adminupdate/PostUpdate';
 import UsersProfile from './pages/profile/UsersProfile';
 import AdminUsers from './pages/adminusers/AdminUsers';
+import News from './pages/news/News';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={ <Home /> } />
+          <Route path="/news" element={ <News /> } />
           <Route path="/games" element={ <Games /> } />
           <Route path="/game/:id" element={ <Game /> } />
           <Route path="/submit" element={ <Submit /> } />

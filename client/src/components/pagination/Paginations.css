@@ -6,6 +6,11 @@
     padding-top: 1.5rem;
 }
 
+.newsList {
+    width: 100%;
+    padding-top: 1.5rem;
+}
+
 .pagination {
     display: flex;
     align-items: center;
