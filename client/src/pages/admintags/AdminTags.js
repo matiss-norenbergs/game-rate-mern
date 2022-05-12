@@ -29,7 +29,7 @@ const AdminTags = () => {
 
     return (
         <>
-            <h1>Game tags</h1>
+            <h1>Tag list</h1>
 
             <Link to="/admin/tag/create" className="adminBtn">Create tag</Link>
 

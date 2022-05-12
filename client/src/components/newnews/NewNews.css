@@ -1,4 +1,4 @@
-.newsList .post {
+.newNews .post {
     width: 100%;
     margin: 1rem 0;
     padding: 1rem 1.5rem;
@@ -16,12 +16,12 @@
     }
 }
 
-.newsList .post > h2 {
+.newNews .post > h2 {
     font-size: 1.6rem;
     color: var(--white2);
 }
 
-.newsList .post > p {
+.newNews .post > p {
     font-weight: 300;
     font-size: 1.2rem;
     line-height: 1.6rem;
@@ -33,12 +33,12 @@
     -webkit-box-orient: vertical;
 }
 
-.newsList .post > h4 {
+.newNews .post > h4 {
     text-align: right;
     font-size: 1.1rem;
 }
 
-.newsList .post > h5 {
+.newNews .post > h5 {
     margin-top: .5rem;
     text-align: right;
     font-weight: lighter;

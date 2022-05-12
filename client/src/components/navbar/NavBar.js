@@ -55,6 +55,7 @@ const NavBar = () => {
 
                 <nav>
                     <NavLink to="/">Home</NavLink>
+                    <NavLink to="/news">News</NavLink>
                     <NavLink to="/games">Games</NavLink>
                     { user && <NavLink to="/profile">Profile</NavLink> }
                     { user && user.role === "admin" && <NavLink to="/admin">Admin dashboard</NavLink> }

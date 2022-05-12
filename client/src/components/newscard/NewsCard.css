@@ -1,0 +1,40 @@
+.newsCard {
+    background: var(--transparent-black);
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--accent-color);
+    animation: fadeIn .7s ease-in forwards;
+}
+
+@keyframes fadeIn{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.newsCard > h2 {
+    font-size: 1.6rem;
+    color: var(--white2);
+}
+
+.newsCard > p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    margin: 1rem 0;
+}
+
+.newsCard > h4 {
+    text-align: right;
+    font-size: 1.1rem;
+}
+
+.newsCard > h5 {
+    margin-top: .5rem;
+    text-align: right;
+    font-weight: lighter;
+    font-size: .9rem;
+}
