@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
 import "./Profile.css";
@@ -74,13 +75,6 @@ const Profile = () => {
             }, [3000]);
         }
     }
-
-    const dateFormat = (date) => {
-        const moment = require("moment");
-        let daysAgo = moment(date).format('DD.MM.YYYY, HH:mm');
-        
-        return daysAgo;
-    }
     
     useEffect(() => {
         if(user){
@@ -133,7 +127,7 @@ const Profile = () => {
                                             
                                         <p>{ game.reviews[0].review }</p>
                                         <h3>Your rating: { game.reviews[0].rating }</h3>
-                                        <span>Posted at: { dateFormat(game.reviews[0].createdAt) }</span>
+                                        <span>Posted at: { FormatDateNum(game.reviews[0].createdAt) }</span>
                                     </div>
                                 )) }
                             </div>

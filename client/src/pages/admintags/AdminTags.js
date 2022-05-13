@@ -29,9 +29,9 @@ const AdminTags = () => {
 
     return (
         <>
-            <h1>Tag list</h1>
-
             <Link to="/admin/tag/create" className="adminBtn">Create tag</Link>
+
+            <h1>Tag list</h1>
 
             { isPending && <Pending text={"Fetching tags..."} center={true} size={"2rem"} /> }
             { error && !tags && <h1>Error: { error }</h1> }

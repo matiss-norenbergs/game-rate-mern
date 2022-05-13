@@ -119,7 +119,7 @@ const addGame = asyncHandler( async (req, res) => {
         submittedBy: req.user.id,
     });
 
-    res.json({ message: `Game submitted: ${title}` });
+    res.json(`Game submitted: ${title}`);
 })
 
 //Add review for a game

@@ -1,0 +1,67 @@
+@keyframes showMessageCard {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes showIcon {
+    from {
+        opacity: 0;
+        transform: translateX(10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.messageBox {
+    overflow-x: hidden;
+}
+
+.messageBox .message {
+    margin: 3.5rem 3%;
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+    background: var(--transparent-black);
+    animation: showMessageCard 1s;
+}
+
+.messageBox .message > * {
+    color: var(--white2);
+}
+
+.messageBox .message > h1 {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--accent-color);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.messageBox .message > h2 {
+    margin-top: .5rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.messageBox .message .icon {
+    display: block;
+    text-align: center;
+    font-size: 6rem;
+    padding-top: 1rem;
+    animation: showIcon 1.5s;
+}
+.messageBox .message .green {
+    color: #494;
+}
+
+.messageBox .message .red {
+    color: #922;
+}
+
