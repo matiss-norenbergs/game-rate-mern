@@ -70,7 +70,7 @@ const updateTag = asyncHandler( async (req, res) => {
 
     const updatedTag = await Tag.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
-    res.json(updatedTag);
+    res.json(updatedTag.name);
 })
 
 //Delete a tag

@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { submitGame, reset } from "../../redux/features/games/gameSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../../hooks/useFetch";
-import "./Submit.css";
 import Pending from "../../components/pending/Pending";
+import Message from "../../components/message/Message";
+import "./Submit.css";
 
 const Submit = () => {
     const [title, setTitle] = useState("");
@@ -15,6 +16,8 @@ const Submit = () => {
     const [checkedState, setCheckedState] = useState();
     const [tags, setTags] = useState([]);
     const [submitted, setSubmitted] = useState(false);
+    const [tagsExpand, setTagsExpand] = useState(false);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,6 +25,18 @@ const Submit = () => {
     const { user } = useSelector((state) => state.auth);
     const { isError, isSuccess, isPending, message } = useSelector((state) => state.games);
     const { data: tagList, isPending: dataIsPending, error } = useFetch("/api/tags/");
+
+    const getScreenWidth = () => {
+        setScreenWidth(window.innerWidth);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', getScreenWidth);
+
+        return () => {
+            window.removeEventListener('resize', getScreenWidth);
+        }
+    }, [screenWidth]);
 
     useEffect(() => {
         if(!dataIsPending && tagList){
@@ -86,10 +101,12 @@ const Submit = () => {
                     setCover("");
                     setSubmitted(true);
     
-                    setTimeout(() => {
-                        dispatch(reset());
-                        navigate("/games");
-                    },[ 3000]);
+                    if(!isPending){
+                        setTimeout(() => {
+                            dispatch(reset());
+                            navigate("/games");
+                        },[ 3000]);
+                    }
                 }else{
                     alert('Image url isn\'t valid!')
                 }
@@ -101,7 +118,7 @@ const Submit = () => {
 
     if(!user){
         return (
-            <div className="submitMessageContainer">
+            <div className="submitPageMessage">
                 <div className="message">
                     <h1>You must be logged in to submit a game</h1>
                     <span>Click <Link to="/login">HERE</Link> to login</span>
@@ -116,7 +133,7 @@ const Submit = () => {
                 <h1>Submit a game</h1>
     
                 <form className="submitForm" onSubmit={ handleSubmit }>
-                    <section className="gameTags">
+                    <section className="gameTags" style={ screenWidth <= 940 ? { width: tagsExpand ? "100%" : "0" } : {} }>
                         <h2>Game tags</h2>
 
                         <div className="tagList">
@@ -134,8 +151,16 @@ const Submit = () => {
                             })}
                         </div>
                     </section>
+
+                    <button className="expandBtn" type="button" onClick={ () => setTagsExpand(!tagsExpand) }>
+                        { !tagsExpand ?
+                            <FontAwesomeIcon icon={ faAnglesRight } />
+                         :
+                            <FontAwesomeIcon icon={ faAnglesLeft } />
+                        }
+                    </button>
     
-                    <section className="formInput">
+                    <section className="formInput" style={ screenWidth <= 940 ? { width: !tagsExpand ? "100%" : "0" } : {} }>
                         <div className="row">
                             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title of a game" required />
                         </div><hr />
@@ -161,27 +186,22 @@ const Submit = () => {
                 <Pending text={"Processing..."} center={true} size={"2.2rem"} />
             )
         }else{
-            if(isSuccess && !isError){
+            if(isSuccess && !isError && message){
                 return (
-                    <div className="submitMessageContainer">
-                        <div className="message">
-                            <h1>Submission was successful!</h1>
-                            { message.message && <h2>{ message.message }</h2> }
-                            <i className="icon green"><FontAwesomeIcon icon={ faCheck } /></i>
-                        </div>
-                    </div>
+                    <Message 
+                        title={"Submission was successful!"}
+                        message={ message }
+                        success={ true }
+                    />
                 )
-            }else{
-                console.log(message)
+            }else if(message){
                 return (
-                    <div className="submitMessageContainer">
-                        <div className="message">
-                            <h1>Something went wrong...</h1>
-                            { message && <h2>{ message }</h2> }
-                            <i className="icon red"><FontAwesomeIcon icon={ faTimes } /></i>
-                        </div>
-                    </div>
-                )
+                    <Message 
+                        title={"Something went wrong!"}
+                        message={ message }
+                        success={ false }
+                    />
+                ) 
             }
         }
     }

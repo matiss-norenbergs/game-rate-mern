@@ -4,8 +4,8 @@
     width: fit-content;
     margin: 2rem auto;
     padding: 2rem;
-    background: var(--transparent-black);
     border-radius: 1.5rem;
+    background: var(--transparent-black);
 }
 
 .submitForm .gameTags {
@@ -70,13 +70,6 @@
     outline-color: var(--accent-color);
 }
 
-.submitForm .formInput .row > input[type=file] {
-    margin: 0 auto;
-    padding-top: 1rem;
-    font-size: 1.2rem;
-    color: var(--white2);
-}
-
 .submitForm .formInput .row > textarea {
     height: 6rem;
     resize: vertical;
@@ -104,6 +97,20 @@
     margin: 1.5rem .5rem;
 }
 
+.submitForm .expandBtn {
+    display: none;
+    padding: 0 .8rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 2px solid var(--accent-color);
+    background: var(--accent-color);
+    color: #ddd;
+}
+
+.submitForm .expandBtn:hover {
+    background: var(--transparent-black);
+}
+
 @keyframes showSubmitResult {
     from {
         transform: translateX(100%);
@@ -113,11 +120,11 @@
     }
 }
 
-.submitMessageContainer {
+.submitPageMessage {
     overflow-x: hidden;
 }
 
-.submitMessageContainer .message {
+.submitPageMessage .message {
     margin: 3.5rem 3%;
     padding: 3rem 2rem;
     border-radius: 2rem;
@@ -125,11 +132,11 @@
     animation: showSubmitResult 1s;
 }
 
-.submitMessageContainer .message > * {
+.submitPageMessage .message > * {
     color: var(--white2);
 }
 
-.submitMessageContainer .message > h1 {
+.submitPageMessage .message > h1 {
     text-align: center;
     font-size: 2rem;
     padding-bottom: .5rem;
@@ -138,14 +145,7 @@
     border-bottom-right-radius: 1rem;
 }
 
-.submitMessageContainer .message > h2 {
-    font-size: 1.4rem;
-    font-weight: 500;
-    text-align: center;
-    margin-top: .5rem;
-}
-
-.submitMessageContainer .message > span {
+.submitPageMessage .message > span {
     display: block;
     text-align: center;
     font-size: 1.4rem;
@@ -153,38 +153,44 @@
     padding-top: 1.5rem;
 }
 
-.submitMessageContainer .message > span a {
+.submitPageMessage .message > span a {
     text-decoration: underline;
     color: var(--accent-color);
 }
 
-.submitMessageContainer .message > span a:hover {
+.submitPageMessage .message > span a:hover {
     color: var(--white2);
 }
 
-@keyframes showIcon {
-    from {
-        opacity: 0;
-        transform: translateX(10%);
+@media (max-width: 940px) {
+    .submitForm {
+        width: 100%;
+        margin: 1rem auto;
+        padding: .8rem .5rem;
+        border-radius: .5rem;
+        transition: all .4s ease-out;
     }
-    to {
-        opacity: 1;
-        transform: translateX(0%);
+
+    .submitForm .expandBtn {
+        display: block;
+        margin: 0 .5rem;
     }
-}
 
-.submitMessageContainer .message .icon {
-    display: block;
-    text-align: center;
-    font-size: 6rem;
-    padding-top: 1rem;
-    animation: showIcon 1.5s;
-}
+    .submitForm .gameTags {
+        width: 100%;
+        margin: 0;
+        border: none;
+        overflow: hidden;
+        transition: all .4s ease-out;
+    }
 
-.submitMessageContainer .message .green {
-    color: #494;
-}
+    .submitForm .formInput {
+        width: 0;
+        overflow: hidden;
+        transition: all .4s ease-out;
+    }
 
-.submitMessageContainer .message .red {
-    color: #922;
+    .submitForm .formInput > hr {
+        margin: 1rem .5rem;
+    }
 }
