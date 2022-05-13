@@ -88,7 +88,8 @@
 }
 
 .adminPage .adminBtn {
-    float: right;
+    display: block;
+    width: fit-content;
     margin-right: 1rem;
     margin-bottom: 1rem;
     padding: .6rem 1rem;
@@ -97,6 +98,7 @@
     border: 2px solid var(--accent-color);
     background: var(--accent-color);
     color: #ddd;
+    float: right;
 }
 
 .adminPage .adminBtn:hover {
@@ -105,6 +107,7 @@
 }
 
 .adminPage .tableFilter {
+    
     width: fit-content;
     border: 2px solid var(--white2);
     border-bottom: none;

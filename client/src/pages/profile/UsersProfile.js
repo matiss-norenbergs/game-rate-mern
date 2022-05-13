@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
 
@@ -6,13 +7,6 @@ const UsersProfile = () => {
     const { id } = useParams();
     const { data: user, isPending, error } = useFetch(`/api/users/user/${id}`);
     const { data: games, isPending: gamePending, error: gameError } = useFetch(`/api/games/users_reviews/${id}`);
-
-    const dateFormat = (date) => {
-        const moment = require("moment");
-        let daysAgo = moment(date).format('DD.MM.YYYY, HH:mm');
-        
-        return daysAgo;
-    }
 
     return (
         <div className="gameRatePages">
@@ -48,7 +42,7 @@ const UsersProfile = () => {
                                             
                                         <p>{ game.reviews[0].review }</p>
                                         <h3>{ user.name }'s rating: { game.reviews[0].rating }</h3>
-                                        <span>Posted at: { dateFormat(game.reviews[0].createdAt) }</span>
+                                        <span>Posted at: { FormatDateNum(game.reviews[0].createdAt) }</span>
                                     </div>
                                 )) }
                             </div>

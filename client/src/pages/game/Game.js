@@ -7,6 +7,7 @@ import axios from "axios";
 import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
 import "./Game.css";
+import FormatDate from "../../components/formatdate/FormatDate";
 
 const Game = () => {
     const { id } = useParams();
@@ -47,12 +48,6 @@ const Game = () => {
         }else{
             alert("Fill out all fields and provide a rating!");
         }
-    }
-    
-    const formatPostTime = (datePosted) => {
-        const moment = require("moment");
-        let timePosted = moment(datePosted).format('MMMM Do YYYY, HH:mm');
-        return timePosted;
     }
 
     return (
@@ -100,7 +95,7 @@ const Game = () => {
                     )}
 
                     { user && (
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={ handleSubmit }>
                             { message && <h2>{ message }</h2> }
                             <div className="rate">
                                 <input type="radio" id="star5" name="rate" value="5" onChange={ (e) => setRating(e.target.value) } />
@@ -133,7 +128,7 @@ const Game = () => {
                                     <p>{ review.review }</p>
                                     <span>Rating: { review.rating } <span className="star">★</span></span>
                                     <h4>Review by: <Link className="reviewAuthor" to={`/user/${review.authorId}`}>{ review.author }</Link></h4>
-                                    <h5>{ formatPostTime(review.createdAt) }</h5>
+                                    <h5>{ FormatDate(review.createdAt) }</h5>
                                 </div>
                             ))}
                         </div>

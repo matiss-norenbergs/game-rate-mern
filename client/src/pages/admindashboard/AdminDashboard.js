@@ -1,5 +1,6 @@
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
 import useAdminFetch from "../../hooks/useAdminFetch";
 
@@ -8,13 +9,6 @@ const AdminDashboard = () => {
     const { data: data2, isPending: isPending2, error: error2 } = useAdminFetch('/api/users/count');
     const { data: data3, isPending: isPending3, error: error3 } = useAdminFetch('/api/games/admin/submittedlast');
     let nr = 11;
-
-    const dateFormat = (date) => {
-        const moment = require("moment");
-        let daysAgo = moment(date).format('DD.MM.YYYY, HH:mm');
-        
-        return daysAgo;
-    }
 
     return (
         <>
@@ -65,8 +59,8 @@ const AdminDashboard = () => {
                                     <tr key={ index }>
                                         <td>{ nr }.</td>
                                         <td>{ game.title }</td>
-                                        <td>{ dateFormat(game.createdAt) }</td>
-                                        <td>{ dateFormat(game.updatedAt) }</td>
+                                        <td>{ FormatDateNum(game.createdAt) }</td>
+                                        <td>{ FormatDateNum(game.updatedAt) }</td>
                                         <td className="centerCell">
                                             { game.publicVisible === true ?
                                                 <FontAwesomeIcon className="icon green" icon={faCheck} />

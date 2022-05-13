@@ -2,6 +2,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
 import useAdminFetch from "../../hooks/useAdminFetch";
 
@@ -9,13 +10,6 @@ const AdminUsers = () => {
     const { data: users, isPending, error } = useAdminFetch("/api/users/allusers");
     const [searchValue, setSearchValue] = useState("");
     const searchInput = useRef(null);
-
-    const dateFormat = (date) => {
-        const moment = require("moment");
-        let daysAgo = moment(date).format('DD.MM.YYYY, HH:mm');
-        
-        return daysAgo;
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,7 +25,7 @@ const AdminUsers = () => {
             { !isPending && users &&
                 <>
                     <form onSubmit={ handleSubmit } className="tableFilter">
-                        <input type="text" ref={searchInput} placeholder="Search by name or ID" />
+                        <input type="text" ref={ searchInput } placeholder="Search by name or ID" />
                         <button type="submit"><FontAwesomeIcon icon={ faMagnifyingGlass } /></button>
                     </form>
 
@@ -60,8 +54,8 @@ const AdminUsers = () => {
                                     <td>{ user.name }</td>
                                     <td>{ user.email }</td>
                                     <td>{ user.role }</td>
-                                    <td>{ dateFormat(user.createdAt) }</td>
-                                    <td>{ dateFormat(user.updatedAt) }</td>
+                                    <td>{ FormatDateNum(user.createdAt) }</td>
+                                    <td>{ FormatDateNum(user.updatedAt) }</td>
                                 </tr>
                             ))}
                         </tbody>
