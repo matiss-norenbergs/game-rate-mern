@@ -79,7 +79,7 @@ const getUser = asyncHandler( async (req, res) => {
         throw new Error("ID not found")
     }
 
-    const user = await User.findById(userId, 'name picture reviews');
+    const user = await User.findById(userId, 'name picture reviews role');
 
     res.json(user);
 })
@@ -143,6 +143,20 @@ const updatePassword = asyncHandler( async (req, res) => {
     res.json({ message: "Password updated!" });
 })
 
+// Change users role
+const updateRole = asyncHandler( async (req, res) => {
+    if(req.user.role !== "admin"){
+        res.status(401)
+        throw new Error("User is not an admin")
+    }
+
+    const role = req.body.role;
+
+    await User.findByIdAndUpdate(req.params.id, { role }, { new: true });
+
+    res.json("Users role updated!");
+})
+
 // Checks if the current user has "admin" role
 const getAdmin = asyncHandler( async (req, res) => {
     if(req.user.role === "admin"){
@@ -177,4 +191,4 @@ const countUsers = asyncHandler( async (req, res) => {
     res.json({ users });
 })
 
-module.exports = { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, getAdmin, countUsers }
+module.exports = { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, updateRole, getAdmin, countUsers }

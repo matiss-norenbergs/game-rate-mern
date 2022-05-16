@@ -38,6 +38,7 @@ const AdminUsers = () => {
                                 <th>Role</th>
                                 <th>Created</th>
                                 <th>Updated</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
 
@@ -56,6 +57,9 @@ const AdminUsers = () => {
                                     <td>{ user.role }</td>
                                     <td>{ FormatDateNum(user.createdAt) }</td>
                                     <td>{ FormatDateNum(user.updatedAt) }</td>
+                                    <td className="centerCell">
+                                        <Link className="cellOption" to={`/admin/user/update/${user._id}`}>Update</Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
