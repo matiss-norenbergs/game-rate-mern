@@ -1,3 +1,5 @@
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -10,8 +12,9 @@ import "./Profile.css";
 const Profile = () => {
     const { user } = useSelector((state) => state.auth);
     const navigate = useNavigate();
-    const { data: games, isPending, error: gameError } = useFetch(`/api/games/users_reviews/${user._id}`);
+    const { data, isPending, error: gameError } = useFetch(`/api/games/users_reviews/${user._id}`);
 
+    const [games, setGames] = useState([]);
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
@@ -62,6 +65,14 @@ const Profile = () => {
 
         setUpdateProfile(false);
     }
+
+    const handleDeleteReview = async (gameId, review_id) => {
+        const response = await axios.put(`/api/games/deletereview/${gameId}`, { review_id }, config);
+        if(response && response.status === 200){
+            const newGames = games.filter((game) => game._id !== gameId);
+            setGames(newGames);
+        }
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -83,6 +94,12 @@ const Profile = () => {
             navigate("/");
         }
     }, [user, navigate]);
+
+    useEffect(() => {
+        if(data && !isPending){
+            setGames(data);
+        }
+    }, [data, isPending]);
 
     return (
         <div className="gameRatePages">
@@ -121,6 +138,10 @@ const Profile = () => {
 
                                 { games.map((game, index) => (
                                     <div className="myReview" key={ index }>
+                                        <button className="btnDelete" onClick={ () => handleDeleteReview(game._id, game.reviews[0]._id) } type="button">
+                                            <FontAwesomeIcon icon={ faTrashCan } /> Delete
+                                        </button>
+
                                         <Link to={`/game/${game._id}`}>
                                             <h2>{ game.title }</h2>
                                         </Link>
@@ -146,7 +167,7 @@ const Profile = () => {
                         </section>
 
                         <section className="userInfo">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={ handleSubmit }>
                                 <label>Select picture:</label>
                                 <select value={picture} onChange={(e) => setPicture(e.target.value)}>
                                     { profilePics.map((pic, index) => (

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, getAdmin, countUsers } = require("../controllers/userController");
+const { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, updateRole, getAdmin, countUsers } = require("../controllers/userController");
 const { protect } = require("../middleware/authMiddleware");
 
 // Register a new user
@@ -20,6 +20,9 @@ router.put("/updatepicture", protect, updatePicture);
 
 // Update users password
 router.put("/updatepass", protect, updatePassword);
+
+// Update users role
+router.put("/updaterole/:id", protect, updateRole);
 
 // Check if user is admin
 router.get("/isAdmin", protect, getAdmin);

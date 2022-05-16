@@ -54,7 +54,7 @@ const AdminGames = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th className="imageCell">Cover</th>
+                                <th>Cover</th>
                                 <th>Title</th>
                                 <th>Tags</th>
                                 <th>Submitted</th>

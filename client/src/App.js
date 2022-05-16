@@ -22,6 +22,8 @@ import PostUpdate from './pages/adminupdate/PostUpdate';
 import UsersProfile from './pages/profile/UsersProfile';
 import AdminUsers from './pages/adminusers/AdminUsers';
 import News from './pages/news/News';
+import Footer from './components/footer/Footer';
+import UserUpdate from './pages/adminupdate/UserUpdate';
 
 function App() {
   return (
@@ -55,8 +57,11 @@ function App() {
             <Route path="post/create" element={ <PostCreate /> } />
             <Route path="post/update/:id" element={ <PostUpdate /> } />
             <Route path="users" element={ <AdminUsers /> } />
+            <Route path="user/update/:id" element={ <UserUpdate /> } />
           </Route>
         </Routes>
+
+        <Footer />
       </Router>
     </>
   );
