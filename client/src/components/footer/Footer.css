@@ -1,0 +1,12 @@
+footer {
+    padding-top: 1rem;
+}
+
+footer > h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 1.8rem 0;
+    background: var(--accent-color);
+    color: #ddd;
+}

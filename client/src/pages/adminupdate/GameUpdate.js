@@ -160,7 +160,7 @@ const GameUpdate = () => {
                                 </div>
                                 
                                 <label>Visibility:</label>
-                                <select value={publicVisible} onChange={ (e) => setPublicVisible(e.target.value) }>
+                                <select value={ publicVisible } onChange={ (e) => setPublicVisible(e.target.value) }>
                                     <option value={ false }>Private</option>
                                     <option value={ true }>Public</option>
                                 </select>

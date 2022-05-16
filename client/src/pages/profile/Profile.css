@@ -140,10 +140,26 @@
     width: 100%;
     padding: .5rem 1.5rem;
     border-bottom: 2px solid var(--accent-color);
-    background: var(--transparent-black);
+    background: var(--background);
+}
+
+.myReviews .myReview .btnDelete {
+    align-self: flex-end;
+    margin-bottom: .5rem;
+    padding: .2rem .5rem;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--white2);
+}
+
+.myReviews .myReview .btnDelete:hover {
+    background: var(--accent-color);
+    color: var(--background);
 }
 
 .myReviews .myReview > a {
+    width: fit-content;
     margin-bottom: .5rem;
     color: var(--white2);
     text-decoration: underline 3px var(--accent-color);
@@ -214,5 +230,9 @@
 
     .profileMessage > h2 {
         font-size: 1.4rem;
+    }
+
+    .myReviews .myReview {
+        padding: .5rem 1rem;
     }
 }
