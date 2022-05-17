@@ -123,6 +123,19 @@
     border-radius: 1.5rem;
 }
 
+.gameInfo > form .reviewMessage {
+    width: 100%;
+    margin: 0 auto;
+    padding: .5rem;
+    text-align: center;
+    background: linear-gradient(
+        to right, rgba(255, 255, 255, 0), 
+        var(--accent-color), 
+        rgba(255, 255, 255, 0)
+    );
+    color: #ddd;
+}
+
 .gameInfo > form .rate {
     align-self: flex-start;
     padding-bottom: 1rem; 

@@ -76,6 +76,7 @@
     padding: .2rem .4rem;
     background: var(--transparent-black);
     animation: showTagList .5s linear forwards;
+    user-select: none;
 }
 
 .gameFilterTags > .tagRow > input {

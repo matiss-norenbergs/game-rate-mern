@@ -24,7 +24,7 @@ const userSchema = Schema(
             type: String,
             default: "user"
         },
-        reviews: {
+        reviewCount: {
             type: Number,
             default: 0
         }

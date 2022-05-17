@@ -43,6 +43,16 @@ body {
   color: var(--white2);
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
 .gameRatePages {
   padding: var(--page-padding);
   color: var(--white2);
