@@ -31,12 +31,18 @@ const Game = () => {
             if(response.status === 200){
                 setMessage(response.data.message);
 
+                let myData = JSON.parse(localStorage.getItem("user"));
+                myData.reviewCount = myData.reviewCount + 1;
+                localStorage.setItem("user", JSON.stringify(myData));
+
                 setTimeout(() => {
                     window.location.reload(false);
-                }, [1700])
+                }, [1700]);
             }else{
-                console.log(response);
+                alert(response);
             }
+        }else{
+            setMessage("Something went wrong!")
         }
     }
 
@@ -96,7 +102,7 @@ const Game = () => {
 
                     { user && (
                         <form onSubmit={ handleSubmit }>
-                            { message && <h2>{ message }</h2> }
+                            { message && <h2 className="reviewMessage">{ message }</h2> }
                             <div className="rate">
                                 <input type="radio" id="star5" name="rate" value="5" onChange={ (e) => setRating(e.target.value) } />
                                 <label htmlFor="star5" title="text">5 stars</label>

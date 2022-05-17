@@ -32,6 +32,7 @@
     display: flex;
     align-items: center;
     padding: 2px 0;
+    user-select: none;
 }
 
 .submitForm .gameTags .tagList .tagRow input[type=checkbox] {

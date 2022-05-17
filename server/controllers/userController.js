@@ -6,7 +6,6 @@ const User = require("../models/userModel");
 // Register new user with POST
 const registerUser = asyncHandler( async (req, res) => {
     const { name, email, password } = req.body
-
     if(!name || !email || !password){
         res.status(400)
         throw new Error("Please add all fields!")
@@ -14,7 +13,6 @@ const registerUser = asyncHandler( async (req, res) => {
 
     //Check existance
     const userExists = await User.findOne({email});
-
     if(userExists){
         res.status(400)
         throw new Error("User already exists")
@@ -38,7 +36,7 @@ const registerUser = asyncHandler( async (req, res) => {
             email: user.email,
             picture: user.picture,
             role: user.role,
-            reviews: user.reviews,
+            reviewCount: user.reviewCount,
             token: generateToken(user.id)
         });
     }else{
@@ -53,7 +51,6 @@ const loginUser = asyncHandler( async (req, res) => {
 
     //Check users email
     const user = await User.findOne({ email });
-
     if(user && (await bcrypt.compare(password, user.password))){
         res.json({
             _id: user.id,
@@ -61,7 +58,7 @@ const loginUser = asyncHandler( async (req, res) => {
             email: user.email,
             picture: user.picture,
             role: user.role,
-            reviews: user.reviews,
+            reviewCount: user.reviewCount,
             token: generateToken(user.id)
         })
     }else{
@@ -73,13 +70,12 @@ const loginUser = asyncHandler( async (req, res) => {
 // Get single users data - public
 const getUser = asyncHandler( async (req, res) => {
     const userId = req.params.id;
-
     if(!userId){
         res.status(400)
         throw new Error("ID not found")
     }
 
-    const user = await User.findById(userId, 'name picture reviews role');
+    const user = await User.findById(userId, 'name picture reviewCount role');
 
     res.json(user);
 })
@@ -105,14 +101,12 @@ const getUsers = asyncHandler( async (req, res) => {
 // Change users profile picture
 const updatePicture = asyncHandler( async (req, res) => {
     const user = await User.findById(req.user.id);
-
     if(!user){
         res.status(400)
         throw new Error("User doesn't exist")
     }
 
     const picture = req.body.picture;
-
     await User.findByIdAndUpdate(req.user.id, { picture }, { new: true, timestamps: false });
 
     res.json({ message: "Picture updated!" });
@@ -121,14 +115,12 @@ const updatePicture = asyncHandler( async (req, res) => {
 // Change users password
 const updatePassword = asyncHandler( async (req, res) => {
     const user = await User.findById(req.user.id);
-
     if(!user){
         res.status(400)
         throw new Error("User doesn't exist")
     }
 
     const { password, password2 } = req.body;
-
     if(password.lenght >= 8 || password !== password2){
         res.status(400)
         throw new Error("Invalid users input")
@@ -137,7 +129,6 @@ const updatePassword = asyncHandler( async (req, res) => {
     //Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
     await User.findByIdAndUpdate(req.user.id, { password: hashedPassword }, { new: true });
 
     res.json({ message: "Password updated!" });
@@ -151,7 +142,6 @@ const updateRole = asyncHandler( async (req, res) => {
     }
 
     const role = req.body.role;
-
     await User.findByIdAndUpdate(req.params.id, { role }, { new: true });
 
     res.json("Users role updated!");

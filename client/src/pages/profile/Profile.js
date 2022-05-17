@@ -71,6 +71,11 @@ const Profile = () => {
         if(response && response.status === 200){
             const newGames = games.filter((game) => game._id !== gameId);
             setGames(newGames);
+
+            let myData = JSON.parse(localStorage.getItem("user"));
+            myData.reviewCount = myData.reviewCount - 1;
+            localStorage.setItem("user", JSON.stringify(myData));
+            window.location.reload(false);
         }
     }
     
@@ -116,7 +121,7 @@ const Profile = () => {
                         <section className="userInfo">
                             <h2>Email: { user.email }</h2>
                             <h2>Role: { user.role }</h2>
-                            <h2>Review count: { user.reviews }</h2>
+                            <h2>Review count: { user.reviewCount }</h2>
                             <div className="profileBtns">
                                 <button onClick={() => setUpdateProfile(!updateProfile)}>Update information</button>
                             </div>

@@ -266,6 +266,7 @@
 .adminPage .formPage .formData > form .checkList > .tags .tagRow {
     display: flex;
     align-items: center;
+    user-select: none;
 }
 
 .adminPage .formPage .formData > form .checkList > .tags .tagRow input[type=checkbox] {

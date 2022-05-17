@@ -23,7 +23,7 @@ const UsersProfile = () => {
                         </section>
 
                         <section className="userInfo">
-                            <h2>Review count: { user.reviews }</h2>
+                            <h2>Review count: { user.reviewCount }</h2>
                         </section>
                     </div>
                     
