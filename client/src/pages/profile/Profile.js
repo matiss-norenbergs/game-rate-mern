@@ -189,7 +189,7 @@ const Profile = () => {
                                 <input type="password" value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder="Repeat password (8 symbols)" />
                             
                                 <div className="profileBtns">
-                                    <button onClick={() => setUpdateProfile(!updateProfile)}>Cancel</button>
+                                    <button type="button" onClick={() => setUpdateProfile(!updateProfile)}>Cancel</button>
                                     <button type="submit">Update</button>
                                 </div>
                             </form>

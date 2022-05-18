@@ -31,8 +31,8 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(password !== password2){
-            alert("Passwords do not match")
+        if(password !== password2 || password.length < 8 || password2.length < 8){
+            alert("Passwords do not match or are too short!")
         }else{
             const userData = { name, email, password }
 
@@ -55,21 +55,25 @@ const Register = () => {
                 <div className="formRow">
                     <label>Username</label>
                     <input type="text" value={name} onChange={ (e) => setName(e.target.value) } placeholder="* Enter your username" />
+                    <h4 className="infoTip">Usernames display on reviews</h4>
                 </div><hr />
 
                 <div className="formRow">
                     <label>E-mail</label>
                     <input type="email" value={email} onChange={ (e) => setEmail(e.target.value) } placeholder="* Enter your email" />
+                    <h4 className="infoTip">Unique e-mail</h4>
                 </div><hr />
 
                 <div className="formRow">
                     <label>Password</label>
                     <input type="password" value={password} onChange={ (e) => setPassword(e.target.value) } placeholder="* Enter you password" />
+                    <h4 className="infoTip">8 characters min</h4>
                 </div><hr />
 
                 <div className="formRow">
                     <label>Password repeat</label>
-                    <input type="password" value={password2} onChange={ (e) => setPassword2(e.target.value) } placeholder="* Enter your password again" />
+                    <input type="password" value={password2} onChange={ (e) => setPassword2(e.target.value) } placeholder="* Repeat your password" />
+                    <h4 className="infoTip">8 characters min</h4>
                 </div><hr />
 
                 <div className="formRow">
