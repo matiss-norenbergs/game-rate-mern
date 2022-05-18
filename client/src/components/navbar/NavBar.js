@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faChartColumn, faFillDrip, faGamepad, faHouse, faRightFromBracket, faRightToBracket, faUserAlt, faUserPen } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faChartColumn, faFillDrip, faGamepad, faHouse, faNewspaper, faRightFromBracket, faRightToBracket, faUserAlt, faUserPen } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../../redux/features/auth/authSlice";
 import "./NavBar.css";
@@ -70,6 +70,7 @@ const NavBar = () => {
 
                     <div className="options">
                         <NavLink className="option mobile" to="/">Home <FontAwesomeIcon icon={ faHouse } /></NavLink>
+                        <NavLink className="option mobile" to="news">News <FontAwesomeIcon icon={ faNewspaper } /></NavLink>
                         <NavLink className="option mobile" to="/games">Games <FontAwesomeIcon icon={ faGamepad } /></NavLink>
 
                         { user &&
