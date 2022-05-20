@@ -1,0 +1,52 @@
+.topUserList .userCard {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem 0;
+    padding: .5rem;
+    padding-right: 1rem;
+    background: var(--transparent-black);
+    border: 1px solid var(--accent-color);
+    animation: showCard .4s ease-in-out forwards;
+    transition: width .5s;
+}
+
+@keyframes showCard {
+    from{ transform: translateX(250%); }
+    to { transform: translateX(0%); }
+}
+
+.topUserList .userCard:hover {
+    width: 115%;
+}
+
+.topUserList .userCard .imageName {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.topUserList .userCard .imageName > img {
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    border: 1px solid var(--accent-color);
+}
+
+.topUserList .userCard .imageName > h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--white2);
+}
+
+.topUserList .userCard .reviewsRank {
+    text-align: right;
+}
+
+.topUserList .userCard .reviewsRank > h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--white2);
+}

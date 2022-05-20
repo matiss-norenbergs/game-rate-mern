@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, updateRole, getAdmin, countUsers } = require("../controllers/userController");
+const { registerUser, loginUser, getUser, getUsers, getTopUsers, updatePicture, updatePassword, updateRole, getAdmin, countUsers } = require("../controllers/userController");
 const { protect } = require("../middleware/authMiddleware");
 
 // Register a new user
@@ -11,6 +11,9 @@ router.post("/login", loginUser);
 
 // Get single users basic data
 router.get("/user/:id", getUser);
+
+// Get top 3 users
+router.get("/topusers", getTopUsers);
 
 // Get all users - admin
 router.get("/allusers", protect, getUsers);
