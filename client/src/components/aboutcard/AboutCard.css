@@ -1,0 +1,43 @@
+.aboutCard {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--accent-color);
+    background: var(--transparent-black);
+    opacity: 0;
+    animation: showInfoCard 1.2s ease-in-out forwards;
+}
+
+@keyframes showInfoCard {
+    form {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.aboutCard > p {
+    margin-top: .5rem;
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.8rem;
+}
+
+.aboutCard > button {
+    align-self: flex-end;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    border: 2px solid var(--accent-color);
+    background: var(--accent-color);
+    color: #ddd;
+}
+
+.aboutCard > button:hover {
+    background: transparent;
+    color: var(--white2);
+}

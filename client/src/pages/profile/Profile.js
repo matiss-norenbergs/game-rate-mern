@@ -1,4 +1,4 @@
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faDna, faEnvelope, faRankingStar, faStarHalfStroke, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
+import RankCalc from "../../components/rankcalc/RankCalc";
 import useFetch from "../../hooks/useFetch";
 import "./Profile.css";
 
@@ -114,14 +115,28 @@ const Profile = () => {
 
                     <div className="usersData">
                         <section className="userImg">
-                            <img src={require(`../../images/${user.picture}`)} alt="Profile pic" />
+                            <img src={ require(`../../images/${user.picture}`) } alt="Profile pic" />
                             <h2>{ user.name }</h2>
                         </section>
 
                         <section className="userInfo">
-                            <h2>Email: { user.email }</h2>
-                            <h2>Role: { user.role }</h2>
-                            <h2>Review count: { user.reviewCount }</h2>
+                            <h2>
+                                <i><FontAwesomeIcon icon={ faEnvelope } /></i>
+                                Email: { user.email }
+                            </h2>
+                            <h2>
+                                <i><FontAwesomeIcon icon={ faDna } /></i>
+                                Role: { user.role }
+                            </h2>
+                            <h2>
+                                <i><FontAwesomeIcon icon={ faStarHalfStroke } /></i>
+                                Review count: { user.reviewCount }
+                            </h2>
+                            <h2>
+                                <i><FontAwesomeIcon icon={ faRankingStar } /></i>
+                                Rank: { RankCalc(user.reviewCount) }
+                            </h2>
+
                             <div className="profileBtns">
                                 <button onClick={() => setUpdateProfile(!updateProfile)}>Update information</button>
                             </div>
@@ -181,7 +196,7 @@ const Profile = () => {
                                 </select>
 
                                 <div className="profileBtns">
-                                    <button className="btnSmall" type="button" onClick={ updatePfp }>Save</button>
+                                    <button className="btnSmall" type="button" onClick={ updatePfp }>Save picture</button>
                                 </div>
 
                                 <label>Change password:</label>
@@ -190,7 +205,7 @@ const Profile = () => {
                             
                                 <div className="profileBtns">
                                     <button type="button" onClick={() => setUpdateProfile(!updateProfile)}>Cancel</button>
-                                    <button type="submit">Update</button>
+                                    <button type="submit">Update password</button>
                                 </div>
                             </form>
                         </section>

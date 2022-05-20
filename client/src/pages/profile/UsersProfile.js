@@ -1,6 +1,9 @@
+import { faRankingStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
+import RankCalc from "../../components/rankcalc/RankCalc";
 import useFetch from "../../hooks/useFetch";
 
 const UsersProfile = () => {
@@ -23,7 +26,14 @@ const UsersProfile = () => {
                         </section>
 
                         <section className="userInfo">
-                            <h2>Review count: { user.reviewCount }</h2>
+                            <h2>
+                                <i><FontAwesomeIcon icon={ faStarHalfStroke } /></i>
+                                Review count: { user.reviewCount }
+                            </h2>
+                            <h2>
+                                <i><FontAwesomeIcon icon={ faRankingStar } /></i>
+                                Rank: { RankCalc(user.reviewCount) }
+                            </h2>
                         </section>
                     </div>
                     
@@ -49,6 +59,9 @@ const UsersProfile = () => {
                         </>
                     ) }
                 </>
+            ) }
+            { !isPending && !user && (
+                <h1>User doesn't exist or isn't available</h1>
             ) }
         </div>
     );

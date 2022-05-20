@@ -98,6 +98,12 @@ const getUsers = asyncHandler( async (req, res) => {
     res.json(users);
 })
 
+const getTopUsers = asyncHandler( async (req, res) => {
+    const users = await User.find({}, 'name picture reviewCount').sort({ reviewCount: -1 }).limit(3);
+
+    res.json(users);
+})
+
 // Change users profile picture
 const updatePicture = asyncHandler( async (req, res) => {
     const user = await User.findById(req.user.id);
@@ -181,4 +187,4 @@ const countUsers = asyncHandler( async (req, res) => {
     res.json({ users });
 })
 
-module.exports = { registerUser, loginUser, getUser, getUsers, updatePicture, updatePassword, updateRole, getAdmin, countUsers }
+module.exports = { registerUser, loginUser, getUser, getUsers, getTopUsers, updatePicture, updatePassword, updateRole, getAdmin, countUsers }

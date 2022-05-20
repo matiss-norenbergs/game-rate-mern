@@ -4,15 +4,42 @@
     color: var(--white2);
 }
 
-.homeContents .newsBox {
+.homeContents .mainBox {
     width: 100%;
     padding-right: 2rem;
 }
 
-.homeContents .newAddedGames {
+.homeContents .sideBox {
     width: 32rem;
     padding-left: 2rem;
     border-left: 1px solid var(--accent-color);
+}
+
+.homeContents .showAbout {
+    display: flex;
+    align-items: center;
+    float: right;
+    font-size: 1.2rem;
+    background: transparent;
+    color: var(--white2);
+}
+
+.homeContents .showAbout:hover {
+    color: var(--white);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.homeContents .showAbout > i {
+    font-size: 1.5rem;
+    margin-right: .5rem;
+}
+
+.homeContents .hideAbout {
+    display: flex;
+    align-self: flex-end;
+    width: 100%;
+    text-align: right;
+    border: 1px solid red;
 }
 
 @media (max-width: 940px) {
@@ -21,11 +48,11 @@
         padding-top: 1rem;
     }
 
-    .homeContents .newsBox {
+    .homeContents .mainBox {
         padding-right: 0;
     }
 
-    .homeContents .newAddedGames {
+    .homeContents .sideBox {
         width: 100%;
         padding-left: 0;
         border-left: none;
