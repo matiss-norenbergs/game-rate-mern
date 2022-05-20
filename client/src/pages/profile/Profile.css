@@ -38,6 +38,12 @@
     font-weight: 500;
 }
 
+.usersData .userInfo > h2 > i {
+    display: inline-block;
+    width: 2rem;
+    margin-right: .5rem;
+}
+
 .usersData .userInfo .profileBtns {
     display: flex;
     justify-content: space-evenly;
@@ -45,9 +51,9 @@
 
 .usersData .userInfo .profileBtns > button,
 .usersData .userInfo .profileBtns .btnSmall {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     margin-top: 2rem;
-    padding: 1rem 2rem;
+    padding: 1rem 1.8rem;
     border: 2px solid var(--accent-color);
     border-radius: 5px;
     background: var(--accent-color);
