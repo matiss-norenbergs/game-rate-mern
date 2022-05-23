@@ -8,6 +8,7 @@ import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
 import "./Game.css";
 import FormatDate from "../../components/formatdate/FormatDate";
+import LikeDislike from "../../components/likedislike/LikeDislike";
 
 const Game = () => {
     const { id } = useParams();
@@ -135,6 +136,14 @@ const Game = () => {
                                     <span>Rating: { review.rating } <span className="star">★</span></span>
                                     <h4>Review by: <Link className="reviewAuthor" to={`/user/${review.authorId}`}>{ review.author }</Link></h4>
                                     <h5>{ FormatDate(review.createdAt) }</h5>
+
+                                    <LikeDislike
+                                        gameId={ id }
+                                        reviewId={ review._id }
+                                        userId={ user ? user._id : null }
+                                        reviewLikes={ review.likes }
+                                        reviewDislikes={ review.dislikes }
+                                    />
                                 </div>
                             ))}
                         </div>
