@@ -3,10 +3,16 @@ const { Schema } = mongoose;
 
 const reviewSchema = Schema(
     {
-        review: String,
         author: String,
         authorId: mongoose.Schema.Types.ObjectId,
-        rating: Number
+        review: String,
+        rating: Number,
+        likes: [
+            Schema.Types.ObjectId
+        ],
+        dislikes: [
+            Schema.Types.ObjectId
+        ]
     },
     {
         timestamps: true
