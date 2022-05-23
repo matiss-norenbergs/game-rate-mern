@@ -54,7 +54,10 @@ const getUsersReviewedGames = asyncHandler( async (req, res) => {
         throw new Error("Users ID not found")
     }
 
-    const games = await Game.find({ 'reviews.authorId': userId }, { title: 1, reviews: { $elemMatch: { authorId: userId } } } );
+    const games = await Game.find(
+        { reviews: { $elemMatch: { authorId: userId } } }, 
+        { title: 1, 'reviews.$': 1 } 
+    );
     res.json(games);
 })
 
