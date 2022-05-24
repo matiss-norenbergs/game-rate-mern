@@ -31,11 +31,7 @@ const Game = () => {
         if(response){
             if(response.status === 200){
                 setMessage(response.data.message);
-
-                let myData = JSON.parse(localStorage.getItem("user"));
-                myData.reviewCount = myData.reviewCount + 1;
-                localStorage.setItem("user", JSON.stringify(myData));
-
+                
                 setTimeout(() => {
                     window.location.reload(false);
                 }, [1700]);

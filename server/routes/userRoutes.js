@@ -9,28 +9,28 @@ router.post("/", registerUser);
 // Login a registered user
 router.post("/login", loginUser);
 
-// Get single users basic data
+// Get single users basic data - Public
 router.get("/user/:id", getUser);
 
-// Get top 3 users
+// Get top 3 users - Public
 router.get("/topusers", getTopUsers);
 
-// Get all users - admin
+// Get all users - Admin
 router.get("/allusers", protect, getUsers);
 
-// Update users picture
+// Update users picture - User
 router.put("/updatepicture", protect, updatePicture);
 
-// Update users password
+// Update users password - User
 router.put("/updatepass", protect, updatePassword);
 
-// Update users role
+// Update users role - Admin
 router.put("/updaterole/:id", protect, updateRole);
 
-// Check if user is admin
+// Check if user is admin - Admin
 router.get("/isAdmin", protect, getAdmin);
 
-// Counts users that aren't admins
+// Counts users that aren't admins - Admin
 router.get("/count", protect, countUsers);
 
 module.exports = router
