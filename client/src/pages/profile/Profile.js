@@ -16,6 +16,8 @@ const Profile = () => {
     const { data, isPending, error: gameError } = useFetch(`/api/games/users_reviews/${user._id}`);
 
     const [games, setGames] = useState([]);
+    const [reviewCount, setReviewCount] = useState(0);
+    const [positiveRev, setPositiveRev] = useState(0);
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
@@ -72,10 +74,7 @@ const Profile = () => {
         if(response && response.status === 200){
             const newGames = games.filter((game) => game._id !== gameId);
             setGames(newGames);
-
-            let myData = JSON.parse(localStorage.getItem("user"));
-            myData.reviewCount = myData.reviewCount - 1;
-            localStorage.setItem("user", JSON.stringify(myData));
+            
             window.location.reload(false);
         }
     }
@@ -86,7 +85,6 @@ const Profile = () => {
             updatePassword();
         }else{
             setError("Password is too short or they do not match...");
-
             setTimeout(() => {
                 setError("");
             }, [3000]);
@@ -103,7 +101,9 @@ const Profile = () => {
 
     useEffect(() => {
         if(data && !isPending){
-            setGames(data);
+            setGames(data.games);
+            setReviewCount(data.games.length);
+            setPositiveRev(data.positiveReviews);
         }
     }, [data, isPending]);
 
@@ -130,11 +130,11 @@ const Profile = () => {
                             </h2>
                             <h2>
                                 <i><FontAwesomeIcon icon={ faStarHalfStroke } /></i>
-                                Review count: { user.reviewCount }
+                                Review count: { reviewCount }
                             </h2>
                             <h2>
                                 <i><FontAwesomeIcon icon={ faRankingStar } /></i>
-                                Rank: { RankCalc(user.reviewCount) }
+                                Rank: { RankCalc(positiveRev) }
                             </h2>
 
                             <div className="profileBtns">

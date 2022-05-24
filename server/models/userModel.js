@@ -27,7 +27,13 @@ const userSchema = Schema(
         reviewCount: {
             type: Number,
             default: 0
-        }
+        },
+        following: [
+            mongoose.Schema.Types.ObjectId
+        ],
+        followers: [
+            mongoose.Schema.Types.ObjectId
+        ],
     },
     {
         timestamps: true
