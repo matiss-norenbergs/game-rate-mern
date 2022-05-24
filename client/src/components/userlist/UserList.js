@@ -1,25 +1,14 @@
-import { Link } from "react-router-dom";
-import RankCalc from "../rankcalc/RankCalc";
-import "./UserList.css"
+import UserCard from "../usercard/UserCard";
 
 const UserList = (props) => {
     const users = props.users;
 
     return (
-        <div className="topUserList">
+        <div>
             { users.map((user, index) => (
-                <Link to={`/user/${user._id}`} key={ index } className="userCard">
-                    <section className="imageName">
-                        <img src={ require(`../../images/${user.picture}`) } alt={user.picture} />
-                        <h2>{ user.name }</h2>
-                    </section>
-
-                    <section className="reviewsRank">
-                        <h3>
-                            Rank: { RankCalc(user.reviewCount) }
-                        </h3>
-                    </section>
-                </Link>
+                <div key={index}>
+                    <UserCard user={ user } />
+                </div>
             )) }
         </div>
     );

@@ -58,7 +58,15 @@ const getUsersReviewedGames = asyncHandler( async (req, res) => {
         { reviews: { $elemMatch: { authorId: userId } } }, 
         { title: 1, 'reviews.$': 1 } 
     );
-    res.json(games);
+
+    let positiveReviews = 0;
+    games.forEach(game => {
+        if(game.reviews[0].likes.length > game.reviews[0].dislikes.length){
+            positiveReviews++;
+        }
+    })
+
+    res.json({ games, positiveReviews });
 })
 
 // Fetch one game by ID

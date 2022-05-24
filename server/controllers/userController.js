@@ -11,18 +11,18 @@ const registerUser = asyncHandler( async (req, res) => {
         throw new Error("Please add all fields!")
     }
 
-    //Check existance
+    // Check existance
     const userExists = await User.findOne({email});
     if(userExists){
         res.status(400)
         throw new Error("User already exists")
     }
 
-    //Hash password
+    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    //Create user
+    // Create user
     const user = await User.create({
         name,
         email,
@@ -36,7 +36,6 @@ const registerUser = asyncHandler( async (req, res) => {
             email: user.email,
             picture: user.picture,
             role: user.role,
-            reviewCount: user.reviewCount,
             token: generateToken(user.id)
         });
     }else{
@@ -58,7 +57,6 @@ const loginUser = asyncHandler( async (req, res) => {
             email: user.email,
             picture: user.picture,
             role: user.role,
-            reviewCount: user.reviewCount,
             token: generateToken(user.id)
         })
     }else{
@@ -75,13 +73,12 @@ const getUser = asyncHandler( async (req, res) => {
         throw new Error("ID not found")
     }
 
-    const user = await User.findById(userId, 'name picture reviewCount role');
-
+    const user = await User.findById(userId, 'name picture reviewCount following followers');
     res.json(user);
 })
 
 const getUsers = asyncHandler( async (req, res) => {
-    //Check for user
+    // Check for user
     if(!req.user){
         res.status(401)
         throw new Error("User not found")
@@ -164,13 +161,14 @@ const getAdmin = asyncHandler( async (req, res) => {
     return;
 })
 
-//Generate JWT
+// Generate JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: "7d"
     })
 }
 
+// Counts users that aren't suspended and aren't admins - Admin
 const countUsers = asyncHandler( async (req, res) => {
     if(!req.user){
         res.status(401)
