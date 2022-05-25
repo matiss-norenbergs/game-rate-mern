@@ -1,9 +1,10 @@
-import { faDna, faEnvelope, faRankingStar, faStarHalfStroke, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faDna, faEnvelope, faRankingStar, faStarHalfStroke, faTrashCan, faUserGroup, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import FollowBox from "../../components/followbox/FollowBox";
 import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
 import RankCalc from "../../components/rankcalc/RankCalc";
@@ -12,18 +13,24 @@ import "./Profile.css";
 
 const Profile = () => {
     const { user } = useSelector((state) => state.auth);
-    const navigate = useNavigate();
+
     const { data, isPending, error: gameError } = useFetch(`/api/games/users_reviews/${user._id}`);
+    const { data: follows, isPending: isPending2, error: followError } = useFetch(`/api/follow/getFollows/${user._id}`);
 
     const [games, setGames] = useState([]);
     const [reviewCount, setReviewCount] = useState(0);
     const [positiveRev, setPositiveRev] = useState(0);
+    const [following, setFollowing] = useState([]);
+    const [followers, setFollowers] = useState([]);
+
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
     const [updateProfile, setUpdateProfile] = useState(false);
+    const [showFollowBox, setShowFollowBox] = useState(false);
+    const [showFollowing, setShowFollowing] = useState(true);
 
     const profilePics = [
         { name: "Default picture", picture: "profile1.jpg" },
@@ -90,14 +97,17 @@ const Profile = () => {
             }, [3000]);
         }
     }
+
+    const handleFollowBox = (showBox, showFollowing) => {
+        setShowFollowBox(showBox);
+        setShowFollowing(showFollowing);
+    }
     
     useEffect(() => {
         if(user){
             setPicture(user.picture);
-        }else{
-            navigate("/");
         }
-    }, [user, navigate]);
+    }, [user]);
 
     useEffect(() => {
         if(data && !isPending){
@@ -107,10 +117,26 @@ const Profile = () => {
         }
     }, [data, isPending]);
 
+    useEffect(() => {
+        if(follows && !isPending2 && !followError){
+            setFollowing(follows.following);
+            setFollowers(follows.followers);
+        }
+    }, [follows, isPending2, followError]);
+
     return (
         <div className="gameRatePages">
             { user && updateProfile === false ? (
                 <>
+                    { showFollowBox &&
+                        <FollowBox
+                            handleFollowBox={ handleFollowBox }
+                            following={ following }
+                            followers={ followers }
+                            showFollowing={ showFollowing }
+                        />
+                    }
+
                     <h1>My profile</h1>
 
                     <div className="usersData">
@@ -135,6 +161,14 @@ const Profile = () => {
                             <h2>
                                 <i><FontAwesomeIcon icon={ faRankingStar } /></i>
                                 Rank: { RankCalc(positiveRev) }
+                            </h2>
+                            <h2 className="infoBtn" onClick={ () => handleFollowBox(true, true) }>
+                                <i><FontAwesomeIcon icon={ faUserGroup } /></i>
+                                Following: { following.length }
+                            </h2>
+                            <h2 className="infoBtn" onClick={ () => handleFollowBox(true, false) }>
+                                <i><FontAwesomeIcon icon={ faUsers } /></i>
+                                Followers: { followers.length }
                             </h2>
 
                             <div className="profileBtns">
