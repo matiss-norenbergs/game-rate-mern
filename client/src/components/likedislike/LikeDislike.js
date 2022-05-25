@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./LikeDislike.css";
 
-const LikeDislike = ({ gameId, reviewId, userId, reviewLikes, reviewDislikes }) => {
+const LikeDislike = ({ gameId, reviewId, reviewLikes, reviewDislikes }) => {
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const [isLiked, setIsLiked] = useState(false);

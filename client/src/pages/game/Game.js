@@ -136,7 +136,6 @@ const Game = () => {
                                     <LikeDislike
                                         gameId={ id }
                                         reviewId={ review._id }
-                                        userId={ user ? user._id : null }
                                         reviewLikes={ review.likes }
                                         reviewDislikes={ review.dislikes }
                                     />
