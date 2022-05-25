@@ -1,0 +1,110 @@
+.followBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+    padding: 5%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    animation: showFollowBox .4s linear forwards;
+}
+
+@keyframes showFollowBox {
+    form {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.followBox > .closeBtn {
+    align-self: flex-end;
+    align-content: center;
+    line-height: 3rem;
+    width: 3rem;
+    font-size: 2rem;
+    border-radius: 5px;
+    background: var(--accent-color);
+    color: #ddd;
+}
+
+.followBox > .closeBtn:hover {
+    background: var(--background);
+    color: var(--accent-color);
+}
+
+.followBox .followBtns {
+    width: 100%;
+}
+
+.followBox .followBtns > button {
+    padding: .5rem 1rem;
+    font-size: 1.4rem;
+
+    border: 1px solid var(--accent-color);
+    border-bottom: none;
+    background: var(--transparent-black);
+    color: #ddd;
+}
+
+.followBox .followBtns > button:hover {
+    color: var(--accent-color);
+}
+
+.followBox .followBtns > .active {
+    background: var(--background);
+    color: var(--white2);
+}
+
+.followBox .innerFollowBox {
+    height: 100%;
+    padding: 1rem;
+    border: 1px solid var(--accent-color);
+    background: var(--background);
+}
+
+.followBox .innerFollowBox .followSection {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.followBox .innerFollowBox .followSection > h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--white2);
+}
+
+.followBox .innerFollowBox .followSection .userBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: .5rem;
+    padding-right: 1.5rem;
+    background: var(--transparent-black);
+    border: 1px solid var(--accent-color);
+    transition: background .5s;
+}
+
+.followBox .innerFollowBox .followSection .userBox:hover {
+    background: var(--background);
+}
+
+.followBox .innerFollowBox .followSection .userBox > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-color);
+}
+
+.followBox .innerFollowBox .followSection .userBox > h4 {
+    color: var(--white2);
+}

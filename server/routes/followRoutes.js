@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { follow, unfollow } = require("../controllers/followController");
+const { getFollows, follow, unfollow } = require("../controllers/followController");
 const { protect } = require("../middleware/authMiddleware");
+
+// Get users following/followers
+router.get("/getFollows/:id", getFollows);
 
 // Follow other user
 router.put("/follow/:id", protect, follow);

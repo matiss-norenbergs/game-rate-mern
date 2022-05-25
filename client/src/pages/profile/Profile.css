@@ -34,6 +34,7 @@
 }
 
 .usersData .userInfo > h2 {
+    width: fit-content;
     padding: .5rem 0;
     font-weight: 500;
 }
@@ -42,6 +43,15 @@
     display: inline-block;
     width: 2rem;
     margin-right: .5rem;
+}
+
+.usersData .userInfo > .infoBtn {
+    cursor: pointer;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.usersData .userInfo > .infoBtn:hover {
+    color: var(--white);
 }
 
 .usersData .userInfo .profileBtns {
@@ -58,6 +68,7 @@
     border-radius: 5px;
     background: var(--accent-color);
     color: #ddd;
+    transition: background .5s;
 }
 
 .usersData .userInfo .profileBtns > button:hover {
@@ -71,6 +82,11 @@
     margin-bottom: 1rem;
     padding: .5rem 1rem;
     font-size: 1.2rem;
+}
+
+.usersData .userInfo .profileBtns .btnActive {
+    background: var(--transparent-black);
+    color: var(--white2);
 }
 
 .usersData .userInfo > form {

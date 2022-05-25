@@ -74,7 +74,15 @@ const getUser = asyncHandler( async (req, res) => {
     }
 
     const user = await User.findById(userId, 'name picture reviewCount following followers');
-    res.json(user);
+    if(!user){
+        res.status(400)
+        throw new Error("User not found")
+    }
+
+    const following = await User.find({ _id: { $in: user.following } }, 'name picture');
+    const followers = await User.find({ _id: { $in: user.followers } }, 'name picture');
+
+    res.json({ user, following, followers });
 })
 
 const getUsers = asyncHandler( async (req, res) => {
