@@ -50,3 +50,9 @@
     font-weight: 400;
     color: var(--white2);
 }
+
+@media (max-width: 940px) {
+    .userCard:hover {
+        width: 105%;
+    }
+}
