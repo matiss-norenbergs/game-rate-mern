@@ -15,6 +15,10 @@ const UserUpdate = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const navigate = useNavigate();
 
+    // if(userData){
+    //     console.log(userData)
+    // }
+
     const { user } = useSelector((state) => state.auth);
     const config = {
         headers: {
@@ -41,7 +45,7 @@ const UserUpdate = () => {
 
     useEffect(() => {
         if(!isPending && userData){
-            setRole(userData.role);
+            setRole(userData.user.role);
         }
     }, [userData, isPending]);
 
@@ -56,7 +60,7 @@ const UserUpdate = () => {
                 ) }
                 { !isPending && userData && (
                     <div className="formPage">
-                        <h1>User: { userData.name }</h1>
+                        <h1>User: { userData.user.name }</h1>
     
                         <div className="formData">
                             <form onSubmit={ handleSubmit }>
@@ -82,7 +86,7 @@ const UserUpdate = () => {
             return (
                 <Message
                     title={"Update was successful!"}
-                    message={`User role updated: ${ userData.name }`}
+                    message={`User role updated for: ${ userData.user.name }`}
                     success={ true }
                 />
             );
@@ -90,7 +94,7 @@ const UserUpdate = () => {
             return (
                 <Message
                     title={"Update failed!"}
-                    message={`Failed to update: ${ userData.name } role`}
+                    message={`Failed to update: ${ userData.user.name }'s role`}
                     success={ false }
                 />
             );

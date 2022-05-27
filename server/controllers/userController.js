@@ -73,7 +73,7 @@ const getUser = asyncHandler( async (req, res) => {
         throw new Error("ID not found")
     }
 
-    const user = await User.findById(userId, 'name picture reviewCount following followers');
+    const user = await User.findById(userId, 'name picture role reviewCount following followers');
     if(!user){
         res.status(400)
         throw new Error("User not found")
