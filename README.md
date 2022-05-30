@@ -41,4 +41,4 @@
 ##### ◉ Administrēšanas sadaļa - tagu dzēšana ☑
 ##### ◉ Vienkāršam lietotājam tiek attēlotas tikai apstiprinātas spēles (publiska redzamība) ☑
 ##### ◉ Lietotāju profils ☑
-##### ◉ Lietotājam aplikācija ir līmensi, kuru nosaka isniegto spēļu un vērtējumu daudzums ❎
+##### ◉ Aplikācijas lietotājam ir līmenis jeb ranks, kuru nosaka pozitīvo vērtējumu daudzums ( likes > dislikes = positive++ ) ☑
