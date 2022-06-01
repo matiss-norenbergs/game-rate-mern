@@ -158,10 +158,11 @@
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--white2);
+    text-decoration: underline 2px var(--accent-color);
 }
 
 .adminPage > table tr .titleCell > a:hover {
-    text-decoration: underline 3px var(--accent-color);
+    color: var(--accent-color);
 }
 
 .adminPage > table tr .centerCell {

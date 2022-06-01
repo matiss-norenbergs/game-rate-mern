@@ -80,7 +80,10 @@ const AdminGames = () => {
                                     </td>
                                     <td className="centerCell">{ game.tags.length }</td>
                                     <td>{ FormatDateNum(game.createdAt) }</td>
-                                    <td>{ game.submittedBy }</td>
+                                    
+                                    <td className="titleCell">
+                                        <Link to={`/user/${game.submittedBy}`}>{ game.submittedBy }</Link>
+                                    </td>
 
                                     <td className="centerCell">
                                         { game.publicVisible === true ?
