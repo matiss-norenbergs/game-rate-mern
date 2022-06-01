@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Pending from "../../components/pending/Pending";
@@ -12,9 +12,11 @@ import LikeDislike from "../../components/likedislike/LikeDislike";
 
 const Game = () => {
     const { id } = useParams();
-    const { data: game, isPending, error } = useFetch(`/api/games/${id}`);
+    const { data, isPending, error } = useFetch(`/api/games/${id}`);
     const { user } = useSelector((state) => state.auth);
 
+    const [game, setGame] = useState();
+    const [hasReview, setHasReview] = useState(false);
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(0);
     const [message, setMessage] = useState("");
@@ -52,6 +54,19 @@ const Game = () => {
             alert("Fill out all fields and provide a rating!");
         }
     }
+
+    useEffect(() => {
+        if(data){
+            setGame(data);
+            if(user && data.reviews.length > 0){
+                data.reviews.forEach(review => {
+                    if(review.authorId === user._id){
+                        setHasReview(true);
+                    }
+                })
+            }
+        }
+    }, [data, user]);
 
     return (
         <div className="gameRatePages">
@@ -97,7 +112,7 @@ const Game = () => {
                         </div>
                     )}
 
-                    { user && (
+                    { user && !hasReview && (
                         <form onSubmit={ handleSubmit }>
                             { message && <h2 className="reviewMessage">{ message }</h2> }
                             <div className="rate">
