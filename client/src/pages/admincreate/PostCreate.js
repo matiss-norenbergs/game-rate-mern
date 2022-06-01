@@ -35,7 +35,7 @@ const PostCreate = () => {
 
     return (
         <div className="formPage">
-            <h1>Add a new post</h1>
+            <h1>Create a news post</h1>
 
             <div className="formData">
                 <form onSubmit={ handleSubmit }>
