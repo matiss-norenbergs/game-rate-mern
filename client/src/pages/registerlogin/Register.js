@@ -54,25 +54,25 @@ const Register = () => {
             <form onSubmit={ handleSubmit }>
                 <div className="formRow">
                     <label>Username</label>
-                    <input type="text" value={name} onChange={ (e) => setName(e.target.value) } placeholder="* Enter your username" />
+                    <input type="text" value={name} onChange={ (e) => setName(e.target.value) } placeholder="* Enter your username" required />
                     <h4 className="infoTip">Usernames display on reviews</h4>
                 </div><hr />
 
                 <div className="formRow">
                     <label>E-mail</label>
-                    <input type="email" value={email} onChange={ (e) => setEmail(e.target.value) } placeholder="* Enter your email" />
+                    <input type="email" value={email} onChange={ (e) => setEmail(e.target.value) } placeholder="* Enter your email" required />
                     <h4 className="infoTip">Unique e-mail</h4>
                 </div><hr />
 
                 <div className="formRow">
                     <label>Password</label>
-                    <input type="password" value={password} onChange={ (e) => setPassword(e.target.value) } placeholder="* Enter you password" />
+                    <input type="password" value={password} onChange={ (e) => setPassword(e.target.value) } placeholder="* Enter you password" required />
                     <h4 className="infoTip">8 characters min</h4>
                 </div><hr />
 
                 <div className="formRow">
                     <label>Password repeat</label>
-                    <input type="password" value={password2} onChange={ (e) => setPassword2(e.target.value) } placeholder="* Repeat your password" />
+                    <input type="password" value={password2} onChange={ (e) => setPassword2(e.target.value) } placeholder="* Repeat your password" required />
                     <h4 className="infoTip">8 characters min</h4>
                 </div><hr />
 
