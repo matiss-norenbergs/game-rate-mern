@@ -234,8 +234,8 @@ const Profile = () => {
                                 </div>
 
                                 <label>Change password:</label>
-                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="New password (8 symbols)"/>
-                                <input type="password" value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder="Repeat password (8 symbols)" />
+                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="New password (8 symbols)" required />
+                                <input type="password" value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder="Repeat password (8 symbols)" required />
                             
                                 <div className="profileBtns">
                                     <button type="button" onClick={() => setUpdateProfile(!updateProfile)}>Cancel</button>

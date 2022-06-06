@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import validator from "validator";
 import { register, reset  } from "../../redux/features/auth/authSlice";
 import "./RegisterLogin.css";
 
@@ -32,11 +33,14 @@ const Register = () => {
         e.preventDefault();
 
         if(password !== password2 || password.length < 8 || password2.length < 8){
-            alert("Passwords do not match or are too short!")
+            alert("Passwords do not match or are too short!");
         }else{
-            const userData = { name, email, password }
-
-            dispatch(register(userData));
+            if(validator.isEmail(email)){
+                const userData = { name, email, password }
+                dispatch(register(userData));
+            }else{
+                alert("E-mail is invalid!");
+            }
         }
     }
     
@@ -54,7 +58,7 @@ const Register = () => {
             <form onSubmit={ handleSubmit }>
                 <div className="formRow">
                     <label>Username</label>
-                    <input type="text" value={name} onChange={ (e) => setName(e.target.value) } placeholder="* Enter your username" required />
+                    <input type="text" value={name} onChange={ (e) => setName(e.target.value) } minLength="4" placeholder="* Enter your username" required />
                     <h4 className="infoTip">Usernames display on reviews</h4>
                 </div><hr />
 
