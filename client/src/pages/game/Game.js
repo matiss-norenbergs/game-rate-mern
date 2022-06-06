@@ -112,7 +112,7 @@ const Game = () => {
                         </div>
                     )}
 
-                    { user && !hasReview && (
+                    { user && user.role !== "suspended" && !hasReview && (
                         <form onSubmit={ handleSubmit }>
                             { message && <h2 className="reviewMessage">{ message }</h2> }
                             <div className="rate">

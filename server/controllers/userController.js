@@ -188,7 +188,7 @@ const countUsers = asyncHandler( async (req, res) => {
         throw new Error("User is not an admin")
     }
     
-    const users = await User.countDocuments({ role: "user" });
+    const users = await User.countDocuments({});
 
     res.json({ users });
 })
