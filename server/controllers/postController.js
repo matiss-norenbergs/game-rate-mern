@@ -36,13 +36,11 @@ const addPost = asyncHandler( async (req, res) => {
         throw new Error("Please provide all necessary data")
     }
 
-    //Check for user
     if(!req.user){
         res.status(401)
         throw new Error("User not found")
     }
 
-    //Checking if the user is admin
     if(req.user.role !== "admin"){
         res.status(401)
         throw new Error("User is not an admin")
@@ -68,13 +66,11 @@ const updatePost = asyncHandler( async (req, res) => {
         throw new Error("Post not found")
     }
 
-    //Check for user
     if(!req.user){
         res.status(401)
         throw new Error("User not found")
     }
 
-    //Checking if the user is admin
     if(req.user.role !== "admin"){
         res.status(401)
         throw new Error("User is not an admin")
@@ -94,13 +90,11 @@ const deletePost = asyncHandler( async (req, res) => {
         throw new Error("Post not found")
     }
 
-    //Check for user
     if(!req.user){
         res.status(401)
         throw new Error("User not found")
     }
 
-    //Checking if the user is admin
     if(req.user.role !== "admin"){
         res.status(401)
         throw new Error("User is not an admin")

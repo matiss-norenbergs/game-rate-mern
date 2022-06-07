@@ -10,19 +10,15 @@ const useAdmin = () => {
     const navigate = useNavigate();
 
     const { user } = useSelector((state) => state.auth);
-    let token;
-    if(user){
-       token = user.token;
-    }
-
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
 
     useEffect(() => {
         if(user){
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${user.token}`
+                }
+            }
+
             axios.get("/api/users/isAdmin/", config)
             .then(res => {
                 setIsAdmin(res.data);
@@ -35,7 +31,7 @@ const useAdmin = () => {
         }else{
             navigate("/");
         }
-    }, [user]);
+    }, [user, navigate]);
     
     return { isAdmin, isPending, error };
 }
