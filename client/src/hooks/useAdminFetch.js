@@ -8,13 +8,14 @@ const useAdminFetch = (API_URL) => {
     const [error, setError] = useState(null);
 
     const { user } = useSelector((state) => state.auth);
-    const config = {
-        headers: {
-            Authorization: `Bearer ${user.token}`
-        }
-    }
 
     useEffect(() => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
         axios.get(API_URL, config)
         .then(res => {
             setData(res.data);
@@ -24,7 +25,7 @@ const useAdminFetch = (API_URL) => {
             setError(err)
             setIsPending(false);
         })
-    }, [API_URL]);
+    }, [API_URL, user]);
     
     return { data, isPending, error };
 }

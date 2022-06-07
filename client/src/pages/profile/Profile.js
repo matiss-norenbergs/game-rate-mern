@@ -1,9 +1,10 @@
+import axios from "axios";
 import { faDna, faEnvelope, faRankingStar, faStarHalfStroke, faTrashCan, faUserGroup, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteReview, reset } from "../../redux/features/reviews/reviewSlice";
 import FollowBox from "../../components/followbox/FollowBox";
 import FormatDateNum from "../../components/formatdate/FormatDateNum";
 import Pending from "../../components/pending/Pending";
@@ -12,9 +13,11 @@ import useFetch from "../../hooks/useFetch";
 import "./Profile.css";
 
 const Profile = () => {
+    const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
+    const { isError, isSuccess, isPending, message: deleteMessage } = useSelector((state) => state.reviews);
 
-    const { data, isPending, error: gameError } = useFetch(`/api/games/users_reviews/${user._id}`);
+    const { data, isPending: isPending1, error: gameError } = useFetch(`/api/games/users_reviews/${user._id}`);
     const { data: follows, isPending: isPending2, error: followError } = useFetch(`/api/follow/getFollows/${user._id}`);
 
     const [games, setGames] = useState([]);
@@ -76,15 +79,20 @@ const Profile = () => {
         setUpdateProfile(false);
     }
 
-    const handleDeleteReview = async (gameId, review_id) => {
-        const response = await axios.put(`/api/games/deletereview/${gameId}`, { review_id }, config);
-        if(response && response.status === 200){
-            const newGames = games.filter((game) => game._id !== gameId);
-            setGames(newGames);
-            
-            window.location.reload(false);
+    const handleDeleteReview = async (gameId, reviewId) => {
+        if(gameId && reviewId){
+            dispatch(deleteReview({ gameId, reviewId }));
         }
     }
+
+    useEffect(() => {
+        if(!isPending && isSuccess){
+            dispatch(reset());
+            window.location.reload(false);
+        }else if(!isPending && isError){
+            console.log(deleteMessage)
+        }
+    }, [isPending, isSuccess, isError, deleteMessage, dispatch]);
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -110,12 +118,12 @@ const Profile = () => {
     }, [user]);
 
     useEffect(() => {
-        if(data && !isPending){
+        if(data && !isPending1){
             setGames(data.games);
             setReviewCount(data.games.length);
             setPositiveRev(data.positiveReviews);
         }
-    }, [data, isPending]);
+    }, [data, isPending1]);
 
     useEffect(() => {
         if(follows && !isPending2 && !followError){
@@ -184,8 +192,8 @@ const Profile = () => {
                     )}
 
                     { gameError && <h2>{ gameError }</h2> }
-                    { isPending && <Pending text={"Loading reviews..."} /> }
-                    { !isPending && games && games.length > 0 && (
+                    { isPending1 && <Pending text={"Loading reviews..."} /> }
+                    { !isPending1 && games && games.length > 0 && (
                         <>
                             <h1 className="profHead">My reviews</h1>
                             <div className="usersData myReviews">
