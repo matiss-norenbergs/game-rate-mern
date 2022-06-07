@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getGames, getGamesPublic, getGamesPublicLast, getUsersReviewedGames, getUsersRank, getGame, addGame, addGameReview, deleteGameReview, updateGame, deleteGame, gameData, getGamesLastSubmit } = require("../controllers/gameController");
+const { getGames, getGamesPublic, getGamesPublicLast, getUsersReviewedGames, getGame, addGame, updateGame, deleteGame, gameData, getGamesLastSubmit } = require("../controllers/gameController");
 const { protect } = require("../middleware/authMiddleware");
 
 // Get all games - Admin
@@ -20,12 +20,6 @@ router.get('/:id', getGame);
 
 // Add a game - User
 router.post('/', protect, addGame);
-
-// Add a review to a game - User
-router.put('/addreview/:id', protect, addGameReview);
-
-// Delete a review - User
-router.put('/deletereview/:id', protect, deleteGameReview);
 
 // Update a game - Admin
 router.put('/:id', protect, updateGame);

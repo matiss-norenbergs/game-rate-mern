@@ -2,58 +2,44 @@ import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addReview, reset } from "../../redux/features/reviews/reviewSlice";
 import Pending from "../../components/pending/Pending";
 import useFetch from "../../hooks/useFetch";
-import "./Game.css";
 import FormatDate from "../../components/formatdate/FormatDate";
 import LikeDislike from "../../components/likedislike/LikeDislike";
+import "./Game.css";
 
 const Game = () => {
     const { id } = useParams();
-    const { data, isPending, error } = useFetch(`/api/games/${id}`);
+    const dispatch = useDispatch();
+    const { data, isPending: gameIsPending, error } = useFetch(`/api/games/${id}`);
     const { user } = useSelector((state) => state.auth);
+    const { isError, isSuccess, isPending, message } = useSelector((state) => state.reviews);
 
     const [game, setGame] = useState();
     const [hasReview, setHasReview] = useState(false);
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(0);
-    const [message, setMessage] = useState("");
 
-    const addReview = async () => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${user.token}`
-            }
-        }
-
-        const reviewData = { review, rating };
-        const response = await axios.put(`/api/games/addreview/${id}`, reviewData, config);
-        if(response){
-            if(response.status === 200){
-                setMessage(response.data.message);
-                
-                setTimeout(() => {
-                    window.location.reload(false);
-                }, [1700]);
-            }else{
-                alert(response);
-            }
-        }else{
-            setMessage("Something went wrong!")
-        }
-    }
-
-    const handleSubmit = (e) => {
+    const handleSubmitReview = (e) => {
         e.preventDefault();
 
         if(review !== "" && rating !== 0){
-            addReview();
+            dispatch(addReview({ id, review, rating }));
         }else{
             alert("Fill out all fields and provide a rating!");
         }
     }
+
+    useEffect(() => {
+        if(!isPending && !isError && isSuccess){
+            setTimeout(() => {
+                dispatch(reset());
+                window.location.reload(false);
+            }, [1700]);
+        }
+    }, [isError, isPending, isSuccess, dispatch]);
 
     useEffect(() => {
         if(data){
@@ -71,8 +57,8 @@ const Game = () => {
     return (
         <div className="gameRatePages">
             { error && <div className="stateInfo"><FontAwesomeIcon className="icon" icon={faExclamationCircle} /> { error }</div> }
-            { isPending && <Pending text={"Loading..."} /> }
-            { game && isPending === false && error === null && (
+            { gameIsPending && <Pending text={"Loading..."} /> }
+            { game && gameIsPending === false && error === null && (
                 <div className="gameInfo">
                     { user && user.role === "admin" && (
                         <Link to={`/admin/game/update/${game._id}`} className="adminEdit">Update</Link>
@@ -113,7 +99,7 @@ const Game = () => {
                     )}
 
                     { user && user.role !== "suspended" && !hasReview && (
-                        <form onSubmit={ handleSubmit }>
+                        <form onSubmit={ handleSubmitReview }>
                             { message && <h2 className="reviewMessage">{ message }</h2> }
                             <div className="rate">
                                 <input type="radio" id="star5" name="rate" value="5" onChange={ (e) => setRating(e.target.value) } />
