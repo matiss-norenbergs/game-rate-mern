@@ -33,11 +33,15 @@ const Game = () => {
     }
 
     useEffect(() => {
-        if(!isPending && !isError && isSuccess){
+        if(!isPending && isSuccess){
             setTimeout(() => {
                 dispatch(reset());
                 window.location.reload(false);
             }, [1700]);
+        }else if(!isPending && isError){
+            setTimeout(() => {
+                dispatch(reset());
+            }, [2000]);
         }
     }, [isError, isPending, isSuccess, dispatch]);
 
