@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import FollowBox from "../../components/followbox/FollowBox";
 import FormatDateNum from "../../components/formatdate/FormatDateNum";
+import Message from "../../components/message/Message";
 import Pending from "../../components/pending/Pending";
 import RankCalc from "../../components/rankcalc/RankCalc";
 import useFetch from "../../hooks/useFetch";
@@ -66,7 +67,7 @@ const UsersProfile = () => {
     }
 
     useEffect(() => {
-        if(data1){
+        if(!isPending1 && data1.user){
             setUserData(data1.user);
             setFollowing(data1.following);
             setFollowers(data1.followers);
@@ -79,10 +80,10 @@ const UsersProfile = () => {
                 })
             }
         }
-    }, [data1, user]);
+    }, [isPending1, data1, user]);
 
     useEffect(() => {
-        if(data2){
+        if(data2 && data2.games){
             setGames(data2.games);
             setReviewCount(data2.games.length);
             setPositiveRev(data2.positiveReviews);
@@ -165,8 +166,12 @@ const UsersProfile = () => {
                     ) }
                 </>
             ) }
-            { !isPending1 && !data1 && (
-                <h1>User doesn't exist or isn't available</h1>
+            { !isPending1 && !data1.user && (
+                <Message
+                    title={"Something went wrong!"}
+                    message={"User doesn't exist or isn't available"}
+                    success={ false }
+                />
             ) }
         </div>
     );

@@ -58,7 +58,7 @@ const Game = () => {
         <div className="gameRatePages">
             { error && <div className="stateInfo"><FontAwesomeIcon className="icon" icon={faExclamationCircle} /> { error }</div> }
             { gameIsPending && <Pending text={"Loading..."} /> }
-            { game && gameIsPending === false && error === null && (
+            { game && !gameIsPending && !error && (
                 <div className="gameInfo">
                     { user && user.role === "admin" && (
                         <Link to={`/admin/game/update/${game._id}`} className="adminEdit">Update</Link>
@@ -146,6 +146,9 @@ const Game = () => {
                     )}
                 </div>
             )}
+            { !gameIsPending && !data && (
+                <h1>Game not found!</h1>
+            ) }
         </div>
     );
 }
