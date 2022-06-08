@@ -46,10 +46,6 @@ const getGamesPublicLast = asyncHandler( async (req, res) => {
 // Fetch games that user has reviewed
 const getUsersReviewedGames = asyncHandler( async (req, res) => {
     const userId = req.params.id;
-    if(!userId){
-        res.status(400)
-        throw new Error("Users ID not found")
-    }
 
     const games = await Game.find(
         { reviews: { $elemMatch: { authorId: userId } } }, 
