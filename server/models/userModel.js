@@ -28,6 +28,9 @@ const userSchema = Schema(
             type: Number,
             default: 0
         },
+        positiveReviews: [
+            mongoose.Schema.Types.ObjectId
+        ],
         following: [
             mongoose.Schema.Types.ObjectId
         ],

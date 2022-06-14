@@ -23,7 +23,7 @@ const UserCard = ({ user }) => {
 
             <section className="reviewsRank">
                 <h3>
-                    Rank: { RankCalc(positiveRev) }
+                    Rank: { RankCalc(user.positiveReviews.length) }
                 </h3>
             </section>
         </Link>
