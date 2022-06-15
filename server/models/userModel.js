@@ -24,10 +24,6 @@ const userSchema = Schema(
             type: String,
             default: "user"
         },
-        reviewCount: {
-            type: Number,
-            default: 0
-        },
         positiveReviews: [
             mongoose.Schema.Types.ObjectId
         ],
