@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Game = require("../models/gameModel");
+const User = require("../models/userModel");
 
 const likeInc = asyncHandler( async (req, res) => {
     if(!req.user){
@@ -20,7 +21,7 @@ const likeInc = asyncHandler( async (req, res) => {
     }
 
     const userHasLiked = await Game.findOne(
-        { _id: gameId, reviews: { $elemMatch: { _id: reviewId } }, reviews: { $elemMatch: { likes: userId } } }, 
+        { _id: gameId, reviews: { $elemMatch: { _id: reviewId, likes: { $in: userId } } } }, 
         { 'reviews.$': 1 }
     );
     if(userHasLiked){
@@ -48,6 +49,8 @@ const likeInc = asyncHandler( async (req, res) => {
         } },
         { new: true, timestamps: false }
     );
+
+    updateUserPositiveReviews(gameId, reviewId);
 
     res.json({ success: true });
 })
@@ -83,6 +86,8 @@ const likeDec = asyncHandler( async (req, res) => {
         throw new Error("Unlike action failed!")
     }
 
+    updateUserPositiveReviews(gameId, reviewId);
+
     res.json({ success: true });
 })
 
@@ -105,7 +110,7 @@ const dislikeInc = asyncHandler( async (req, res) => {
     }
 
     const userHasDisiked = await Game.findOne(
-        { _id: gameId, reviews: { $elemMatch: { _id: reviewId } }, reviews: { $elemMatch: { dislikes: userId } } }, 
+        { _id: gameId, reviews: { $elemMatch: { _id: reviewId, dislikes: { $in: userId } } } }, 
         { 'reviews.$': 1 }
     );
     if(userHasDisiked){
@@ -133,6 +138,8 @@ const dislikeInc = asyncHandler( async (req, res) => {
         } },
         { new: true, timestamps: false }
     );
+
+    updateUserPositiveReviews(gameId, reviewId);
 
     res.json({ success: true });
 })
@@ -168,7 +175,58 @@ const dislikeDec = asyncHandler( async (req, res) => {
         throw new Error("Undislike action failed!")
     }
 
+    updateUserPositiveReviews(gameId, reviewId);
+
     res.json({ success: true });
 })
+
+const updateUserPositiveReviews = async (gameId, reviewId) => {
+    const game = await Game.findOne(
+        { _id: gameId, reviews: { $elemMatch: { _id: reviewId } } }, 
+        { 'reviews.$': 1 }
+    );
+    if(!game){
+        res.status(400)
+        throw new Error("Review not found!")
+    }
+    const review = game.reviews[0];
+    const userId = game.reviews[0].authorId;
+
+    const onList = await User.findOne({ _id: userId, positiveReviews: { $in: reviewId } });
+
+    if(review.likes.length > review.dislikes.length){
+        if(onList){
+            return;
+        }
+
+        const update = await User.findByIdAndUpdate(
+            userId, 
+            { $push: { positiveReviews: reviewId } }, 
+            { new: false, timestamps: false }
+        );
+
+        if(!update){
+            res.status(400)
+            throw new Error("Failed to add positive review")
+        }
+        
+    }else if(review.likes.length <= review.dislikes.length){
+        if(!onList){
+            return;
+        }
+        const update = await User.findByIdAndUpdate(
+            userId, 
+            { $pull: { positiveReviews: reviewId } }, 
+            { new: false, timestamps: false }
+        );
+
+        if(!update){
+            res.status(400)
+            throw new Error("Failed to remove positive review")
+        }
+    }
+
+    return;
+}
 
 module.exports = { likeInc, likeDec, dislikeInc, dislikeDec }

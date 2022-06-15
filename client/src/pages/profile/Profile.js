@@ -21,10 +21,10 @@ const Profile = () => {
     const { data: follows, isPending: isPending2, error: followError } = useFetch(`/api/follow/getFollows/${user._id}`);
 
     const [games, setGames] = useState([]);
-    const [reviewCount, setReviewCount] = useState(0);
     const [positiveRev, setPositiveRev] = useState(0);
     const [following, setFollowing] = useState([]);
     const [followers, setFollowers] = useState([]);
+    const [deletedReviewId, setDeletedReviewId] = useState();
 
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
@@ -81,18 +81,20 @@ const Profile = () => {
 
     const handleDeleteReview = async (gameId, reviewId) => {
         if(gameId && reviewId){
+            setDeletedReviewId(gameId);
             dispatch(deleteReview({ gameId, reviewId }));
         }
     }
 
     useEffect(() => {
         if(!isPending && isSuccess){
+            const newGames = games.filter((game) => game._id !== deletedReviewId);
+            setGames(newGames);
             dispatch(reset());
-            window.location.reload(false);
         }else if(!isPending && isError){
             console.log(deleteMessage)
         }
-    }, [isPending, isSuccess, isError, deleteMessage, dispatch]);
+    }, [isPending, isSuccess, isError, deleteMessage, dispatch, deletedReviewId, games]);
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -120,7 +122,6 @@ const Profile = () => {
     useEffect(() => {
         if(data && !isPending1){
             setGames(data.games);
-            setReviewCount(data.games.length);
             setPositiveRev(data.positiveReviews);
         }
     }, [data, isPending1]);
@@ -164,7 +165,7 @@ const Profile = () => {
                             </h2>
                             <h2>
                                 <i><FontAwesomeIcon icon={ faStarHalfStroke } /></i>
-                                Review count: { reviewCount }
+                                Review count: { games.length }
                             </h2>
                             <h2>
                                 <i><FontAwesomeIcon icon={ faRankingStar } /></i>

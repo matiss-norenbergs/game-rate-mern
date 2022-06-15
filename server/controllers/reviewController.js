@@ -22,18 +22,15 @@ const addReview = asyncHandler( async (req, res) => {
         res.status(401)
         throw new Error("Valid user not found!")
     }
-    
-    //Get users data live
-    const user = await User.findById(req.user._id, 'role reviewCount');
 
     //Check if user is suspended
-    if(user.role === "suspended"){
+    if(req.user.role === "suspended"){
         res.status(401)
         throw new Error("Your account is suspended!")
     }
 
     //Check if user has a review already
-    const userCreatedReview = await Game.find({ _id: id, 'reviews.authorId': req.user._id }).limit(1);
+    const userCreatedReview = await Game.find({ _id: id, reviews: { $elemMatch: { authorId: req.user._id } } }).limit(1);
     if(userCreatedReview.length >= 1){
         res.status(401)
         throw new Error("You already have a review for this game!")
@@ -43,10 +40,6 @@ const addReview = asyncHandler( async (req, res) => {
     const { name: author, _id: authorId } = req.user;
     const reviews = { review, author, authorId, rating };
     await Game.findByIdAndUpdate(id, { $push: { reviews } }, { new: true, timestamps: false });
-
-    //Update users review count
-    const reviewCount = user.reviewCount + 1;
-    await User.findByIdAndUpdate(req.user._id, { reviewCount }, { new: true, timestamps: false });
 
     //Calculate AVG rating for the game
     const gameRating = await Game.findById(id, 'reviews');
@@ -89,11 +82,6 @@ const deleteReview = asyncHandler( async (req, res) => {
     //Delete users review
     await Game.findByIdAndUpdate(gameId, { $pull: { reviews: { _id: reviewId } } }, { new: true, timestamps: false });
 
-    //Update users review count
-    const user = await User.findById(req.user._id, 'reviewCount');
-    const reviewCount = user.reviewCount - 1;
-    await User.findByIdAndUpdate(req.user._id, { reviewCount }, { new: true, timestamps: false });
-
     //Calculate games rating
     const gameRating = await Game.findById(gameId, 'reviews');
     if(gameRating){
@@ -110,6 +98,17 @@ const deleteReview = asyncHandler( async (req, res) => {
         }
 
         await Game.findByIdAndUpdate(gameId, { rating }, { new: true, timestamps: false });
+    }
+
+    const update = await User.findByIdAndUpdate(
+        req.user._id, 
+        { $pull: { positiveReviews: reviewId } }, 
+        { new: false, timestamps: false }
+    );
+
+    if(!update){
+        res.status(400)
+        throw new Error("Failed to remove positive review")
     }
 
     res.json("Review deleted!");
