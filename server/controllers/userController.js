@@ -99,7 +99,7 @@ const getUsers = asyncHandler( async (req, res) => {
 })
 
 const getTopUsers = asyncHandler( async (req, res) => {
-    const users = await User.find({}, 'name picture reviewCount').sort({ reviewCount: -1 }).limit(3);
+    const users = await User.find({}, 'name picture positiveReviews').sort({ positiveReviews: -1 }).limit(3);
 
     res.json(users);
 })
