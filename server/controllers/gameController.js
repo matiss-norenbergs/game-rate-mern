@@ -50,6 +50,9 @@ const getUsersReviewedGames = asyncHandler( async (req, res) => {
     const games = await Game.find(
         { reviews: { $elemMatch: { authorId: userId } } }, 
         { title: 1, 'reviews.$': 1 } 
+    )
+    .sort(
+        { "reviews.createdAt": 1 }
     );
 
     let positiveReviews = 0;

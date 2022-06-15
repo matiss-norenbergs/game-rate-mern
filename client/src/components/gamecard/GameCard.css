@@ -46,15 +46,6 @@
     text-shadow: 0px 0px 8px #000;
 }
 
-.listedGame .listedGameInfo > h3 {
-    font-size: 1.4rem;
-}
-
-.listedGame .listedGameInfo > h3 span {
-    font-size: 1.6rem;
-    color: #ffc700;
-}
-
 .listedGame .listedGameInfo > hr {
     width: 85%;
     height: 4px;

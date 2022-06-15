@@ -1,5 +1,5 @@
 import axios from "axios";
-import { faDna, faEnvelope, faRankingStar, faStarHalfStroke, faTrashCan, faUserGroup, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faDna, faEnvelope, faRankingStar, faStarHalfStroke, faThumbsDown, faThumbsUp, faTrashCan, faUserGroup, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +25,7 @@ const Profile = () => {
     const [following, setFollowing] = useState([]);
     const [followers, setFollowers] = useState([]);
     const [deletedReviewId, setDeletedReviewId] = useState();
+    const [deletedIsPositive, setDeletedIsPositive] = useState(false);
 
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
@@ -79,9 +80,12 @@ const Profile = () => {
         setUpdateProfile(false);
     }
 
-    const handleDeleteReview = async (gameId, reviewId) => {
+    const handleDeleteReview = async (gameId, reviewId, likes, dislikes) => {
         if(gameId && reviewId){
             setDeletedReviewId(gameId);
+            if(likes > dislikes){
+                setDeletedIsPositive(true);
+            }
             dispatch(deleteReview({ gameId, reviewId }));
         }
     }
@@ -90,11 +94,14 @@ const Profile = () => {
         if(!isPending && isSuccess){
             const newGames = games.filter((game) => game._id !== deletedReviewId);
             setGames(newGames);
+            if(deletedIsPositive){
+                setPositiveRev(positiveRev - 1);
+            }
             dispatch(reset());
         }else if(!isPending && isError){
             console.log(deleteMessage)
         }
-    }, [isPending, isSuccess, isError, deleteMessage, dispatch, deletedReviewId, games]);
+    }, [isPending, isSuccess, isError, deleteMessage, dispatch, deletedReviewId, games, positiveRev, deletedIsPositive]);
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -201,7 +208,7 @@ const Profile = () => {
 
                                 { games.map((game, index) => (
                                     <div className="myReview" key={ index }>
-                                        <button className="btnDelete" onClick={ () => handleDeleteReview(game._id, game.reviews[0]._id) } type="button">
+                                        <button className="btnDelete" onClick={ () => handleDeleteReview(game._id, game.reviews[0]._id, game.reviews[0].likes.length, game.reviews[0].dislikes.length) } type="button">
                                             <FontAwesomeIcon icon={ faTrashCan } /> Delete
                                         </button>
 
@@ -211,6 +218,12 @@ const Profile = () => {
                                             
                                         <p>{ game.reviews[0].review }</p>
                                         <h3>Your rating: { game.reviews[0].rating }</h3>
+
+                                        <div className="myReviewLikes">
+                                            <h4><FontAwesomeIcon icon={ faThumbsUp } /> { game.reviews[0].likes.length }</h4>|
+                                            <h4><FontAwesomeIcon icon={ faThumbsDown } /> { game.reviews[0].dislikes.length }</h4>
+                                        </div>
+
                                         <span>Posted at: { FormatDateNum(game.reviews[0].createdAt) }</span>
                                     </div>
                                 )) }

@@ -1,4 +1,4 @@
-import { faRankingStar, faStarHalfStroke, faUserGroup, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faRankingStar, faStarHalfStroke, faThumbsDown, faThumbsUp, faUserGroup, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -20,7 +20,6 @@ const UsersProfile = () => {
     const [showFollowing, setShowFollowing] = useState(true);
 
     const [games, setGames] = useState([]);
-    const [reviewCount, setReviewCount] = useState(0);
     const [positiveRev, setPositiveRev] = useState(0);
     const [isFollowing, setIsFollowing] = useState(false);
 
@@ -85,7 +84,6 @@ const UsersProfile = () => {
     useEffect(() => {
         if(data2 && data2.games){
             setGames(data2.games);
-            setReviewCount(data2.games.length);
             setPositiveRev(data2.positiveReviews);
         }
     }, [data2]);
@@ -116,7 +114,7 @@ const UsersProfile = () => {
                         <section className="userInfo">
                             <h2>
                                 <i><FontAwesomeIcon icon={ faStarHalfStroke } /></i>
-                                Review count: { reviewCount }
+                                Review count: { games.length }
                             </h2>
                             <h2>
                                 <i><FontAwesomeIcon icon={ faRankingStar } /></i>
@@ -158,6 +156,12 @@ const UsersProfile = () => {
                                             
                                         <p>{ game.reviews[0].review }</p>
                                         <h3>{ userData.name }'s rating: { game.reviews[0].rating }</h3>
+
+                                        <div className="myReviewLikes">
+                                            <h4><FontAwesomeIcon icon={ faThumbsUp } /> { game.reviews[0].likes.length }</h4>|
+                                            <h4><FontAwesomeIcon icon={ faThumbsDown } /> { game.reviews[0].dislikes.length }</h4>
+                                        </div>
+
                                         <span>Posted at: { FormatDateNum(game.reviews[0].createdAt) }</span>
                                     </div>
                                 )) }

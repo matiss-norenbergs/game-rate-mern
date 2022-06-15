@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import StarRating from "../starrating/StarRating";
 import "./GameCard.css";
 
 function GameCard (props){
@@ -8,7 +9,7 @@ function GameCard (props){
         <Link to={`/game/${_id}`} className="listedGame" style={{ backgroundImage: `url(${cover})` }}>
             <div className="listedGameInfo">
                 <h2>{ title }</h2><hr />
-                <h3>Rating: { rating } <span>★</span></h3>
+                <StarRating rating={ rating } />
             </div>
         </Link>
     );
