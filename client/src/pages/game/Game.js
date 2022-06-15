@@ -9,6 +9,7 @@ import useFetch from "../../hooks/useFetch";
 import FormatDate from "../../components/formatdate/FormatDate";
 import LikeDislike from "../../components/likedislike/LikeDislike";
 import "./Game.css";
+import StarRating from "../../components/starrating/StarRating";
 
 const Game = () => {
     const { id } = useParams();
@@ -75,7 +76,7 @@ const Game = () => {
                         <p>{ game.summary }</p>
                     </div>
 
-                    <h2>Rating: { game.rating } <span className="star">★</span></h2>
+                    <StarRating rating={ game.rating } />
 
                     { game && game.tags && game.tags.length > 0 && (
                         <div className="gameTags">

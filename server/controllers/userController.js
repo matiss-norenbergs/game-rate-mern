@@ -68,7 +68,7 @@ const loginUser = asyncHandler( async (req, res) => {
 // Get single users data - public
 const getUser = asyncHandler( async (req, res) => {
     const userId = req.params.id;
-    const user = await User.findById(userId, 'name picture role reviewCount following followers');
+    const user = await User.findById(userId, 'name picture role following followers');
     if(!user){
         res.json(false);
         return;

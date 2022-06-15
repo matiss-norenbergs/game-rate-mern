@@ -209,6 +209,16 @@
     align-self: flex-end;
 }
 
+.myReviews .myReview .myReviewLikes {
+    display: flex;
+    padding: .2rem 0;
+    font-size: 1rem;
+}
+
+.myReviews .myReview .myReviewLikes > h4 {
+    margin: 0 .5rem;
+}
+
 @media (max-width: 940px) {
     .usersData {
         display: block;
@@ -252,6 +262,12 @@
 
     .profileMessage > h2 {
         font-size: 1.4rem;
+    }
+
+    .myReviews {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
     }
 
     .myReviews .myReview {
